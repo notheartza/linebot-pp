@@ -1,0 +1,1 @@
+web: gunicorn linebot-pp.app:app --timeout 120 --log-level=debug
