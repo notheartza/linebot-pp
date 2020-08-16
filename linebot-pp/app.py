@@ -18,6 +18,7 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 
+
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 

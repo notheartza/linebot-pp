@@ -34,3 +34,4 @@ pytz==2020.1
 oauth2client~=4.1.3
 google-api-python-client~=1.9.3
 emoji==0.5.4
+vuepy==0.2.1
