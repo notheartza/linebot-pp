@@ -469,7 +469,8 @@ def Broadcast():
 @app.route('/Center')
 def Center():
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
-    return render_template('center.html')
+    type= "-เลื่อก-"
+    return render_template('center.html' , typeText=type)
 
 if __name__ == '__main__':
     app.run(debug=True)

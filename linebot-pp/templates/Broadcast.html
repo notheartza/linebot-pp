@@ -3,7 +3,10 @@
     <meta charset="utf-8">
     <title>Broadcast Line Bot</title>
     <link rel="shortcut icon" href="http://www.atc.chula.ac.th/picture/PPSCL.gif">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
         .container {
@@ -51,20 +54,22 @@
                             <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
                         </div>
                         <div class="area-field">
-
+                        <div class="row">
+                            <div class="col">
+                                <label>{{typeText}}</label>
+                            </div>
                         <!--Dropdown primary-->
-                        <div class="dropdown">
-
+                        <div class="col dropdown">
                         <!--Trigger-->
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Material dropdown</button>
+                        aria-haspopup="true" aria-expanded="false">ประเภทการส่งข้อความ</button>
                     
                         <!--Menu-->
                         <div class="dropdown-menu dropdown-primary">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">รายบุคคล</a>
+                        <a class="dropdown-item" href="#">มากกว่า 1 คนขึ้นไป</a>
+                        <a class="dropdown-item" href="#">ทั้งหมด</a>
+                        </div>
                         </div>
                     </div>
                     <!--/Dropdown primary-->
