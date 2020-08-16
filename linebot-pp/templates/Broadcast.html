@@ -4,7 +4,7 @@
     <title>Broadcast Line Bot</title>
     <link rel="shortcut icon" href="http://www.atc.chula.ac.th/picture/PPSCL.gif">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
     <style>
         .container {
         display: flex;
@@ -12,7 +12,7 @@
         }
        .Center{
         position: absolute;
-        top: 100px;
+        top: 20%;
        }
        .bgpage{
             padding: 20px;
@@ -21,25 +21,43 @@
        .header{
            color: #FFFF;
        }
+       .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+        display: flex;
+        align-items: center;
+      }
+      .head-top{
+          text-align: center;
+        background-color: mediumseagreen; 
+        padding: 20px 20px 5px 20px; 
+        border-radius: 30px 30px 0px 0px;
+      }.area-field{
+        border-style: solid; 
+        border-color: mediumseagreen; 
+        padding: 20px 20px 40px 20px; 
+        border-radius: 0px 0px 30px 30px;
+      }
+
     </style>
         <meta charset="utf-8">
     </header> 
-     
-    <body class="container" style="background-color: white;">
-        
-            <div class="Center">
+     <body>
+         
+         
 
-        <div style="background-color: mediumseagreen; padding: 20px 20px 5px 20px; border-radius: 30px 30px 0px 0px">
-            <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
-        </div>
-        <div style="border-style: solid; border-color: mediumseagreen; padding: 20px 20px 40px 20px; border-radius: 0px 0px 30px 30px;">
-                <div style="text-align: left;">
-                        <label style="font-size: large;">ข้อความที่ประกาศ</label>
-                </div>    
-                <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
-        </div>
-
-    </div>
-        
+        <div class="row h-100 w-100 vertical-center">
+                <div class="w-30 mx-auto">
+                        <div class="head-top ">
+                            <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
+                        </div>
+                        <div class="area-field">
+                                <div style="text-align: left;">
+                                        <label style="font-size: large;">ข้อความที่ประกาศ</label>
+                                </div>    
+                                <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
+                        </div>
+                    </div>             
+         </div>    
     </body>
 </html>
