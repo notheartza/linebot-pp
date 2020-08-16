@@ -38,24 +38,40 @@
         padding: 20px 20px 40px 20px; 
         border-radius: 0px 0px 30px 30px;
       }
-
+      .label{
+        font-size: large;
+      }
     </style>
         <meta charset="utf-8">
     </header> 
      <body>
-         
-         
-
         <div class="row h-100 w-100 vertical-center">
                 <div class="w-30 mx-auto">
                         <div class="head-top ">
                             <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
                         </div>
                         <div class="area-field">
+
+                                    <div class="dropdown text-right">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          ประเภทการประกาศ
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                          <a class="dropdown-item" href="#">รายบุคคล</a>
+                                          <a class="dropdown-item" href="#">หมู่คณะ</a>
+                                          <a class="dropdown-item" href="#">ทั้งหมด</a>
+                                        </div>
+                                      </div>
+
                                 <div style="text-align: left;">
-                                        <label style="font-size: large;">ข้อความที่ประกาศ</label>
+                                        <label class="label">ข้อความที่ประกาศ</label>
                                 </div>    
                                 <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
+                                <div class="text-center" style="margin-top: 5%;">
+                                    <button type="button" class="btn btn-primary btn-lg">ตกลง</button>
+
+                                </div>
+                                
                         </div>
                     </div>             
          </div>    
