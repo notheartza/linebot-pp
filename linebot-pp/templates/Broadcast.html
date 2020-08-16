@@ -66,9 +66,9 @@
                     
                         <!--Menu-->
                         <div class="dropdown-menu dropdown-primary">
-                        <a class="dropdown-item" href="#">รายบุคคล</a>
-                        <a class="dropdown-item" href="#">มากกว่า 1 คนขึ้นไป</a>
-                        <a class="dropdown-item" href="#">ทั้งหมด</a>
+                            {% for o in choice %}
+                            <option value="{{o.name}}">{{o.name}}</option>
+                            {% endfor %}
                         </div>
                         </div>
                     </div>
