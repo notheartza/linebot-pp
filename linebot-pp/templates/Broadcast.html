@@ -4,7 +4,7 @@
     <title>Broadcast Line Bot</title>
     <link rel="shortcut icon" href="http://www.atc.chula.ac.th/picture/PPSCL.gif">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <style>
         .container {
         display: flex;
@@ -12,7 +12,7 @@
         }
        .Center{
         position: absolute;
-        top: 20%;
+        top: 100px;
        }
        .bgpage{
             padding: 20px;
@@ -24,25 +24,22 @@
     </style>
         <meta charset="utf-8">
     </header> 
-     <body>
-    <div class="row h-100">
-        <div class="col-sm-12 my-auto">
-          <div class="card card-block w-25">Card</div>
-        </div>
-     </div>
+     
+    <body class="container" style="background-color: white;">
         
+            <div class="Center">
+
         <div style="background-color: mediumseagreen; padding: 20px 20px 5px 20px; border-radius: 30px 30px 0px 0px">
             <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
         </div>
         <div style="border-style: solid; border-color: mediumseagreen; padding: 20px 20px 40px 20px; border-radius: 0px 0px 30px 30px;">
-            <div style="text-align: left;">
-                <label style="font-size: large;">ข้อความที่ประกาศ</label>
-            </div>    
-            <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
+                <div style="text-align: left;">
+                        <label style="font-size: large;">ข้อความที่ประกาศ</label>
+                </div>    
+                <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
         </div>
 
-    
+    </div>
         
-    </template>
     </body>
 </html>
