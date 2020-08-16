@@ -65,11 +65,11 @@
                         aria-haspopup="true" aria-expanded="false">ประเภทการส่งข้อความ</button>
                     
                         <!--Menu-->
-                        <div class="dropdown-menu dropdown-primary">
+                        <select name="type-text" class="selectpicker form-control">
                             {% for o in choice %}
                             <option class="dropdown-item" value="{{o.name}}">{{o.name}}</option>
                             {% endfor %}
-                        </div>
+                        </select>
                         </div>
                     </div>
                     <!--/Dropdown primary-->
