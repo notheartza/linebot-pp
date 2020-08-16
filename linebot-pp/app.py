@@ -466,6 +466,10 @@ def Broadcast():
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     return render_template('Broadcast.html')
 
+@app.route('/Center')
+def Broadcast():
+    #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
+    return render_template('center.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
