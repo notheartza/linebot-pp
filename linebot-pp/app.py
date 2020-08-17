@@ -464,7 +464,7 @@ def handle_postback(event):
             event.reply_token, TextSendMessage(text=event.postback.params['date']))
 
 
-@app.route('/Broadcast')
+@app.route('/Broadcast/<string:gettype>')
 def Broadcast():
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     type= "เลือก"
