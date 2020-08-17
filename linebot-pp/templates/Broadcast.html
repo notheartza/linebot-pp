@@ -7,8 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="css/bootstrap-color.css" >
+    
     <style>
+        
         .container {
         display: flex;
         justify-content: center;
@@ -44,6 +46,7 @@
       .label{
         font-size: large;
       }
+
     </style>
         <meta charset="utf-8">
     </header> 
@@ -64,7 +67,18 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">ประเภทการส่งข้อความ</button>
                             {% if typeText == 'รายบุคคล' %}
-                            <div>รายบุคคล</div>
+                            <div class="col">
+                               <label> Line Name: </label>
+                                <div class="col dropdown">
+                                    <button class="btn btn-primary dropdown-toggle">
+                                        ชื่อ
+                                    </button>
+                                </div>
+                            </div>
+                            {% elif typeText == 'มากกว่า 1 คนขึ้นไป' %}
+                            <div>
+                                List: 
+                            </div>
                             {% endif %}
                         <!--Menu-->
                         <div class="dropdown-menu">
