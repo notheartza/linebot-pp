@@ -63,9 +63,9 @@
                         <!--Trigger-->
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">ประเภทการส่งข้อความ</button>
-                            {% ifequal {{typText}} 'รายบุคคล' %}
+                            {% if {{typText}} == 'รายบุคคล' %}
                             <div>รายบุคคล</div>
-                            {% endifequal %}
+                            {% endif %}
                         <!--Menu-->
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ url_for('Broadcast_type' ,gettype=1) }}">รายบุคคล</a>
