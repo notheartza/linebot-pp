@@ -81,12 +81,12 @@
                     <!--/Dropdown primary-->
 
                     {% if typeText == 'รายบุคคล' %}
-                            <div class="row" style="margin-top: 15px;">
+                            <div class="row" style="margin-top: 15px; margin-right: 15px;">
                                 <div class="col-9 my-auto">
                                     <label>Line Name: {{Name}}</label>
                                 </div>
                                 
-                                    <select class="col dropdown-menu">
+                                    <select class="col" id="name">
                                         {% for i in userline %}
                                             <option class="dropdown-item" value="{{i['userName']}}">{{ i["userName"] }}</option>
                                         {% endfor %}
