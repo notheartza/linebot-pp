@@ -477,7 +477,7 @@ def Broadcast_type(gettype):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     type = ""
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้้งหมด':'3'}
-    for i in choices:
+    for i in choices.items():
         if i.values == gettype:
             type = i.name
 
