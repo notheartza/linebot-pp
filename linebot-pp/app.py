@@ -483,15 +483,12 @@ def Broadcast_type(gettype):
     
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
-    linename = []
-    for i in users:
-        linename.append(i["userName"])
-    print(linename)
+
     for key, value in choices.items():
         if value == gettype:
             type = key
 
-    return render_template('Broadcast.html' , typeText=type, userline=linename)
+    return render_template('Broadcast.html' , typeText=type, userline=users)
 
 
 
