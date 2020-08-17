@@ -470,7 +470,10 @@ def handle_postback(event):
     #type= "เลือก"
 
     #return render_template('Broadcast.html' , typeText=type)
-
+@app.route('/Broadcast' , methods=['GET'])
+def Broadcast():
+    type = "เลือก"
+    return render_template('Broadcast.html' , typeText=type)
 
 @app.route('/Broadcast/<gettype>' , methods=['GET'])
 def Broadcast_type(gettype):
