@@ -18,6 +18,7 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 
+app = Flask(__name__)
 
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
@@ -88,7 +89,9 @@ def mainMenu(event):
 def getDataInRoom(room):
         return f"คะแนนนักเรียน ม.4/{room}"
 
-app = Flask(__name__)
+        
+
+
 
 
 line_bot_api = LineBotApi(
