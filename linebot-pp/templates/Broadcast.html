@@ -90,9 +90,8 @@
                                     aria-haspopup="true" aria-expanded="false">ชื่อ</button>
                                     <div class="dropdown-menu scrollable-menu" role="menu" style="height: 100px;">
                                         {% for i in userline %}
-                                            <a class="dropdown-item" href="#">{{ i["userName"] }}</a>
+                                            <option class="dropdown-item" value="{{i['userName']}}">{{ i["userName"] }}</a>
                                         {% endfor %}
-
                                     </div>
                                 </div>
                             </div>
