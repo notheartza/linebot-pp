@@ -465,7 +465,7 @@ def handle_postback(event):
 
 
 @app.route('/Broadcast')
-def Broadcast_type():
+def Broadcast():
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     type= "เลือก"
 
