@@ -85,15 +85,13 @@
                                 <div class="col-9 my-auto">
                                     <label>Line Name: {{Name}}</label>
                                 </div>
-                                <div class="col dropdown">
-                                    <button class="btn btn-primary dropdown-toggle text-right" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">ชื่อ</button>
-                                    <select class="dropdown-menu scrollable-menu" role="menu" style="height: 100px;">
+                                
+                                    <select class="col dropdown-menu">
                                         {% for i in userline %}
-                                            <option class="dropdown-item" value="{{i['userName']}}">{{ i["userName"] }}</a>
+                                            <option class="dropdown-item" value="{{i['userName']}}">{{ i["userName"] }}</option>
                                         {% endfor %}
-                                            </select>
-                                </div>
+                                    </select>
+            
                             </div>
                             {% elif typeText == 'มากกว่า 1 คนขึ้นไป' %}
                             
