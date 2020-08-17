@@ -482,7 +482,7 @@ def Broadcast_type(gettype):
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
     
     usersheet = clientgs('usersheet', client)        
-    users = logsheet.get_all_records()
+    users = usersheet.get_all_records()
     linename = []
     for i in users:
         linename.append(i["userName"])
