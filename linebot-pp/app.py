@@ -472,7 +472,7 @@ def handle_postback(event):
     #return render_template('Broadcast.html' , typeText=type)
 
 
-@app.route('/Broadcast/<string:type>')
+@app.route('/Broadcast/<string:type>' ,methods=['POST', 'GET'])
 def Broadcast_type(type):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
 
