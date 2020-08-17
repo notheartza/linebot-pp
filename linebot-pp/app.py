@@ -486,7 +486,7 @@ def Broadcast_type(gettype):
     linename = []
     for i in users:
         linename.append(i["userName"])
-
+    print(linename)
     for key, value in choices.items():
         if value == gettype:
             type = key
