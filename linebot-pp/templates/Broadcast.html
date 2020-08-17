@@ -66,20 +66,6 @@
                         <!--Trigger-->
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">ประเภทการส่งข้อความ</button>
-                            {% if typeText == 'รายบุคคล' %}
-                            <div class="row">
-                                <div class="col">
-                                    <label>Line Name: {{Name}}</label>
-                                </div>
-                                <div class="col dropdown"></div>
-                                    <button class="btn btn-primary dropdown-toggle">ชื่อ</button>
-                                </div>
-                            </div>
-                            {% elif typeText == 'มากกว่า 1 คนขึ้นไป' %}
-                            <div>
-                                List: 
-                            </div>
-                            {% endif %}
                         <!--Menu-->
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ url_for('Broadcast_type' ,gettype=1) }}">รายบุคคล</a>
@@ -89,9 +75,20 @@
                         </div>
                     </div>
                     <!--/Dropdown primary-->
-                    <vif>
 
-                    </vif>
+                    {% if typeText == 'รายบุคคล' %}
+                            <div class="row">
+                                <div class="col">
+                                    <label>Line Name: {{Name}}</label>
+                                </div>
+                                <div class="col dropdown">
+                                    <button class="btn btn-primary dropdown-toggle">ชื่อ</button>
+                                </div>
+                            </div>
+                            {% elif typeText == 'มากกว่า 1 คนขึ้นไป' %}
+                            
+                            
+                            {% endif %}
 
                                 <div style="text-align: left;">
                                         <label class="label">ข้อความที่ประกาศ</label>
