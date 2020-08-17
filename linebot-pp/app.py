@@ -464,16 +464,16 @@ def handle_postback(event):
             event.reply_token, TextSendMessage(text=event.postback.params['date']))
 
 
-@app.route('/Broadcast')
-def Broadcast():
+#@app.route('/Broadcast')
+#def Broadcast():
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
-    type= "เลือก"
+    #type= "เลือก"
 
-    return render_template('Broadcast.html' , typeText=type)
+    #return render_template('Broadcast.html' , typeText=type)
 
 
 @app.route('/Broadcast/<string:type>')
-def Broadcast_type():
+def Broadcast_type(type):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
 
     choices = [{"รายบุคคล": '1'},{"มากว่า 1 คนขึ้นไป": '2'},{"ทั้้งหมด":'3'}]
