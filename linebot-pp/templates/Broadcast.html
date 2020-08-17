@@ -58,7 +58,7 @@
                         </div>
                         <div class="area-field">
                         <div class="row">
-                            <div class="col">
+                            <div class="col my-auto">
                                 <label>{{ typeText }}</label>
                             </div>
                         <!--Dropdown primary-->
@@ -78,15 +78,20 @@
 
                     {% if typeText == 'รายบุคคล' %}
                             <div class="row" style="margin-top: 15px;">
-                                <div class="col">
+                                <div class="col-9 my-auto">
                                     <label>Line Name: {{Name}}</label>
                                 </div>
                                 <div class="col dropdown">
                                     <button class="btn btn-primary dropdown-toggle text-right">ชื่อ</button>
+                                    <div class="dropdown-menu">
+                                        {% for i in userline %}
+                                            <a class="dropdown-item" href="#">{{i}}</a>
+                                        {% endfor %}
+
+                                    </div>
                                 </div>
                             </div>
                             {% elif typeText == 'มากกว่า 1 คนขึ้นไป' %}
-                            
                             
                             {% endif %}
 
