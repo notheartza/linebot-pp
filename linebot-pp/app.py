@@ -472,14 +472,14 @@ def handle_postback(event):
     #return render_template('Broadcast.html' , typeText=type)
 
 
-@app.route('/Broadcast/<type>' ,methods=['GET'])
-def Broadcast_type(type):
+@app.route('/Broadcast/<gettype>' ,methods=['GET'])
+def Broadcast_type(gettype):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
 
     choices = [{"รายบุคคล": '1'},{"มากว่า 1 คนขึ้นไป": '2'},{"ทั้้งหมด":'3'}]
     for i in choices:
-        if i.values == type:
-            type=i.name
+        if i.values == gettype:
+            type = i.name
 
     return render_template('Broadcast.html' , typeText=type)
 
