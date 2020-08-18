@@ -474,8 +474,10 @@ def Broadcast():
         users = usersheet.get_all_records()
 
         for key, value in choices.items():
-            if value == gettype:
+            if value == request.args["gettype"]:
                 type = key
+                break
+            
     if request.form.get('getname')!= "":
         toId = request.form.get('getname')
         text = request.form.get('gettext')
