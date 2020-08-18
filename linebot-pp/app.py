@@ -470,7 +470,7 @@ def Broadcast():
     type = "เลือก"
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
-    gettype = request.args.get("gettype", default = 1, type = int)
+    gettype = request.args.get("gettype", default='1')
     
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
     for key, value in choices.items():
