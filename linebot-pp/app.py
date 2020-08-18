@@ -470,15 +470,14 @@ def Broadcast():
     type = "เลือก"
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
-    gettype = request.args.get("gettype")
-    if gettype is None:
-        choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
-        for key, value in choices.items():
-            if value == request.args["gettype"]:
-                type = key
-                break
-    else:
-        type = "เลือก"
+    gettype = request.args.get("gettype", default = 1, type = int)
+    
+    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
+    for key, value in choices.items():
+        if value == request.args["gettype"]:
+            type = key
+            break
+    
 
     #if request.method == 'POST':
     #    if request.form.get('getname')!= "":
