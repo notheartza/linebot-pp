@@ -465,8 +465,9 @@ def handle_postback(event):
 
 
 
-@app.route('/Broadcast' , methods=['GET', 'POST'])
+@app.route('/Broadcast', methods=['GET', 'POST'])
 def Broadcast():
+    type = "เลือก"
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
     if request.args["gettype"] != "":
