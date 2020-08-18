@@ -484,7 +484,7 @@ def Broadcast():
             line_bot_api.push_message(toId, TextSendMessage(text=text))
             #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     
-    return render_template('Broadcast.html' , typeText=type, )
+    return render_template('Broadcast.html' , typeText=type, userline=users)
 
 
 
