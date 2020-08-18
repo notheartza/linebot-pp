@@ -482,7 +482,7 @@ def Broadcast_type(gettype):
     for key, value in choices.items():
         if value == gettype:
             type = key
-    if request.method == 'POST':
+    if request.method == 'GET':
         getname = request.form['getname']
         flash(str(getname)+'is being selected')
 
