@@ -468,9 +468,14 @@ def handle_postback(event):
 @app.route('/Broadcast' , methods=['GET', 'POST'])
 def Broadcast():
     type = "เลือก"
+    if request.form.get('getname')!= "":
+        toId = request.form.get('getname')
+        text = request.form.get('gettext')
+        line_bot_api.push_message(toId, TextSendMessage(text=text))
+
     return render_template('Broadcast.html' , typeText=type)
 
-@app.route('/Broadcast/<gettype>' , methods=['GET', 'POST'])
+@app.route('/Broadcast/<gettype>' , methods=['GET'])
 def Broadcast_type(gettype):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     getname = ""
@@ -482,11 +487,12 @@ def Broadcast_type(gettype):
     for key, value in choices.items():
         if value == gettype:
             type = key
+
     if request.method == 'GET':
         getname = request.form['getname']
         flash(str(getname)+'is being selected')
 
-    return render_template('Broadcast.html' , url=gettype, typeText=type, userline=users)
+    return render_template('Broadcast.html' , typeText=type, userline=users)
 
 
 

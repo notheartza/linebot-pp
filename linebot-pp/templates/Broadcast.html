@@ -57,7 +57,7 @@
      <body>
         <div class="row h-100 w-100 vertical-center">
                 <div class="w-30 mx-auto">
-                    <form method="GET" action="{{ url_for('Broadcast_type', gettype=url) }}" >
+                    <form method="POST" action="{{ url_for('send_message') }}" >
                         <div class="head-top ">
                             <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
                         </div>
@@ -88,7 +88,7 @@
                                 </div>                            
                                 <select class="col-8 browser-default custom-select my-auto" name="getname" id="getname" href="">
                                         {% for i in userline %}
-                                            <option class="dropdown-item" value="{{i['userName']}}">{{ i["userName"] }}</option>
+                                            <option class="dropdown-item" value="{{i['userId']}}">{{ i["userName"] }}</option>
                                         {% endfor %}
                                     </select>
                             </div>
@@ -99,7 +99,7 @@
                                 <div style="text-align: left;">
                                         <label class="label">ข้อความที่ประกาศ</label>
                                 </div>    
-                                <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
+                                <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ" name="gettext"></textarea>
                                 <div class="text-center" style="margin-top: 5%;">
                                     <button type="submit" class="btn btn-primary btn-lg">ตกลง</button>
                                 </div>      
