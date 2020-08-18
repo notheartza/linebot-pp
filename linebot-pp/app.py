@@ -471,8 +471,9 @@ def Broadcast():
     return render_template('Broadcast.html' , typeText=type)
 
 @app.route('/Broadcast/<gettype>' , methods=['GET'])
-def Broadcast_type(gettype, getname):
+def Broadcast_type(gettype):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
+    getname = ""
     type = ""
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
     usersheet = clientgs('usersheet', client)        
@@ -485,7 +486,7 @@ def Broadcast_type(gettype, getname):
         getname = request.form['getname']
         flash(str(getname)+'is being selected')
 
-    return render_template('Broadcast.html' , typeText=type, userline=users)
+    return render_template('Broadcast.html' , url=gettype, typeText=type, userline=users)
 
 
 
