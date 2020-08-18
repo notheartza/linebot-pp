@@ -470,7 +470,7 @@ def Broadcast():
     type = "เลือก"
     return render_template('Broadcast.html' , typeText=type)
 
-@app.route('/Broadcast/<gettype>' , methods=['GET'])
+@app.route('/Broadcast/<gettype>' , methods=['GET', 'POST'])
 def Broadcast_type(gettype):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     getname = ""
