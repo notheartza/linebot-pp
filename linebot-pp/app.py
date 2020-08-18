@@ -474,7 +474,7 @@ def Broadcast():
     
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
     for key, value in choices.items():
-        if value == request.args["gettype"]:
+        if value == gettype:
             type = key
             break
     
