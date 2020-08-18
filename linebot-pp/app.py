@@ -477,33 +477,15 @@ def Broadcast():
             if value == request.args["gettype"]:
                 type = key
                 break
-            
+
     if request.form.get('getname')!= "":
         toId = request.form.get('getname')
         text = request.form.get('gettext')
         #line_bot_api.push_message(toId, TextSendMessage(text=text))
         #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     
-    return render_template('Broadcast.html' , typeText=type)
-
-@app.route('/Broadcast/<gettype>' , methods=['GET'])
-def Broadcast_type(gettype):
-    
-    getname = ""
-    type = ""
-    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
-    usersheet = clientgs('usersheet', client)        
-    users = usersheet.get_all_records()
-
-    for key, value in choices.items():
-        if value == gettype:
-            type = key
-
-    if request.method == 'GET':
-        getname = request.form['getname']
-        flash(str(getname)+'is being selected')
-
     return render_template('Broadcast.html' , typeText=type, userline=users)
+
 
 
 
