@@ -464,12 +464,7 @@ def handle_postback(event):
             event.reply_token, TextSendMessage(text=event.postback.params['date']))
 
 
-#@app.route('/Broadcast')
-#def Broadcast():
-    #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
-    #type= "เลือก"
 
-    #return render_template('Broadcast.html' , typeText=type)
 @app.route('/Broadcast' , methods=['GET'])
 def Broadcast():
     type = "เลือก"
@@ -480,7 +475,8 @@ def Broadcast_type(gettype):
     #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     type = ""
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
-    
+    seName = request.form['getname']
+    print(seName)
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
 
