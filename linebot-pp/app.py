@@ -23,6 +23,25 @@ app = Flask(__name__)
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
+# Check_Token
+def verify_token(f):
+    @wraps(f)
+    def wrapped(*args, **kwargs):
+        data = request.get_json()
+        token = data['token']
+        # token = request.args.get('token') ///on get
+        if not token:
+            return jsonify({'status': 403, 'Message': 'Missing token'}), 403, {
+                'Content-Type': 'application/json; charset=utf-8'}
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'])
+        except:
+            return jsonify({'status': 403, 'Message': 'Invaild token'}), 403, {
+                'Content-Type': 'application/json; charset=utf-8'}
+        return f(*args, **kwargs)
+
+    return wrapped
+
 def clientgs(nameclient, client):
     if nameclient=="usersheet":
         return client.open("linebothistory").get_worksheet(0)
@@ -466,6 +485,7 @@ def handle_postback(event):
 
 
 @app.route('/Broadcast', methods=['GET', 'POST'])
+@verify_token
 def Broadcast():
     type = "เลือก"
     usersheet = clientgs('usersheet', client)        
@@ -478,7 +498,6 @@ def Broadcast():
             type = key
             break
     
-
     if request.method == 'POST':
         if request.form.get('getname')!= "":
             toId = request.form.get('getname')
