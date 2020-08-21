@@ -19,13 +19,11 @@ from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPDigestAuth
 
+app = Flask(__name__) #top-----------------
+
 
 app.config['SECRET_KEY'] = 'my app in pp school'
 auth = HTTPDigestAuth()
-
-
-app = Flask(__name__)
-
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
