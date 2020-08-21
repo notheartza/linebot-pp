@@ -17,7 +17,7 @@ import json
 import emoji
 from .exsheet import client
 from gspread.models import Cell
-from flask_httpauth import HTTPDigestAuth
+from flask.ext.httpauth import HTTPBasicAuth
 
 app = Flask(__name__) #top-----------------
 
