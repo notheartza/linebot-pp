@@ -27,13 +27,13 @@ auth = HTTPDigestAuth()
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
+@auth.verify_password
+def verify_password(username, password):
+    if username == 'ppAdmin' and password == 'pp2563':
+        return True
+    else:
+        return False
 
-
-@auth.get_password
-def get_password(username):
-    if username == 'ppAdmin': #username
-        return 'pp2563' #password
-    return None
 
 @app.route('/Broadcast', methods=['GET', 'POST'])
 @auth.login_required
