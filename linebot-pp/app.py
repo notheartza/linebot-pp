@@ -53,8 +53,10 @@ def Broadcast():
         if request.form.get('getname')!= "":
             toId = request.form.get('getname')
             text = request.form.get('gettext')
-            line_bot_api.push_message(toId, TextSendMessage(text=text))
-    #       line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
+            if gettype == '1':
+                line_bot_api.push_message(toId, TextSendMessage(text=text))
+            else:
+                line_bot_api.broadcast(TextSendMessage(text=text))
     
     return render_template('Broadcast.html', typeText=type, userline=users)
 
