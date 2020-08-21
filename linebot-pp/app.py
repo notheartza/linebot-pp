@@ -38,7 +38,6 @@ def verify_password(username, password):
 @app.route('/Broadcast', methods=['GET', 'POST'])
 @auth.login_required
 def Broadcast():
-    type = "เลือก"
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
     gettype = request.args.get("gettype", default='1')
