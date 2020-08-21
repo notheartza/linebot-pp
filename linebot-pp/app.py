@@ -41,7 +41,6 @@ def verify_token(f):
             except:
                 return jsonify({'status': 403, 'Message': 'Invaild token'}), 403, {
                     'Content-Type': 'application/json; charset=utf-8'}
-        else:
 
         return f(*args, **kwargs)
 
