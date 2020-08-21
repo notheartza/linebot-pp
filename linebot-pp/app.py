@@ -40,14 +40,14 @@ def verify_password(username, password):
 def Broadcast():
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
-    gettype = request.args.get("gettype", default='1')
-    print(f"ประเภทข้อความ: {type}")
+    gettype = request.args.get("gettype", default='3')
+    
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
     for key, value in choices.items():
         if value == gettype:
             type = key
             break
-    
+    print(f"ประเภทข้อความ: {type}")
     if request.method == 'POST':
         if request.form.get('getname')!= "":
             toId = request.form.get('getname')
