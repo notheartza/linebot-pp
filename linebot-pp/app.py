@@ -17,34 +17,46 @@ import json
 import emoji
 from .exsheet import client
 from gspread.models import Cell
-from functools import wraps
-import jwt
+from flask_httpauth import HTTPDigestAuth
+
+
+app.config['SECRET_KEY'] = 'my app in pp school'
+auth = HTTPDigestAuth()
+
 
 app = Flask(__name__)
 
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
-# Check_Token
-def verify_token(f):
-    @wraps(f)
-    def wrapped(*args, **kwargs):
-        data = request.get_json()
-        if not data:
-            token = data['token']
-            # token = request.args.get('token') ///on get
-            if not token:
-                return jsonify({'status': 403, 'Message': 'Missing token'}), 403, {
-                    'Content-Type': 'application/json; charset=utf-8'}
-            try:
-                data = jwt.decode(token, app.config['SECRET_KEY'])
-            except:
-                return jsonify({'status': 403, 'Message': 'Invaild token'}), 403, {
-                    'Content-Type': 'application/json; charset=utf-8'}
 
-        return f(*args, **kwargs)
 
-    return wrapped
+
+
+@app.route('/Broadcast', methods=['GET', 'POST'])
+def Broadcast():
+    type = "เลือก"
+    usersheet = clientgs('usersheet', client)        
+    users = usersheet.get_all_records()
+    gettype = request.args.get("gettype", default='1')
+    
+    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
+    for key, value in choices.items():
+        if value == gettype:
+            type = key
+            break
+    
+    if request.method == 'POST':
+        if request.form.get('getname')!= "":
+            toId = request.form.get('getname')
+            text = request.form.get('gettext')
+            line_bot_api.push_message(toId, TextSendMessage(text=text))
+    #        #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
+    
+    return render_template('Broadcast.html', typeText=type, userline=users)
+
+
+
 
 def clientgs(nameclient, client):
     if nameclient=="usersheet":
@@ -485,33 +497,6 @@ def handle_postback(event):
     elif event.postback.data == 'date_postback':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.postback.params['date']))
-
-
-
-@app.route('/Broadcast', methods=['GET', 'POST'])
-@verify_token
-def Broadcast():
-    type = "เลือก"
-    usersheet = clientgs('usersheet', client)        
-    users = usersheet.get_all_records()
-    gettype = request.args.get("gettype", default='1')
-    
-    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
-    for key, value in choices.items():
-        if value == gettype:
-            type = key
-            break
-    
-    if request.method == 'POST':
-        if request.form.get('getname')!= "":
-            toId = request.form.get('getname')
-            text = request.form.get('gettext')
-            line_bot_api.push_message(toId, TextSendMessage(text=text))
-    #        #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
-    
-    return render_template('Broadcast.html', typeText=type, userline=users)
-
-
 
 
 
