@@ -23,7 +23,7 @@ app = Flask(__name__) #top-----------------
 
 
 app.config['SECRET_KEY'] = 'my app in pp school'
-auth = HTTPDigestAuth()
+auth = HTTPBasicAuth()
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
