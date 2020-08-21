@@ -29,9 +29,14 @@ waitingtext = 'กรุณารอสักครู่...'
 
 
 
-
+@auth.get_password
+def get_password(username):
+    if username == 'ppAdmin': #username
+        return 'pp2563' #password
+    return None
 
 @app.route('/Broadcast', methods=['GET', 'POST'])
+@auth.login_required
 def Broadcast():
     type = "เลือก"
     usersheet = clientgs('usersheet', client)        
@@ -49,7 +54,7 @@ def Broadcast():
             toId = request.form.get('getname')
             text = request.form.get('gettext')
             line_bot_api.push_message(toId, TextSendMessage(text=text))
-    #        #line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
+    #       line_bot_api.broadcast(TextSendMessage(text='นักเรียนคนไหนยังไม่ได้รับสมุดให้มารับสมุดที่ห้องพักครูคอมพิวเตอร์นะครับ'))
     
     return render_template('Broadcast.html', typeText=type, userline=users)
 
