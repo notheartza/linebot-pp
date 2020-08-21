@@ -42,7 +42,7 @@ def Broadcast():
     usersheet = clientgs('usersheet', client)        
     users = usersheet.get_all_records()
     gettype = request.args.get("gettype", default='1')
-    
+    print(f"ประเภทข้อความ: {type}")
     choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
     for key, value in choices.items():
         if value == gettype:
@@ -54,7 +54,6 @@ def Broadcast():
             toId = request.form.get('getname')
             text = request.form.get('gettext')
             print(gettype)
-            print(type)
             if type == 'รายบุคคล':
                 line_bot_api.push_message(toId, TextSendMessage(text=text))
             else:
