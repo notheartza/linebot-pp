@@ -53,6 +53,8 @@ def Broadcast():
         if request.form.get('getname')!= "":
             toId = request.form.get('getname')
             text = request.form.get('gettext')
+            print(gettype)
+            print(type)
             if type == 'รายบุคคล':
                 line_bot_api.push_message(toId, TextSendMessage(text=text))
             else:
