@@ -30,7 +30,7 @@ waitingtext = 'กรุณารอสักครู่...'
 @auth.verify_password
 def verify_password(username, password):
     if username == 'ppAdmin' and password == 'pp2563':
-        return True
+        return username
     else:
         return False
 
