@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, render_template, url_for
+from flask import Flask, request, abort, render_template, url_for, jsonify
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError, LineBotApiError)
 from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUser, SourceGroup, SourceRoom,TemplateSendMessage, ConfirmTemplate, MessageAction, ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URIAction,PostbackAction, DatetimePickerAction,CameraAction, CameraRollAction, LocationAction,
@@ -18,6 +18,7 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 from functools import wraps
+import jwt
 
 app = Flask(__name__)
 
@@ -29,16 +30,19 @@ def verify_token(f):
     @wraps(f)
     def wrapped(*args, **kwargs):
         data = request.get_json()
-        token = data['token']
-        # token = request.args.get('token') ///on get
-        if not token:
-            return jsonify({'status': 403, 'Message': 'Missing token'}), 403, {
-                'Content-Type': 'application/json; charset=utf-8'}
-        try:
-            data = jwt.decode(token, app.config['SECRET_KEY'])
-        except:
-            return jsonify({'status': 403, 'Message': 'Invaild token'}), 403, {
-                'Content-Type': 'application/json; charset=utf-8'}
+        if not data:
+            token = data['token']
+            # token = request.args.get('token') ///on get
+            if not token:
+                return jsonify({'status': 403, 'Message': 'Missing token'}), 403, {
+                    'Content-Type': 'application/json; charset=utf-8'}
+            try:
+                data = jwt.decode(token, app.config['SECRET_KEY'])
+            except:
+                return jsonify({'status': 403, 'Message': 'Invaild token'}), 403, {
+                    'Content-Type': 'application/json; charset=utf-8'}
+        else:
+
         return f(*args, **kwargs)
 
     return wrapped
