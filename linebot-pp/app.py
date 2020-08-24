@@ -18,12 +18,15 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
-from firebase import firebase
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 
-firebase = firebase.FirebaseApplication('https://sample-app-x.firebaseio.com', None)
+cred = credentials.Certificate("./linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
+firebase_admin.initialize_app(cred)
 app = Flask(__name__) #top-----------------
 
+db = firestore.client()
 
 app.config['SECRET_KEY'] = 'my app in pp school'
 auth = HTTPBasicAuth()
