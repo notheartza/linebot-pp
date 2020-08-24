@@ -18,7 +18,10 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
+from firebase import firebase
 
+
+firebase = firebase.FirebaseApplication('https://sample-app-x.firebaseio.com', None)
 app = Flask(__name__) #top-----------------
 
 
