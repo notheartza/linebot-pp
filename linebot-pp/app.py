@@ -22,7 +22,7 @@ import firebase_admin
 from firebase_admin import credentials
 
 
-cred = ccredentials.RefreshToken("./linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
+cred = credentials.Certificate("./linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
 default_app = firebase_admin.initialize_app(cred)
 app = Flask(__name__) #top-----------------
 print(default_app.name) 
