@@ -20,9 +20,11 @@ from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
 import firebase_admin
 from firebase_admin import credentials
+from firebase_admin import db
 
 
-cred = credentials.Certificate("linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
+
+cred = credentials.Certificate("./linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
 default_app = firebase_admin.initialize_app(cred)
 app = Flask(__name__) #top-----------------
 print(default_app.name) 
