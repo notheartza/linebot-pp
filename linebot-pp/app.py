@@ -22,10 +22,12 @@ from firebase_admin import auth
 
 
 cred = credentials.Certificate("./linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
-firebase_admin.initialize_app(cred)
+default_app = firebase_admin.initialize_app(cred)
 app = Flask(__name__) #top-----------------
+print(default_app.name) 
+#----BEGIN-----
 
-db = firestore.client()
+
 
 app.config['SECRET_KEY'] = 'my app in pp school'
 auth = HTTPBasicAuth()
