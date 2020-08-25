@@ -20,7 +20,6 @@ from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
 import firebase_admin
 from firebase_admin import credentials
-from firebase_admin import firestore
 
 
 cred = ccredentials.RefreshToken("./linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
