@@ -19,15 +19,17 @@ from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
 from .firebase.config_firebase import firebase_db, firebase_rdb
-from .firebase.getlog import getlog
+from firebase.getlog import firebase_api
 
 
 
 
 
-app = Flask(__name__) #top-----------------s 
-#----BEGIN-----
+#<----TOP---->
+app = Flask(__name__) 
+#<----BEGIN----->
 
+app.register_blueprint(firebase_api)
 
 
 app.config['SECRET_KEY'] = 'my app in pp school'
@@ -157,36 +159,9 @@ def mytest():
     sheet.insert_row(row, 2)
     return 'finish'
 
-@app.route('/firebase')
-def testfirebase():
-    doc_ref = firebase_db.collection(u'users').document(u'BPablo')
-    doc_ref.set({
-        u'first': u'Boyce',
-        u'last': u'Pablo',
-        u'born': 1996
-    })
-    return 'finish'
 
-@app.route('/firebase/realtime/getUser')
-def realtimebase():
-    userresults = client.open("linebothistory").get_worksheet(0)
-    userssheet = userresults.get_all_records()
-    for i in userssheet:
-        data = {
-            "date": i["date"],
-            "userName": i["userName"],
-            "pictureProfile": i["pictureProfile"],
-            "status": i["สถานะ"],
-            "room": i['room'],
-            "number": i['number']
-        }
 
-        firebase_rdb.child("users").child(i["userId"]).set(data)
 
-    return 'finish'
-
-@app.route('/route_name')
-getlog.getLog(client, firebase_rdb)
 
 @app.route('/')
 def hello_world():
