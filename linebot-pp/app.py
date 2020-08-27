@@ -170,7 +170,7 @@ def realtimebase():
     userresults = client.open("linebothistory").get_worksheet(0)
     userssheet = userresults.get_all_records()
     for i in userssheet:
-        firebase_rdb.child("users").child(i)
+        firebase_rdb.child("users").set(i)
 
     return 'finish'
 
