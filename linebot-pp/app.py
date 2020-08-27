@@ -1,6 +1,4 @@
 from flask import Flask, request, abort, render_template, url_for, jsonify
-import time
-import datetime
 
 import json
 from .exsheet import client
