@@ -1,6 +1,4 @@
 from flask import Flask, request, abort, render_template, url_for, jsonify
-
-import json
 from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
