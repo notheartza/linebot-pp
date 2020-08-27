@@ -179,7 +179,7 @@ def realtimebase():
             "number": i['number']
         }
 
-        firebase_rdb.child("users").child(i["userId"]).push(data)
+        firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'
 
