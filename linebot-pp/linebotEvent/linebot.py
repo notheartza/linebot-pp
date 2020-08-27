@@ -95,7 +95,6 @@ def webhook():
     logresults = sheetlog.get_all_records()
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
     if len(logresults) > 0:
         sheetlog.insert_row([body, get_time()], len(logresults)+2)
     else:

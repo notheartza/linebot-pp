@@ -94,7 +94,6 @@ def upload_Profile():
             userresults.update_cell( c, 6, f'=IMAGE("{profile.picture_url}", 4, 300, 250)')    
 
         c = c + 1
-        
 
     return 'finish'
 
