@@ -21,6 +21,7 @@ from flask_httpauth import HTTPBasicAuth
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+from firebase import firebase as realtime_database
 
 
 
@@ -170,6 +171,11 @@ def testfirebase():
     })
     return 'finish'
 
+@app.route('firebase/realtime')
+def realtimebase():
+    r_firebase = realtime_database.FirebaseApplication('https://linebot-pp.firebaseio.com', None)
+    r_firebase.post(id,{'comment': 'mycomment'})
+    return 'finish'
 
 @app.route('/')
 def hello_world():
