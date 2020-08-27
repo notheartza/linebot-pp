@@ -19,6 +19,7 @@ from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
 from .firebase.config_firebase import firebase_db, firebase_rdb
+from .firebase.getlog import getlog
 
 
 
@@ -184,8 +185,8 @@ def realtimebase():
 
     return 'finish'
 
-#@app.route('/route_name')
-#getLog(client, firebase_rdb)
+@app.route('/route_name')
+getlog.getLog(client, firebase_rdb)
 
 @app.route('/')
 def hello_world():
