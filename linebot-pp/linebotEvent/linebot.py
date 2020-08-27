@@ -14,6 +14,81 @@ from ..exsheet import client
 
 linebot_api = Blueprint('linebot_api', __name__)
 
+def clientgs(nameclient, client):
+    if nameclient=="usersheet":
+        return client.open("linebothistory").get_worksheet(0)
+    elif nameclient=="logsheet":
+        return client.open("linebothistory").get_worksheet(2)
+    else:
+
+        return client.open(nameclient).get_worksheet(0)
+
+def newhelp(event):
+    text = "ถ้าต้องการความช่วยหลือสามารถพิมพ์ 'ช่วยเลือ' หรือ 'help' ได้เลยครับ"
+    line_bot_api.push_message(
+            event.reply_token, 
+            TextSendMessage(text=text))
+
+
+def roomselect(event):
+    buttons_template = ButtonsTemplate(
+        title='ห้องเรียนของคุณ', text='โปรดเลือกห้องของคุณ', 
+        actions=[
+            PostbackAction(label='ม.4.2', data='ม.4.2'),
+            PostbackAction(label='ม.4.4', data='ม.4.4'),
+            PostbackAction(label='ม.4.7', data='ม.4.7'),
+            PostbackAction(label='ม.4.9', data='ม.4.9')
+        ])
+    template_message = TemplateSendMessage(
+        alt_text='เลือกห้องเรียนของคุณ', template=buttons_template)
+    return line_bot_api.reply_message(event.reply_token, template_message)    
+
+
+
+def get_time():
+    timezone = pytz.timezone('Asia/Bangkok')
+    now = datetime.datetime.now(timezone)
+    month_name = 'x มกราคม กุมภาพันธ์ มีนาคม เมษายน พฤษภาคม มิถุนายน กรกฎาคม สิงหาคม กันยายน ตุลาคม พฤศจิกายน ธันวาคม'.split()[now.month]
+    thai_year = now.year + 543
+    timenow = now.strftime('%H:%M:%S')
+    return  "%d %s %d %s"%(now.day, month_name, thai_year, timenow)
+
+
+def mainMenu(event):
+    line_bot_api.push_message(
+            event.source.user_id, [
+                TextSendMessage(
+                text='โปรดเลือเมนูด้านล่าง',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action=MessageAction(label="ตรวจสอบภาระงาน", text="งาน")
+                        ),
+                       QuickReplyButton(
+                            action=MessageAction(label="กำหนดเลขที่", text="เลขที่")
+                        ),
+                        QuickReplyButton(
+                            action=MessageAction(label="กำหนดห้องเรียน", text="ห้อง")
+                        ),
+                        QuickReplyButton(
+                            action=MessageAction(label="ช่วยเหลือ", text="ช่วยเหลือ")
+                        ),
+                    ]
+                )
+            )
+            ]
+        )
+        
+
+def getDataInRoom(room):
+        return f"คะแนนนักเรียน ม.4/{room}"
+
+
+line_bot_api = LineBotApi(
+    'nMwl+f26OapSLijr4lrUrd9S7oV92Rp6uEj5EA6FiwuonmFIDO8yaFIpwa1xBygBUmi4ZDJ5JrzDEe3vilGB1PsjR+99dvvJt0QEJyVMWLHSlD9/epPR1xgQPssw7+tEDlwBOvbb8BO0jOVgja/Y4QdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('da3242391b2f72d623b1fa0cb11288a1')
+
+
 @linebot_api.route('/webhook', methods=['POST'])
 def webhook():
     sheetlog = client.open("linebothistory").get_worksheet(2)
