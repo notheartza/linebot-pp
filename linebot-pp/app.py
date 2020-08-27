@@ -19,7 +19,7 @@ from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
 from .firebase.config_firebase import firebase_db, firebase_rdb
-from firebase.getlog import firebase_api
+from .firebase.getlog import firebase_api
 
 
 
