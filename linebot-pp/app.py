@@ -169,8 +169,9 @@ def testfirebase():
 def realtimebase():
     userresults = client.open("linebothistory").get_worksheet(0)
     userssheet = userresults.get_all_records()
-    
-    firebase_rdb.child("users").push("test")
+    for key, item in userssheet.items():
+        firebase_rdb.child("users").push("test")
+
     return 'finish'
 
 @app.route('/')
