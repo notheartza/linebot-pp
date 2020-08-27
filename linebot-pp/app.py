@@ -18,25 +18,12 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-import pyrebase
+from .firebase import firebase_db, firebase_rdb
 
-config = {
-  "apiKey": "AIzaSyCO3DgD2x6fJuageulBP9i1l619Ee54beA",
-  "authDomain": "linebot-pp.firebaseapp.com",
-  "databaseURL": "https://linebot-pp.firebaseio.com/",
-  "storageBucket": "linebot-pp.appspot.com",
-  "serviceAccount": "./linebot-pp/linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json"
-}
 
-cred = credentials.Certificate("./linebot-pp/linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
-default_app = firebase_admin.initialize_app(cred)
-db = firestore.client()
-r_firebase = pyrebase.initialize_app(config)
-app = Flask(__name__) #top-----------------
-print(default_app.name) 
+
+
+app = Flask(__name__) #top-----------------s 
 #----BEGIN-----
 
 
@@ -170,7 +157,7 @@ def mytest():
 
 @app.route('/firebase')
 def testfirebase():
-    doc_ref = db.collection(u'users').document(u'BPablo')
+    doc_ref = firebase_db.collection(u'users').document(u'BPablo')
     doc_ref.set({
         u'first': u'Boyce',
         u'last': u'Pablo',
@@ -178,10 +165,12 @@ def testfirebase():
     })
     return 'finish'
 
-@app.route('/firebase/realtime')
+@app.route('/firebase/realtime/getUser')
 def realtimebase():
-    r_db = r_firebase.database()
-    r_db.child("users").push("test")
+    userresults = client.open("linebothistory").get_worksheet(0)
+    userssheet = userresults.get_all_records()
+    
+    firebase_rdb.child("users").push("test")
     return 'finish'
 
 @app.route('/')
