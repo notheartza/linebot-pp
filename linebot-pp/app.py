@@ -29,7 +29,7 @@ app = Flask(__name__)
 #<----BEGIN----->
 
 app.register_blueprint(firebase_api)
-app.registor_blueprint()
+app.register_blueprint(linebot_api)
 
 
 app.config['SECRET_KEY'] = 'my app in pp school'
