@@ -25,7 +25,7 @@ import pyrebase
 
 config = {
   "apiKey": "AIzaSyCO3DgD2x6fJuageulBP9i1l619Ee54beA",
-  "authDomain": "linebot-pp.firebaseapp.com",
+  "authDomain": "https://linebot-pp.firebaseapp.com",
   "databaseURL": "https://linebot-pp.firebaseio.com/",
   "storageBucket": "linebot-pp.appspot.com",
   "serviceAccount": "./linebot-pp/linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json"
