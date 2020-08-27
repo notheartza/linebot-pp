@@ -37,5 +37,5 @@ emoji==0.5.4
 vuepy==0.2.1
 Flask-HTTPAuth==4.1.0
 firebase-admin==4.3.0
-python-firebase-gae==1.0.1
+Pyrebase==3.0.27
 grpcio==1.31.0

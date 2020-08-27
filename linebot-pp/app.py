@@ -21,13 +21,20 @@ from flask_httpauth import HTTPBasicAuth
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from firebase import firebase as realtime_database
+import pyrebase
 
-
+config = {
+  "apiKey": "AIzaSyCO3DgD2x6fJuageulBP9i1l619Ee54beA",
+  "authDomain": "linebot-pp.firebaseapp.com",
+  "databaseURL": "https://linebot-pp.firebaseio.com/",
+  "storageBucket": "linebot-pp.appspot.com",
+  "serviceAccount": "./linebot-pp/linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json"
+}
 
 cred = credentials.Certificate("./linebot-pp/linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json")
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
+r_firebase = pyrebase.initialize_app(config)
 app = Flask(__name__) #top-----------------
 print(default_app.name) 
 #----BEGIN-----
@@ -173,8 +180,8 @@ def testfirebase():
 
 @app.route('firebase/realtime')
 def realtimebase():
-    r_firebase = realtime_database.FirebaseApplication('https://linebot-pp.firebaseio.com', None)
-    r_firebase.post(id,{'comment': 'mycomment'})
+    r_db = r_firebase.database()
+    db.child("users").child("Morty")
     return 'finish'
 
 @app.route('/')
