@@ -160,6 +160,16 @@ def mytest():
     sheet.insert_row(row, 2)
     return 'finish'
 
+@app.route('/firebase')
+def testfirebase():
+    doc_ref = db.collection(u'users').document(u'BPablo')
+    doc_ref.set({
+        u'first': u'Boyce',
+        u'last': u'Pablo',
+        u'born': 1996
+    })
+    return 'finish'
+
 
 @app.route('/')
 def hello_world():
@@ -183,12 +193,6 @@ def upload_Profile():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    doc_ref = db.collection(u'users').document(u'BPablo')
-    doc_ref.set({
-        u'first': u'Boyce',
-        u'last': u'Pablo',
-        u'born': 1996
-    })
     sheetlog = client.open("linebothistory").get_worksheet(2)
     logresults = sheetlog.get_all_records()
     signature = request.headers['X-Line-Signature']
