@@ -18,7 +18,8 @@ import emoji
 from .exsheet import client
 from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
-from .firebase import firebase_db, firebase_rdb
+from .firebase.config_firebase import firebase_db, firebase_rdb
+
 
 
 
@@ -182,6 +183,9 @@ def realtimebase():
         firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'
+
+#@app.route('/route_name')
+#getLog(client, firebase_rdb)
 
 @app.route('/')
 def hello_world():
