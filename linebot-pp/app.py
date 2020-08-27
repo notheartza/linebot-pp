@@ -171,7 +171,7 @@ def realtimebase():
     userssheet = userresults.get_all_records()
     for i in userssheet:
         print(i)
-        firebase_rdb.child("users").set(i)
+        firebase_rdb.child("users").push(i)
 
     return 'finish'
 
