@@ -1,7 +1,7 @@
 from flask import Flask, request, abort, render_template, url_for, jsonify
 import time
 import datetime
-import pytz
+
 import json
 from .exsheet import client
 from gspread.models import Cell
