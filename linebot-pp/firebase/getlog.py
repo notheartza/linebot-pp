@@ -1,6 +1,6 @@
 from flask import Blueprint
 from .config_firebase import firebase_db, firebase_rdb
-from .exsheet import client
+from ...exsheet import client
 from gspread.models import Cell
 
 
