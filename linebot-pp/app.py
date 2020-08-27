@@ -181,7 +181,7 @@ def testfirebase():
 @app.route('/firebase/realtime')
 def realtimebase():
     r_db = r_firebase.database()
-    db.child("users").child("Morty")
+    r_db.child("users").push("test")
     return 'finish'
 
 @app.route('/')
