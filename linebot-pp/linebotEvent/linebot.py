@@ -11,9 +11,11 @@ from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUs
     MemberJoinedEvent, MemberLeftEvent,FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,TextComponent, SpacerComponent, IconComponent, ButtonComponent,SeparatorComponent, QuickReply, QuickReplyButton,ImageSendMessage,ThingsEvent, ScenarioResult,BroadcastResponse,MessageDeliveryBroadcastResponse)
 
 
-
+completetext1 = 'บันทึกเรียบร้อย'
+waitingtext = 'กรุณารอสักครู่...'
 
 linebot_api = Blueprint('linebot_api', __name__)
+auth = HTTPBasicAuth()
 
 def clientgs(nameclient, client):
     if nameclient=="usersheet":
@@ -338,8 +340,7 @@ def handle_follow(event):
     profile = line_bot_api.get_profile(event.source.user_id)
 
     c = 0
-    for i in usersheet:
-        app.logger.info(i)       
+    for i in usersheet:     
         if i["userId"]==event.source.user_id:
             break
         elif c == len(usersheet)-1:
@@ -391,7 +392,8 @@ def handle_follow(event):
 
 @handler.add(UnfollowEvent)
 def handle_unfollow(event):
-    app.logger.info("Got Unfollow event:" + event.source.user_id)
+    #app.logger.info("Got Unfollow event:" + event.source.user_id)
+    return ""
 
 
 @handler.add(JoinEvent)
@@ -403,7 +405,8 @@ def handle_join(event):
 
 @handler.add(LeaveEvent)
 def handle_leave():
-    app.logger.info("Got leave event")
+    #app.logger.info("Got leave event")
+    return ""
 
 
 

@@ -18,15 +18,6 @@ app.register_blueprint(linebot_api)
 
 
 app.config['SECRET_KEY'] = 'my app in pp school'
-auth = HTTPBasicAuth()
-completetext1 = 'บันทึกเรียบร้อย'
-waitingtext = 'กรุณารอสักครู่...'
-
-
-
-
-
-
 
 
 
@@ -49,11 +40,6 @@ def mytest():
 @app.route('/')
 def hello_world():
     return 'Hello World!'
-
-
-
-
-
 
 
 
