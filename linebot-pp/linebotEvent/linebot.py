@@ -1,4 +1,5 @@
-from flask import Blueprint, request
+from flask import Flask, request, abort, render_template, url_for, Blueprint
+from flask_httpauth import HTTPBasicAuth
 import pytz
 import time
 import datetime
@@ -8,6 +9,8 @@ from linebot.exceptions import (InvalidSignatureError, LineBotApiError)
 from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUser, SourceGroup, SourceRoom,TemplateSendMessage, ConfirmTemplate, MessageAction, ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URIAction,PostbackAction, DatetimePickerAction,CameraAction, CameraRollAction, LocationAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,ImageMessage, VideoMessage, AudioMessage, FileMessage,UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,TextComponent, SpacerComponent, IconComponent, ButtonComponent,SeparatorComponent, QuickReply, QuickReplyButton,ImageSendMessage,ThingsEvent, ScenarioResult,BroadcastResponse,MessageDeliveryBroadcastResponse)
+
+
 
 
 linebot_api = Blueprint('linebot_api', __name__)
@@ -85,6 +88,38 @@ def getDataInRoom(room):
 line_bot_api = LineBotApi(
     'nMwl+f26OapSLijr4lrUrd9S7oV92Rp6uEj5EA6FiwuonmFIDO8yaFIpwa1xBygBUmi4ZDJ5JrzDEe3vilGB1PsjR+99dvvJt0QEJyVMWLHSlD9/epPR1xgQPssw7+tEDlwBOvbb8BO0jOVgja/Y4QdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('da3242391b2f72d623b1fa0cb11288a1')
+
+@auth.verify_password
+def verify_password(username, password):
+    if username == 'ppAdmin' and password == 'pp2563':
+        return username
+    else:
+        return False
+
+@linebot_api.route('/Broadcast', methods=['GET', 'POST'])
+@auth.login_required
+def Broadcast():
+    usersheet = clientgs('usersheet', client)        
+    users = usersheet.get_all_records()
+    gettype = request.args.get("gettype", default='3')
+    
+    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
+    for key, value in choices.items():
+        if value == gettype:
+            type = key
+            break
+    print(f"ประเภทข้อความ: {type}")
+    if request.method == 'POST':
+        if request.form.get('getname')!= "":
+            toId = request.form.get('getname')
+            text = request.form.get('gettext')
+            print(gettype)
+            if type == 'รายบุคคล':
+                line_bot_api.push_message(toId, TextSendMessage(text=text))
+            else:
+                line_bot_api.broadcast(TextSendMessage(text=text))
+    
+    return render_template('Broadcast.html', typeText=type, userline=users)
 
 
 @linebot_api.route('/webhook', methods=['POST'])

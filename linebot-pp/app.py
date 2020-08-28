@@ -1,11 +1,10 @@
 from flask import Flask, request, abort, render_template, url_for, jsonify
 from .exsheet import client
 from gspread.models import Cell
-from flask_httpauth import HTTPBasicAuth
 from .firebase.config_firebase import firebase_db, firebase_rdb
 from .firebase.myFirebase import firebase_api
 from .linebotEvent.linebot import linebot_api, clientgs
-from ..exsheet import client
+
 
 
 
@@ -23,38 +22,9 @@ auth = HTTPBasicAuth()
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
-@auth.verify_password
-def verify_password(username, password):
-    if username == 'ppAdmin' and password == 'pp2563':
-        return username
-    else:
-        return False
 
 
-@app.route('/Broadcast', methods=['GET', 'POST'])
-@auth.login_required
-def Broadcast():
-    usersheet = clientgs('usersheet', client)        
-    users = usersheet.get_all_records()
-    gettype = request.args.get("gettype", default='3')
-    
-    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
-    for key, value in choices.items():
-        if value == gettype:
-            type = key
-            break
-    print(f"ประเภทข้อความ: {type}")
-    if request.method == 'POST':
-        if request.form.get('getname')!= "":
-            toId = request.form.get('getname')
-            text = request.form.get('gettext')
-            print(gettype)
-            if type == 'รายบุคคล':
-                line_bot_api.push_message(toId, TextSendMessage(text=text))
-            else:
-                line_bot_api.broadcast(TextSendMessage(text=text))
-    
-    return render_template('Broadcast.html', typeText=type, userline=users)
+
 
 
 
@@ -80,19 +50,7 @@ def mytest():
 def hello_world():
     return 'Hello World!'
 
-@app.route('/updateProfile')
-def upload_Profile():
-    userresults = client.open("linebothistory").get_worksheet(0)
-    userssheet = userresults.get_all_records()
-    c = 2
-    for i in userssheet:
-        if i["pictureProfile"]=="":
-            profile = line_bot_api.get_profile(i["userId"])
-            userresults.update_cell( c, 6, f'=IMAGE("{profile.picture_url}", 4, 300, 250)')    
 
-        c = c + 1
-
-    return 'finish'
 
 
 
