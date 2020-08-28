@@ -42,17 +42,9 @@ def realtimebase():
 @firebase_api.route('/firebase/realtime/getlog')
 def getLog(client, firebase_rdb):
     logresults = client.open("linebothistory").get_worksheet(2)
-    logssheet = userresults.get_all_records()
+    logssheet = logresults.get_all_records()
     for i in logssheet:
-        data = {
-            "date": i["date"],
-            "userName": i["userName"],
-            "pictureProfile": i["pictureProfile"],
-            "status": i["สถานะ"],
-            "room": i['room'],
-            "number": i['number']
-        }
-
-        firebase_rdb.child("users").child(i["userId"]).set(data)
+        print(i['source'])
+        #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
