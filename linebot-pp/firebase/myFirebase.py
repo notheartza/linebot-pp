@@ -49,8 +49,6 @@ def getLog():
         get = json.dumps(get)
         get = json.loads(get)
         print(get)
-        for j in get:
-            print(j[0])
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
