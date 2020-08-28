@@ -51,6 +51,6 @@ def getLog():
             get = json.loads(get)
             userid = get['events'][0]['source']['userId']
         #firebase_rdb.child("users").child(i["userId"]).set(data)
-        firebase_rdb.child("users").child(userid).child("chat").set(get)
+        firebase_rdb.child("chat").set(get)
 
     return 'finish'    
