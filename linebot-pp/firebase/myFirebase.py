@@ -2,6 +2,7 @@ from flask import Blueprint
 from .config_firebase import firebase_db, firebase_rdb
 from ..exsheet import client
 from gspread.models import Cell
+import json
 
 
 firebase_api = Blueprint('firebase_api', __name__)
@@ -45,7 +46,7 @@ def getLog():
     logssheet = logresults.get_all_records()
     for i in logssheet:
         for j in i['LinebotLog']:
-            print(j[0])
+            print(json.dumps(j))
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
