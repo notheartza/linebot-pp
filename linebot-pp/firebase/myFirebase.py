@@ -3,6 +3,7 @@ from .config_firebase import firebase_db, firebase_rdb
 from ..exsheet import client
 from gspread.models import Cell
 import json
+import re
 
 
 firebase_api = Blueprint('firebase_api', __name__)
@@ -47,7 +48,8 @@ def getLog():
     for i in logssheet:
         get = i['LinebotLog']
         print(type(get))
-        get = get.split("{")
+        get = re.split('{ }',get)
+        get = 
         print(get)
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
