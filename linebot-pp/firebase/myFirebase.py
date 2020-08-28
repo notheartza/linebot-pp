@@ -45,8 +45,9 @@ def getLog():
     logresults = client.open("linebothistory").get_worksheet(2)
     logssheet = logresults.get_all_records()
     for i in logssheet:
-        for j in i['LinebotLog']:
-            print(json.dumps(j))
+        get = json.dumps(i['LinebotLog'])
+        for j in get:
+            print(get)
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
