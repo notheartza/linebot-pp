@@ -4,7 +4,8 @@ from gspread.models import Cell
 from flask_httpauth import HTTPBasicAuth
 from .firebase.config_firebase import firebase_db, firebase_rdb
 from .firebase.myFirebase import firebase_api
-from .linebotEvent.linebot import linebot_api
+from .linebotEvent.linebot import linebot_api, clientgs
+from ..exsheet import client
 
 
 
