@@ -50,7 +50,7 @@ def getLog():
         get = json.loads(get)
         print(get)
         for j in get:
-            print(j["events"])
+            print(j[0])
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
