@@ -45,7 +45,7 @@ def getLog():
     logssheet = logresults.get_all_records()
     for i in logssheet:
         for j in i['LinebotLog']:
-            print(i['event'])
+            print(j['event'])
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
