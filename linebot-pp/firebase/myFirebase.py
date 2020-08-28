@@ -48,9 +48,9 @@ def getLog():
         get = i['LinebotLog']
         #print(get)
         if get is not "" and get[2:8]=='events':
-            get = json.loads(get)
-            userid = get['events'][0]['source']['userId']
-            firebase_rdb.child("chat").push(get)
+            json = json.loads(get)
+            userid = json['events'][0]['source']['userId']
+            firebase_rdb.child("user").child(userid).child("chat").push({'destination': json["destination"], 'events': json['events'][0]})
         #firebase_rdb.child("users").child(i["userId"]).set(data)
             
 
