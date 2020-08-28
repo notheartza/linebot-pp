@@ -49,7 +49,7 @@ def getLog():
         #print(get)
         if get is not "" and get[2:8]=='events':
             get = json.loads(get)
-            print(get)
+            print(get['events'])
         #firebase_rdb.child("users").child(i["userId"]).set(data)
 
     return 'finish'    
