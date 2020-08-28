@@ -47,7 +47,7 @@ def getLog():
     for i in logssheet:
         get = i['LinebotLog']
         get = get[0:len(get)-2]
-        get = json.loads(get)
+        get = json.dumps(get)
         print(get)
         #for j in get:
             #print(get)
