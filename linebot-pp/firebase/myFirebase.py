@@ -46,7 +46,8 @@ def getLog():
     logssheet = logresults.get_all_records()
     for i in logssheet:
         get = i['LinebotLog']
-        if get is not "":
+        print(get[1:6])
+        if get is not "" and get[1:6]:
             get = json.loads(get)
             print(get)
         #firebase_rdb.child("users").child(i["userId"]).set(data)
