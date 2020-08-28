@@ -40,7 +40,7 @@ def realtimebase():
 
 
 @firebase_api.route('/firebase/realtime/getlog')
-def getLog(client, firebase_rdb):
+def getLog():
     logresults = client.open("linebothistory").get_worksheet(2)
     logssheet = logresults.get_all_records()
     for i in logssheet:
