@@ -49,7 +49,8 @@ def getLog():
         #print(get)
         if get is not "" and get[2:8]=='events':
             get = json.loads(get)
-            print(get['events'][0]['source'])
+            userid = get['events'][0]['source']['userId']
         #firebase_rdb.child("users").child(i["userId"]).set(data)
+        firebase_rdb.child("users").child(userid).update(get)
 
     return 'finish'    
