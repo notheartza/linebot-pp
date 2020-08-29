@@ -15,6 +15,9 @@ completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
 linebot_api = Blueprint('linebot_api', __name__)
+line_bot_api = LineBotApi(
+    'nMwl+f26OapSLijr4lrUrd9S7oV92Rp6uEj5EA6FiwuonmFIDO8yaFIpwa1xBygBUmi4ZDJ5JrzDEe3vilGB1PsjR+99dvvJt0QEJyVMWLHSlD9/epPR1xgQPssw7+tEDlwBOvbb8BO0jOVgja/Y4QdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('da3242391b2f72d623b1fa0cb11288a1')
 auth = HTTPBasicAuth()
 
 def clientgs(nameclient, client):
@@ -87,41 +90,8 @@ def getDataInRoom(room):
         return f"คะแนนนักเรียน ม.4/{room}"
 
 
-line_bot_api = LineBotApi(
-    'nMwl+f26OapSLijr4lrUrd9S7oV92Rp6uEj5EA6FiwuonmFIDO8yaFIpwa1xBygBUmi4ZDJ5JrzDEe3vilGB1PsjR+99dvvJt0QEJyVMWLHSlD9/epPR1xgQPssw7+tEDlwBOvbb8BO0jOVgja/Y4QdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('da3242391b2f72d623b1fa0cb11288a1')
 
-@auth.verify_password
-def verify_password(username, password):
-    if username == 'ppAdmin' and password == 'pp2563':
-        return username
-    else:
-        return False
 
-@linebot_api.route('/Broadcast', methods=['GET', 'POST'])
-@auth.login_required
-def Broadcast():
-    usersheet = clientgs('usersheet', client)        
-    users = usersheet.get_all_records()
-    gettype = request.args.get("gettype", default='3')
-    
-    choices = {'รายบุคคล': '1', 'มากว่า 1 คนขึ้นไป': '2', 'ทั้งหมด':'3'}
-    for key, value in choices.items():
-        if value == gettype:
-            type = key
-            break
-    print(f"ประเภทข้อความ: {type}")
-    if request.method == 'POST':
-        if request.form.get('getname')!= "":
-            toId = request.form.get('getname')
-            text = request.form.get('gettext')
-            print(gettype)
-            if type == 'รายบุคคล':
-                line_bot_api.push_message(toId, TextSendMessage(text=text))
-            else:
-                line_bot_api.broadcast(TextSendMessage(text=text))
-    
-    return render_template('Broadcast.html', typeText=type, userline=users)
 
 
 @linebot_api.route('/webhook', methods=['POST'])

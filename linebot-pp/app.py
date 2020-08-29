@@ -4,6 +4,7 @@ from gspread.models import Cell
 from .firebase.config_firebase import firebase_db, firebase_rdb
 from .firebase.myFirebase import firebase_api
 from .linebotEvent.linebot import linebot_api, clientgs
+from .linebotview.admin import admin_page
 
 
 
@@ -15,6 +16,7 @@ app = Flask(__name__)
 
 app.register_blueprint(firebase_api)
 app.register_blueprint(linebot_api)
+app.register_blueprint(admin_page)
 
 
 app.config['SECRET_KEY'] = 'my app in pp school'
