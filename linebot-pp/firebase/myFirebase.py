@@ -48,7 +48,6 @@ def getLog():
         get = i['LinebotLog']
 
 
-        #print(get)
         if get is not "" and get[2:8]=='events':
             get_json = json.loads(get)
             userid = get_json['events'][0]['source']['userId']
