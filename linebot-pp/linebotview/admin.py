@@ -16,7 +16,7 @@ def verify_password(username, password):
     else:
         return False
 
-@admin_page.route('/Broadcast', methods=['GET', 'POST'])
+@admin_page.route('/admin/announce', methods=['GET', 'POST'])
 @auth.login_required
 def Broadcast():
     usersheet = clientgs('usersheet', client)        
