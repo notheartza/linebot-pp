@@ -44,4 +44,4 @@ def Broadcast():
 @admin_page.route('/admin/Broadcast', methods=['GET', 'POST'])
 @auth.login_required
 def page_admin():
-    return render_template('')
+    return render_template('admin.html')
