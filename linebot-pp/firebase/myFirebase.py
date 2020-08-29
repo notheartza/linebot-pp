@@ -36,10 +36,6 @@ def realtimebase():
 
     return 'finish'
 
-
-
-
-
 @firebase_api.route('/firebase/realtime/getlog')
 def getLog():
     logresults = client.open("linebothistory").get_worksheet(2)
@@ -52,7 +48,6 @@ def getLog():
             get_json = json.loads(get)
             userid = get_json['events'][0]['source']['userId']
             firebase_rdb.child("users").child(userid).child("chat").push({'destination': get_json["destination"], 'events': get_json['events'][0]})
-
         #firebase_rdb.child("users").child(i["userId"]).set(data)
             
 
