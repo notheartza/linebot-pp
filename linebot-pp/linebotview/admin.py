@@ -5,6 +5,7 @@ from ..exsheet import client
 from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUser, SourceGroup, SourceRoom,TemplateSendMessage, ConfirmTemplate, MessageAction, ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URIAction,PostbackAction, DatetimePickerAction,CameraAction, CameraRollAction, LocationAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,ImageMessage, VideoMessage, AudioMessage, FileMessage,UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,TextComponent, SpacerComponent, IconComponent, ButtonComponent,SeparatorComponent, QuickReply, QuickReplyButton,ImageSendMessage,ThingsEvent, ScenarioResult,BroadcastResponse,MessageDeliveryBroadcastResponse)
+from ..firebase.config_firebase import firebase_db, firebase_rdb
 
 admin_page = Blueprint('admin_page', __name__)
 auth = HTTPBasicAuth()
@@ -39,9 +40,12 @@ def Broadcast():
             else:
                 line_bot_api.broadcast(TextSendMessage(text=text))
     
-    return render_template('Broadcast.html', typeText=type, userline=users)
+    return render_template('announce.html', typeText=type, userline=users)
+
 
 @admin_page.route('/admin/Broadcast', methods=['GET', 'POST'])
 @auth.login_required
 def page_admin():
-    return render_template('admin.html')
+    users_rdb = firebase_rdb.child('users').get()
+    username_list = users_rdb.val()['userName']
+    return render_template('admin.html' , userlist=username_list)

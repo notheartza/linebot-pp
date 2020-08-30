@@ -36,6 +36,11 @@
               </ul>
             </div>
           </nav>
+          <select>
+            {% for i in userlist %}
+              <option class="dropdown-item" value="{{i}}">{{i}}</option>
+            {% endfor %}
+          </select>
           
     </body>
 </html>
