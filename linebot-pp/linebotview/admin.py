@@ -47,5 +47,7 @@ def Broadcast():
 @auth.login_required
 def page_admin():
     users_rdb = firebase_rdb.child('users').get()
+    
     username_list = users_rdb.val()
+    print(username_list)
     return render_template('admin.html' , userlist=username_list)
