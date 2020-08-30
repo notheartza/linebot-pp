@@ -36,6 +36,7 @@
               </ul>
             </div>
           </nav>
+          <form class="form-inline" action="{{ url_for('test') }}">
           <div style="margin: 20px;">
             <select class="col-8 browser-default custom-select my-auto" name="getname" id="getname" href="#">
               {% for i in userlist.each()%}  
@@ -44,9 +45,10 @@
                   {%endif%}
               {% endfor %}
             </select>
+            <button type="submit" class="btn btn-primary">Go</button>
             <p>{{select}}</p>
           </div>
-          
+        </form>
           
     </body>
 </html>
