@@ -45,7 +45,8 @@ def Broadcast():
 
 @admin_page.route('/admin/Broadcast', methods=['GET', 'POST'])
 @auth.login_required
-def page_admin():
+def page_admin(self):
+    select = ''
     users_rdb = firebase_rdb.child('users').get()
-    select = Select(driver.find_element_by_id("getname"))
-    return render_template('admin.html' , userlist=users_rdb)
+    select = self.request.get_all('getName')
+    return render_template('admin.html' , userlist=users_rdb, select=select)
