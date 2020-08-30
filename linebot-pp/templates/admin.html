@@ -38,7 +38,9 @@
           </nav>
           <select>
             {% for i in userlist %}
-              <option class="dropdown-item" value="{{i}}">{{i}}</option>
+              {%if 'user' in i %}
+                <option class="dropdown-item" value="{{i.key()}}">{{i["user"]}}</option>
+                {% endif%}
             {% endfor %}
           </select>
           
