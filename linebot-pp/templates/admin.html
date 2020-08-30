@@ -39,9 +39,7 @@
           <div style="margin: 20px;">
             <select class="col-8 browser-default custom-select my-auto" name="getname" id="getname" href="#">
               {% for i in userlist.each()%}  
-  
-                  {%print(i.val())%}
-                  <option class="dropdown-item" value="{{i.key()}}">{{i.val()["user"]}}</option>
+                  <option class="dropdown-item" value="{{i.key()}}">{{i.val()["userName"]}}</option>
                   
               {% endfor %}
             </select>
