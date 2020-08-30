@@ -36,9 +36,9 @@
               </ul>
             </div>
           </nav>
-          <select class="col-8 browser-default custom-select my-auto" name="getname" id="getname" href="">
-            {% for i in userlist %}
-            {%print(i)%}
+          <select class="col-8 browser-default custom-select my-auto" name="getname" id="getname" href="#">
+            {%print(userlist)%}
+            {% for i in userlist %}  
               {%if 'user' in i %}
                 <option class="dropdown-item" value="{{i.key()}}">{{i.val()["user"]}}</option>
                 {% endif%}
