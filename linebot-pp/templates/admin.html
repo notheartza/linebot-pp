@@ -54,7 +54,6 @@
         </form>
         <div class="col-11" style="text-align: center; background-color: gray;border-radius: 20px 20px 0px 0px;">
         {%block content%}
-        {% num=0 %}
           {% if chatlist is not none %} 
             {% for i in chatlist['chat'] %}
               <label >{{i[num]}}</label>
