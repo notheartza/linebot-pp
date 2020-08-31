@@ -56,7 +56,7 @@ def page_admin():
         test = chat_rdb.each()
         print(chat_rdb.val())
         for i in chat_rdb.val()['chat']:
-              print(i)
+              print(i['event'])
 
     else:
         chat_rdb = []
