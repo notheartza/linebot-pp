@@ -54,8 +54,6 @@
             {% for i in chatlist.each() %}
               <label >{{i.val()["chat"]}}</label>
             {% endfor %}
-          {% else %}
-              {{ super() }}
           {% endif %} 
         {% endblock content %}
         </div>
