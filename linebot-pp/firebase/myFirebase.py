@@ -40,12 +40,14 @@ def realtimebase():
 def getLog():
     logresults = client.open("linebothistory").get_worksheet(2)
     logssheet = logresults.get_all_records()
+    num = 0
     for i in logssheet:
         get = i['LinebotLog']
         if get is not "" and get[2:8]=='events':
             get_json = json.loads(get)
             userid = get_json['events'][0]['source']['userId']
-            firebase_rdb.child("users").child(userid).child("chat").push({'destination': get_json["destination"], 'events': get_json['events'][0]})
+            firebase_rdb.child("users").child(userid).child("chat").child(num).set({'destination': get_json["destination"], 'events': get_json['events'][0]})
+            num = num+1
         #firebase_rdb.child("users").child(i["userId"]).set(data)
             
 
