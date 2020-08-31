@@ -37,7 +37,7 @@
             </div>
           </nav>
           <form class="form-inline" action="{{ url_for('admin_page.page_admin') }}">
-          <div class="col-11" style="margin: 20px; text-align: right;">
+          <div class="col" style="margin: 20px; text-align: right;">
             <select class="col-8 browser-default custom-select my-auto" name="getidname" id="getidname" href="#">
               {% for i in userlist.each() %}  
                   {% if i.val()['userName'] %}
@@ -52,7 +52,7 @@
             <button type="submit" class="btn btn-primary">Go</button>
           </div>
         </form>
-        <div class="col-11" style="text-align: center; background-color: rgb(224, 224, 224);border-radius: 20px 20px 0px 0px;">
+        <div class="col-11" style="text-align: center; background-color: rgb(224, 224, 224);border-radius: 20px 20px 0px 0px; margin: 20px">
         {%block content%}
           {% if chatlist is not none %} 
             {% for i in chatlist['chat'] %}
