@@ -48,5 +48,5 @@ def Broadcast():
 def page_admin():
     select = ''
     users_rdb = firebase_rdb.child('users').get()
-    select = request.form.get('getidname')
+    select = request.form['getidname']
     return render_template('admin.html' , userlist=users_rdb, select=select)
