@@ -52,13 +52,13 @@
             <button type="submit" class="btn btn-primary">Go</button>
           </div>
         </form>
-        <div class="col-11" style="text-align: center; border: 3px solid rgb(90, 90, 90); border-radius: 20px 20px 0px 0px; margin: 20px">
+        <div class="col-11" style="border: 3px solid rgb(90, 90, 90); border-radius: 20px 20px 0px 0px; margin: 20px">
         {%block content%}
           {% if chatlist is not none %} 
             {% for i in chatlist['chat'] %}
             {% if chatlist['chat'][i]['events']['type'] in ("message", "postback") %}
               {% if chatlist['chat'][i]['events']['type'] == "message" %}
-              <label class="col-6" style="background-color: mediumseagreen; padding: 10px;  border-radius: 10px; text-align: right;">{{chatlist['chat'][i]['events']}}</label>
+              <label class="col-6" style="background-color: mediumseagreen; padding: 10px;  border-radius: 10px; text-align: right;">{{chatlist['chat'][i]['events']['message']}}</label>
               {% else %}
               <label class="col-6" style="background-color: rgb(167, 167, 167); padding: 10px;  border-radius: 10px; text-align: left;">{{chatlist['chat'][i]['events']}}</label>
               {% endif %}
