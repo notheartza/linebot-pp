@@ -51,7 +51,7 @@ def page_admin():
     select = request.args.get("getidname")
     print(f"log_select: {select}")
     if select:
-        chat_rdb = firebase_rdb.child('user').child(select).get()
+        chat_rdb = firebase_rdb.child('users').child(select).get()
     else:
         chat_rdb = []
     print(f"log_chat: {chat_rdb.val()}")
