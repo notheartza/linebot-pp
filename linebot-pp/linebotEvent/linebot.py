@@ -10,6 +10,7 @@ from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUs
     CarouselTemplate, CarouselColumn, PostbackEvent,StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,ImageMessage, VideoMessage, AudioMessage, FileMessage,UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,TextComponent, SpacerComponent, IconComponent, ButtonComponent,SeparatorComponent, QuickReply, QuickReplyButton,ImageSendMessage,ThingsEvent, ScenarioResult,BroadcastResponse,MessageDeliveryBroadcastResponse)
 from ..firebase.config_firebase import firebase_rdb
+import json
 
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
@@ -104,7 +105,8 @@ def webhook():
     #    sheetlog.insert_row([body, get_time()], len(logresults)+2)
     #else:
     #    sheetlog.insert_row([body, get_time()], 2)
-    firebase_rdb.child('users').child(body['events']['source']['userId']).child('chat').set(body)
+    getjson = json.loads(body)
+    firebase_rdb.child('users').child(getjson['events']['source']['userId']).child('chat').set(body)
     try:
         handler.handle(body, signature)
     except LineBotApiError as e:
