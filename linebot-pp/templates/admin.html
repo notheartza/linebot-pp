@@ -57,7 +57,7 @@
           {% if chatlist is not none %} 
             {% for i in chatlist['chat'] %}
               <label >{{i[num]}}</label>
-              {% num = num+1 %}
+              {{ num = num+1 }}
             {% endfor %}
           {% endif %} 
         {% endblock content %}
