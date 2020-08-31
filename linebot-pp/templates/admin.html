@@ -58,10 +58,13 @@
             {% for i in chatlist['chat'] %}
             {% if chatlist['chat'][i]['events']['type'] in ("message", "postback") %}
               {% if chatlist['chat'][i]['events']['type'] == "message" %}
-              <div class="col-5"></div><label class="col-6" style="background-color: mediumseagreen; padding: 10px;  border-radius: 10px; text-align: right;">{{chatlist['chat'][i]['events']['message']}}</label>
-              {% else %}
-              <label class="col-6" style="background-color: rgb(167, 167, 167); padding: 10px;  border-radius: 10px; text-align: left;">{{chatlist['chat'][i]['events']}}</label>
-              <div class="col-5"></div>
+              <div class="col-11" style='text-align: right;'>
+                <label class="col-6" style="background-color: mediumseagreen; padding: 10px;  border-radius: 10px;">{{chatlist['chat'][i]['events']['message']['text']}}</label>
+              </div>
+                {% else %}
+              <div class="col-11" style=" text-align: left;">
+              <label class="col-6" style="background-color: rgb(167, 167, 167); padding: 10px;  border-radius: 10px;">{{chatlist['chat'][i]['events']['postback']['data']}}</label>
+              </div>
               {% endif %}
             {% endif %}
             {% endfor %}
