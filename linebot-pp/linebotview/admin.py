@@ -52,7 +52,8 @@ def page_admin():
     print(f"log_select: {select}")
     if select:
         chat_rdb = firebase_rdb.child('users').child(select).get()
+        chat_rdb = chat_rdb.each()
     else:
         chat_rdb = []
-    print(f"log_chat: {chat_rdb.each().val()['chat']}")
+    print(f"log_chat: {chat_rdb.val()['chat']}")
     return render_template('admin.html' , userlist=users_rdb, chatlist=chat_rdb, select=select)
