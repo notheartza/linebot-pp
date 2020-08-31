@@ -6,6 +6,7 @@ from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUs
     CarouselTemplate, CarouselColumn, PostbackEvent,StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,ImageMessage, VideoMessage, AudioMessage, FileMessage,UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,TextComponent, SpacerComponent, IconComponent, ButtonComponent,SeparatorComponent, QuickReply, QuickReplyButton,ImageSendMessage,ThingsEvent, ScenarioResult,BroadcastResponse,MessageDeliveryBroadcastResponse)
 from ..firebase.config_firebase import firebase_db, firebase_rdb
+import json
 
 admin_page = Blueprint('admin_page', __name__)
 auth = HTTPBasicAuth()
@@ -53,6 +54,7 @@ def page_admin():
     if select:
         chat_rdb = firebase_rdb.child('users').child(select).get()
         test = chat_rdb.each()
+        chat_rdb = json.loads(test.val())
         print(test)
     else:
         chat_rdb = []
