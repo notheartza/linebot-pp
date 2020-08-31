@@ -53,11 +53,7 @@ def page_admin():
     print(f"log_select: {select}")
     if select:
         chat_rdb = firebase_rdb.child('users').child(select).get()
-        #print(chat_rdb.val())
         test = chat_rdb.val()
-        getjson = json.dumps(test['chat'])
-        getjson = json.loads(getjson)
-        print(getjson['651'])
     else:
         test = []
     
