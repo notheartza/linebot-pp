@@ -58,8 +58,7 @@ def page_admin():
         getjson = json.dumps(test['chat'])
         getjson = json.loads(getjson)
         print(getjson['621'])
-
     else:
-        chat_rdb = []
+        test = []
     
     return render_template('admin.html' , userlist=users_rdb, chatlist=test, select=select, num=0)
