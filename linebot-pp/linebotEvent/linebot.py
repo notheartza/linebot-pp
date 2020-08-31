@@ -107,7 +107,7 @@ def webhook():
     #    sheetlog.insert_row([body, get_time()], 2)
     getjson = json.loads(body)
     print(getjson)
-    firebase_rdb.child('users').child(getjson['events']['source']['userId']).child('chat').set(getjson)
+    firebase_rdb.child('users').child(getjson[0]['events']['source']['userId']).child('chat').set(getjson)
     try:
         handler.handle(body, signature)
     except LineBotApiError as e:
