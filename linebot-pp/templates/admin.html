@@ -57,7 +57,7 @@
           {% if chatlist is not none %} 
             {% for i in chatlist['chat'] %}
             {% if chatlist['chat'][i]['events']['type'] in ("message", "postback") %}
-              <label >{{chatlist['chat'][i]['events']}}</label>
+              <label >{{chatlist['chat'][i]['events']['message']['text']}}</label>
               {% endif %}
             {% endfor %}
           {% endif %} 
