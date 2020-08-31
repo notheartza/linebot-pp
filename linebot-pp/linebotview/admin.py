@@ -49,4 +49,6 @@ def page_admin():
     select = ''
     users_rdb = firebase_rdb.child('users').get()
     select = request.args.get("getidname")
-    return render_template('admin.html' , userlist=users_rdb, select=select)
+    if select:
+        chat_rdb = firebase_rdb.child('user').child(select).get()
+    return render_template('admin.html' , userlist=users_rdb, chatlist=chat_rdb, select=select)

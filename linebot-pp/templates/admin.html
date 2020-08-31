@@ -37,18 +37,22 @@
             </div>
           </nav>
           <form class="form-inline" action="{{ url_for('admin_page.page_admin') }}">
-          <div style="margin: 20px;">
+          <div class="col-11" style="margin: 20px; text-align: right;">
             <select class="col-8 browser-default custom-select my-auto" name="getidname" id="getidname" href="#">
-              {% for i in userlist.each()%}  
-                  {%if i.val()['userName']%}
+              {% for i in userlist.each() %}  
+                  {% if i.val()['userName'] %}
                   <option class="dropdown-item" value="{{i.key()}}">{{i.val()["userName"]}}</option>
-                  {%endif%}
+                  {% endif %}
               {% endfor %}
             </select>
             <button type="submit" class="btn btn-primary">Go</button>
-            <p>{{select}}</p>
           </div>
         </form>
+        <div class="col-11" style="text-align: center; background-color: gray;border-radius: 20px 20px 0px 0px;">
+        {% for i in chatlist.each() %}
+            <label >{{i.val()["chat"]}}</label>
+        {% endfor %}
+        </div>
           
     </body>
 </html>
