@@ -9,7 +9,7 @@ from linebot.exceptions import (InvalidSignatureError, LineBotApiError)
 from linebot.models import ( MessageEvent, TextMessage, TextSendMessage,SourceUser, SourceGroup, SourceRoom,TemplateSendMessage, ConfirmTemplate, MessageAction, ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URIAction,PostbackAction, DatetimePickerAction,CameraAction, CameraRollAction, LocationAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,ImageMessage, VideoMessage, AudioMessage, FileMessage,UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,TextComponent, SpacerComponent, IconComponent, ButtonComponent,SeparatorComponent, QuickReply, QuickReplyButton,ImageSendMessage,ThingsEvent, ScenarioResult,BroadcastResponse,MessageDeliveryBroadcastResponse)
-
+from ..firebase.config_firebase import firebase_rdb
 
 completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
@@ -100,10 +100,11 @@ def webhook():
     logresults = sheetlog.get_all_records()
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
-    if len(logresults) > 0:
-        sheetlog.insert_row([body, get_time()], len(logresults)+2)
-    else:
-        sheetlog.insert_row([body, get_time()], 2)
+    #if len(logresults) > 0:
+    #    sheetlog.insert_row([body, get_time()], len(logresults)+2)
+    #else:
+    #    sheetlog.insert_row([body, get_time()], 2)
+    firebase_rdb.child('users').child(body['events']['source']['userId']).child('chat').set(body)
     try:
         handler.handle(body, signature)
     except LineBotApiError as e:
