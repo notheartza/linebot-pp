@@ -53,9 +53,8 @@ def page_admin():
     print(f"log_select: {select}")
     if select:
         chat_rdb = firebase_rdb.child('users').child(select).get()
-        test = chat_rdb.each()
-        print(test)
-        for i in test.val():
+        print(chat_rdb.val())
+        for i in chat_rdb.each():
               print(i['events'])
 
     else:
