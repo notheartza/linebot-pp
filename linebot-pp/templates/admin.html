@@ -56,7 +56,7 @@
         {%block content%}
           {% if chatlist is not none %}
             {% for i in chatlist.each() %}
-              <label >{{i.val()['destination']}}</label>
+              <label >{{i.val()}}</label>
             {% endfor %}
           {% endif %} 
         {% endblock content %}
