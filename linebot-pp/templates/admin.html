@@ -41,7 +41,11 @@
             <select class="col-8 browser-default custom-select my-auto" name="getidname" id="getidname" href="#">
               {% for i in userlist.each() %}  
                   {% if i.val()['userName'] %}
-                  <option class="dropdown-item" value="{{i.key()}}" {% if selected is i.key()%} selected {%endif%} >{{i.val()["userName"]}}</option>
+                   {%if i.key() is select %}
+                    <option class="dropdown-item" value="{{i.key()}}" selected>{{i.val()["userName"]}}</option>
+                   {%else%}
+                   <option class="dropdown-item" value="{{i.key()}}">{{i.val()["userName"]}}</option>
+                   {%endif%}
                   {% endif %}
               {% endfor %}
             </select>
