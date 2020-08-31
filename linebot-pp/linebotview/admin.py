@@ -55,7 +55,7 @@ def page_admin():
         chat_rdb = firebase_rdb.child('users').child(select).get()
         #print(chat_rdb.val())
         test = chat_rdb.val()
-        print(test['chat'])
+        print(test['chat']['events'])
 
     else:
         chat_rdb = []
