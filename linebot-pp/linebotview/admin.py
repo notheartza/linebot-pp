@@ -55,12 +55,11 @@ def page_admin():
         chat_rdb = firebase_rdb.child('users').child(select).get()
         #print(chat_rdb.val())
         test = chat_rdb.val()
-        test = json.dumps(test['chat'])
-        test = json.loads(test)
-        print(test['621'])
-        
+        getjson = json.dumps(test['chat'])
+        getjson = json.loads(getjson)
+        print(getjson['621'])
 
     else:
         chat_rdb = []
     
-    return render_template('admin.html' , userlist=users_rdb, chatlist=chat_rdb.val(), select=select, num=0)
+    return render_template('admin.html' , userlist=users_rdb, chatlist=test, select=select, num=0)
