@@ -49,7 +49,7 @@
           </div>
         </form>
         <div class="col-11" style="text-align: center; background-color: gray;border-radius: 20px 20px 0px 0px;">
-        {% if chatlist is not None %}
+        {% if chatlist is not none %}
           {% for i in chatlist.each() %}
             <label >{{i.val()["chat"]}}</label>
           {% endfor %}
