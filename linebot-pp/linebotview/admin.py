@@ -57,7 +57,7 @@ def page_admin():
         test = chat_rdb.val()
         getjson = json.dumps(test['chat'])
         getjson = json.loads(getjson)
-        print(getjson)
+        print(getjson['651'])
     else:
         test = []
     
