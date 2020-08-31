@@ -62,4 +62,4 @@ def page_admin():
     else:
         chat_rdb = []
     
-    return render_template('admin.html' , userlist=users_rdb, chatlist=chat_rdb, select=select, num=0)
+    return render_template('admin.html' , userlist=users_rdb, chatlist=chat_rdb.val(), select=select, num=0)
