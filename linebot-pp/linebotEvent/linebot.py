@@ -325,6 +325,7 @@ def handle_follow(event):
 
     #if len(usersheet)==0:
     #    userresults.insert_row([get_time(), event.source.user_id, profile.display_name,"","", profile.pictureUrl], len(usersheet)+2)
+    print(profile)
     data = {
         'users/'+event.source.user_id: {
             'date': get_time(), 
