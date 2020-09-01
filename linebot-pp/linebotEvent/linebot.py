@@ -330,7 +330,7 @@ def handle_follow(event):
         'users/'+event.source.user_id: {
             'date': get_time(), 
             'userName': profile.display_name, 
-            'pictureProfile': profile.pictureUrl , 
+            'pictureProfile': profile.pictureUrl, 
             'รหัสประจำตัว': "" ,
             'number': "", 
             'room':""     
