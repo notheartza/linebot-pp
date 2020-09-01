@@ -45,9 +45,12 @@
      <body>
          <div style="margin: 20px;">
           {% for i in userlist.each() %}
-            <div class="col">
-              <img src="{{i.val()['pictureProfile']}}" class="w-10 h-10 row rounded mx-auto d-block">
-                
+            <div class="row">
+              <img src="{{i.val()['pictureProfile']}}" class="col rounded mx-auto d-block" style="height: 150px; width: 150px;">
+              <div>
+                <label class=" col">{{i.val()['userName']}}</label>
+                <label class=" col">{{i.val()['statusMessage']}}</label>  
+              </div>
             </div>
           {% endfor %}
          </div>   
