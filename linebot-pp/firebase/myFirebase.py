@@ -1,5 +1,6 @@
 from flask import Blueprint
 from .config_firebase import firebase_db, firebase_rdb
+from ..linebotEvent.linebot import get_time, line_bot_api
 from ..exsheet import client
 from gspread.models import Cell
 import json
@@ -58,7 +59,19 @@ def repair():
     
     user =  firebase_rdb.child('users').get()
     check = user.val()
+    
     for i in check:
-        print(i)
+        #print(i)
+        if firebase_rdb.child('users').child(i).child('userName').get().val() is None:
+            profile = line_bot_api.get_profile(i)
+            firebase_rdb.child('users').child(i).update({
+                'date': get_time(), 
+                'userName': profile.display_name, 
+                'pictureProfile': profile.picture_url, 
+                'statusMessage': profile.status_message,
+                'รหัสประจำตัว': "" ,
+                'number': "", 
+                'room':""     
+            })
 
     return 'finish'
