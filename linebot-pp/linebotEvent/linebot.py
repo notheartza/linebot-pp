@@ -203,10 +203,7 @@ def handle_message(event):
         users = userssheet.get_all_records()
         c = 0
         
-        for i in users:
-            if i["userId"]==event.source.user_id:
-                user = i
-                break
+        user = firebase_rdb.child('users').child(event.source.user_id).get().val()
         #userssheet.update_cell( 2, 10, str(user))    
         if user['room'] == "":
             text = 'กรุณาระบุห้องเรียนของคุณ'
