@@ -335,7 +335,7 @@ def handle_follow(event):
             'room':""     
         }
     }
-    if not firebase_rdb.child('users').child(event.source.user_id).get():
+    if not firebase_rdb.child('users').child(event.source.user_id).child('userName').get():
         firebase_rdb.update(data)
 
     if(isinstance(event.source, SourceUser)):
