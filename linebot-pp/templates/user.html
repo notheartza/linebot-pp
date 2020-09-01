@@ -43,21 +43,12 @@
         <meta charset="utf-8">
     </header> 
      <body>
-         
-         
-
-        <div class="row h-100 w-100 vertical-center">
-                <div class="w-30 mx-auto">
-                        <div class="head-top ">
-                            <h1 class="header">ระบบประกาศผ่านไลน์บอท</h1>
-                        </div>
-                        <div class="area-field">
-                                <div style="text-align: left;">
-                                        <label style="font-size: large;">ข้อความที่ประกาศ</label>
-                                </div>    
-                                <textarea class="md-textarea form-control" row="3" max-rows="6" placeholder="ข้อความ"></textarea>
-                        </div>
-                    </div>             
-         </div>    
+         <div style="margin: 20px;">
+          {% for i in userlist %}
+            <div class="col">
+                <img src="{{userlist[i]['pictureProfile']}}" class="row rounded mx-auto d-block"/>
+            </div>
+          {% endfor %}
+         </div>   
     </body>
 </html>

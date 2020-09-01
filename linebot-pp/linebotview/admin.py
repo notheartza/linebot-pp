@@ -58,3 +58,9 @@ def page_admin():
         test = []
     
     return render_template('admin.html' , userlist=users_rdb, chatlist=test, select=select, num=0)
+
+@admin_page.route('/admin/user')
+@auth.login_required
+def user_page():
+    users_rdb = firebase_rdb.child('users').get()
+    return render_template('user.html', userlist=users_rdb)
