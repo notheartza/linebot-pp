@@ -46,16 +46,18 @@
         <meta charset="utf-8">
     </header> 
      <body>
-         <div style="margin: 20px;">
+       <div>
+         <div class="h-75" style="border: 3px solid rgb(90, 90, 90);margin: 20px;">
           {% for i in userlist.each() %}
-            <div class="row">
+            <div class="row" style="border-bottom: 3px solid rgb(90, 90, 90);">
               <img src="{{i.val()['pictureProfile']}}" class="img-circle" style="height: 80px; width: 80px;">
-            <div class="col" onclick="location.href='/admin/Broadcast?getidname={{i.key()}}'">
+                <div class="col" onclick="location.href='/admin/Broadcast?getidname={{i.key()}}'">
                 <label class=" col"> UserName: {{i.val()['userName']}}</label>
                 <label class=" col"> Status: {{i.val()['statusMessage']}}</label>  
               </div>
             </div>
           {% endfor %}
-         </div>   
+         </div> 
+        </div>  
     </body>
 </html>
