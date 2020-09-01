@@ -59,11 +59,9 @@ def repair():
     
     user =  firebase_rdb.child('users').get()
     check = user.val()
-    
     for i in check:
-        #print(i)
-        if firebase_rdb.child('users').child(i).child('userName').get().val() is None:
-            profile = line_bot_api.get_profile(i)
+        profile = line_bot_api.get_profile(i)
+        if firebase_rdb.child('users').child(i).child('userName').get().val() is None:   
             firebase_rdb.child('users').child(i).update({
                 'date': get_time(), 
                 'userName': profile.display_name, 
@@ -73,5 +71,9 @@ def repair():
                 'number': "", 
                 'room':""     
             })
-
+        else:
+            firebase_rdb.child('users').child(i).update({ 
+                'pictureProfile': profile.picture_url, 
+                'statusMessage': profile.status_message,         
+            })
     return 'finish'
