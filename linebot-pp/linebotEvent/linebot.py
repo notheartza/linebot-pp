@@ -112,7 +112,8 @@ def webhook():
         handler.handle(body, signature)
     except LineBotApiError as e:
         Error = "Got exception from LINE Messaging API: %s\n" % e.message
-        sheetlog.insert_row([Error, get_time()], len(logresults)+2)
+        #sheetlog.insert_row([Error, get_time()], len(logresults)+2)
+        firebase_rdb.child('log').push({"Error": Error, "Timestamp": get_time()})
     except InvalidSignatureError:
         abort(400)
     return 'OK'
@@ -161,12 +162,8 @@ def handle_message(event):
                 #userssheet.update_cell( 2, 8, get_number[1])
                 try:
                     number = int(get_number[1])
-                    c = 0
-                    for i in users:     
-                        if i["userId"]==event.source.user_id:
-                            userssheet.update_cell( c+2, 5, number)
-                            break
-                        c = c + 1
+                    firebase_rdb.child('users').child(event.source.user_id).update({'number': number})
+                          
                     text = completetext1
                 except Exception as e:
                     userssheet.update_cell( 2, 9, str(e))
@@ -178,12 +175,7 @@ def handle_message(event):
             #userssheet.update_cell( 2, 8, number)
             try:
                 number = int(number)
-                c = 0
-                for i in users:     
-                    if i["userId"]==event.source.user_id:
-                        userssheet.update_cell( c+2, 5, number)
-                        break
-                    c = c + 1
+                firebase_rdb.child('users').child(event.source.user_id).update({'number': number})                        
                 text = completetext1
             except:
                 text = 'กรุณากรอกเลขที่ของคุณให้ถูกต้อง[1]'
@@ -422,15 +414,16 @@ def handle_postback(event):
         room = getroom.split('.')
         room = room[len(room)-1]
         c = 0
-        for i in users:     
-            if i["userId"]==event.source.user_id:
-                userresults.update_cell( c+2, 4 , room)
-                userresults.update_cell( c+2, 5 , "")
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text=completetext1))
-                break
-            c = c + 1
+        #for i in users:     
+        #    if i["userId"]==event.source.user_id:
+         #       userresults.update_cell( c+2, 4 , room)
+         #       userresults.update_cell( c+2, 5 , "")
+         #       line_bot_api.reply_message(
+         #           event.reply_token,
+         #           TextSendMessage(text=completetext1))
+         #       break
+         #   c = c + 1
+        firebase_rdb.child('users').child(event.source.user_id).update({'number': room})
     
     elif event.postback.data == 'menu':
         mainMenu(event)
