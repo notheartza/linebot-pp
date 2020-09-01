@@ -51,4 +51,14 @@ def getLog():
         #firebase_rdb.child("users").child(i["userId"]).set(data)
             
 
-    return 'finish'    
+    return 'finish'   
+
+@firebase_api.route('/firebase/realtime/repair')
+def repair():
+    
+    user =  firebase_rdb.child('users').get()
+    check = user.val()
+    for i in check:
+        print(i)
+
+    return 'finish'
