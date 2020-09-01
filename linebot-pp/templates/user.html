@@ -47,8 +47,9 @@
           {% for i in userlist.each() %}
             <div class="row">
               <img src="{{i.val()['pictureProfile']}}" class="rounded" style="height: 150px; width: 150px;">
-            <div onclick="{{ url_for('admin_page.page_admin') }}">
-                <option class=" col" value="{{i.key()" name='getidname'>UserName: {{i.val()['userName']}}</option>
+            <div class="col" onclick="{{ url_for('admin_page.page_admin') }}">
+                <option value="{{i.key()}}" name='getidname'></option>
+                <label class=" col"> UserName: {{i.val()['userName']}}</label>
                 <label class=" col"> Status: {{i.val()['statusMessage']}}</label>  
               </div>
             </div>
