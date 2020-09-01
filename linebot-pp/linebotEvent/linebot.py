@@ -423,7 +423,7 @@ def handle_postback(event):
          #           TextSendMessage(text=completetext1))
          #       break
          #   c = c + 1
-        firebase_rdb.child('users').child(event.source.user_id).update({'number': room})
+        firebase_rdb.child('users').child(event.source.user_id).update({'room': room})
     
     elif event.postback.data == 'menu':
         mainMenu(event)
