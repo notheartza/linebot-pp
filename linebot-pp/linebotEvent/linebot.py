@@ -325,9 +325,9 @@ def handle_follow(event):
 
     #if len(usersheet)==0:
     #    userresults.insert_row([get_time(), event.source.user_id, profile.display_name,"","", profile.pictureUrl], len(usersheet)+2)
-    print(profile)
-    data = {
-        'users/'+event.source.user_id: {
+
+    if firebase_rdb.child('users').child(event.source.user_id).child('userName').get() is not None:
+        firebase_rdb.child('users').child(event.source.user_id).set({
             'date': get_time(), 
             'userName': profile.display_name, 
             'pictureProfile': profile.picture_url, 
@@ -335,10 +335,7 @@ def handle_follow(event):
             'รหัสประจำตัว': "" ,
             'number': "", 
             'room':""     
-        }
-    }
-    if firebase_rdb.child('users').child(event.source.user_id).child('userName').get() is not None:
-        firebase_rdb.update(data)
+        })
 
     if(isinstance(event.source, SourceUser)):
         profile = line_bot_api.get_profile(event.source.user_id)
