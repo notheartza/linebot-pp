@@ -106,7 +106,7 @@ def webhook():
     #else:
     #    sheetlog.insert_row([body, get_time()], 2)
     getjson = json.loads(body)
-    print(getjson)
+    #print(getjson)
     firebase_rdb.child('users').child(getjson['events'][0]['source']['userId']).child('chat').push({'destination': getjson["destination"], 'events': getjson['events'][0]})
     try:
         handler.handle(body, signature)
@@ -325,7 +325,8 @@ def handle_follow(event):
 
     #if len(usersheet)==0:
     #    userresults.insert_row([get_time(), event.source.user_id, profile.display_name,"","", profile.pictureUrl], len(usersheet)+2)
-    print(firebase_rdb.child('users').child(event.source.user_id).child('userName').get())
+    check = firebase_rdb.child('users').child(event.source.user_id).child('userName').get()
+    print(check.val())
     if firebase_rdb.child('users').child(event.source.user_id).child('userName').get() is None:
         firebase_rdb.child('users').child(event.source.user_id).set({
             'date': get_time(), 
