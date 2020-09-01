@@ -44,9 +44,9 @@
     </header> 
      <body>
          <div style="margin: 20px;">
-          {% for i in userlist %}
+          {% for i in userlist.each() %}
             <div class="col">
-                <img src="{{userlist[i]['pictureProfile']}}" class="row rounded mx-auto d-block"/>
+                <img src="{{userlist[i.val()]['pictureProfile']}}" class="row rounded mx-auto d-block"/>
             </div>
           {% endfor %}
          </div>   
