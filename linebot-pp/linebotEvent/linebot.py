@@ -326,8 +326,8 @@ def handle_follow(event):
     #if len(usersheet)==0:
     #    userresults.insert_row([get_time(), event.source.user_id, profile.display_name,"","", profile.pictureUrl], len(usersheet)+2)
     check = firebase_rdb.child('users').child(event.source.user_id).child('userName').get()
-    print(check.val())
-    if firebase_rdb.child('users').child(event.source.user_id).child('userName').get() is None:
+    
+    if check.val() is None:
         firebase_rdb.child('users').child(event.source.user_id).set({
             'date': get_time(), 
             'userName': profile.display_name, 
