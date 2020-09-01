@@ -331,7 +331,7 @@ def handle_follow(event):
             'date': get_time(), 
             'userName': profile.display_name, 
             'pictureProfile': profile.picture_url, 
-            'statusMessage': profile.status_essage,
+            'statusMessage': profile.status_message,
             'รหัสประจำตัว': "" ,
             'number': "", 
             'room':""     
