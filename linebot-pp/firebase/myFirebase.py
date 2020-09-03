@@ -83,6 +83,6 @@ def adduser():
     getstudent = studentsheet.get_all_records()
     for i in getstudent:
         if i['ชื่อ']!= "" and i['เลขประจำตัว']!= "":
-            firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ']})
+            firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ'], "นามสกุล": i['นามสกุล'], "password": i['เลขประจำตัว'], "เลขที่": i['เลขที่']})
     
     return 'finish'
