@@ -66,14 +66,18 @@
 <body style="background-color: cornflowerblue;">
     <div class="row h-100 w-100 vertical-center">
         <div class="w-30 mx-auto">
-            <div class="header-exam">
+            <div class="header-exam col">
                 <label class="row">{{Header}}</label>
             </div>
             <div class="body-exam col">
                 <label class="row">{{choice1}}</label>
                 <label class="row">{{choice2}}</label>
                 <label class="row">{{choice3}}</label>
-                <button class="btn btn-primary">{{summit}}</button>
+                <div class="col">
+                    <button class="btn btn-primary row">ย้อนกลับ</button>
+                    <button class="btn btn-primary row">{{summit}}</button>
+                    
+                </div>
             </div>
         </div>
 
