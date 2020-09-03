@@ -1,6 +1,6 @@
 from flask import Blueprint
 from .config_firebase import firebase_db, firebase_rdb
-from ..linebotEvent.linebot import get_time, line_bot_api
+from ..linebotEvent.linebot import get_time, line_bot_api, clientgs
 from ..exsheet import client
 from gspread.models import Cell
 import json
@@ -56,7 +56,6 @@ def getLog():
 
 @firebase_api.route('/firebase/realtime/repair')
 def repair():
-    
     user =  firebase_rdb.child('users').get()
     check = user.val()
     for i in check:
@@ -77,3 +76,8 @@ def repair():
                 'statusMessage': profile.status_message,         
             })
     return 'finish'
+
+@firebase_api.route('/firebase/realtime/userExam')
+def adduser():
+    studentsheet = clientgs("คะแนนนักเรียน ม.4/2", client)
+    
