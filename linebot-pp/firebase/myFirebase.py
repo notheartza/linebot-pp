@@ -77,9 +77,9 @@ def repair():
             })
     return 'finish'
 
-@firebase_api.route('/firebase/realtime/userExam')
-def adduser():
-    studentsheet = clientgs("คะแนนนักเรียน ม.4/2", client)
+@firebase_api.route('/firebase/realtime/userExam/{room}')
+def adduser(room):
+    studentsheet = clientgs("คะแนนนักเรียน ม.4/{room}", client)
     getstudent = studentsheet.get_all_records()
     for i in getstudent:
         if i['ชื่อ']!= "" and i['เลขประจำตัว']!= "":
