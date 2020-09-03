@@ -41,7 +41,7 @@ def mytest():
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return 'Linebot-PP'
 
 
 
