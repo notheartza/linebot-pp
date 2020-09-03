@@ -82,6 +82,7 @@ def adduser():
     studentsheet = clientgs("คะแนนนักเรียน ม.4/2", client)
     getstudent = studentsheet.get_all_records()
     for i in getstudent:
-        firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ']})
+        if i['ชื่อ']!= "" and i['เลขประจำตัว']!= "":
+            firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ']})
     
     return 'finish'
