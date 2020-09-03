@@ -9,7 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap-color.css" >
+<<<<<<< HEAD
     
+=======
+>>>>>>> 66e18e6126ff45486addae6206ca852cfa78f96c
     <style>
         .container {
         display: flex;
@@ -48,16 +51,21 @@
         <meta charset="utf-8">
     </header> 
      <body>
-         <div style="margin: 20px;">
+       <div style="overflow-y: auto;">
+         <div class="w-25" style="border: 3px solid rgb(90, 90, 90);margin: 20px;">
+           <div style="padding: 20px; border-bottom: 3px solid rgb(90, 90, 90);">
+             <label>แชท</label>
+           </div>
           {% for i in userlist.each() %}
-            <div class="row">
+            <div class="row" style="border-bottom: 3px solid rgb(90, 90, 90); padding: 20px; margin: 20px 0px">
               <img src="{{i.val()['pictureProfile']}}" class="img-circle" style="height: 80px; width: 80px;">
-            <div class="col" onclick="location.href='/admin/Broadcast?getidname={{i.key()}}'">
+                <div class="col" onclick="location.href='/admin/Broadcast?getidname={{i.key()}}'">
                 <label class=" col"> UserName: {{i.val()['userName']}}</label>
                 <label class=" col"> Status: {{i.val()['statusMessage']}}</label>  
               </div>
             </div>
           {% endfor %}
-         </div>   
+         </div> 
+        </div>  
     </body>
 </html>
