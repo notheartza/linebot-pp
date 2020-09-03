@@ -80,4 +80,8 @@ def repair():
 @firebase_api.route('/firebase/realtime/userExam')
 def adduser():
     studentsheet = clientgs("คะแนนนักเรียน ม.4/2", client)
+    getstudent = studentsheet.get_all_records()
+    for i in getstudent:
+        firebase_rdb.child('exam').child('user').chlid(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ']})
     
+    return 'finish'
