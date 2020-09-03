@@ -79,6 +79,7 @@ def repair():
 
 @firebase_api.route('/firebase/realtime/userExam/<room>')
 def adduser(room):
+    print(room)
     studentsheet = clientgs("คะแนนนักเรียน ม.4/{room}", client)
     getstudent = studentsheet.get_all_records()
     for i in getstudent:
