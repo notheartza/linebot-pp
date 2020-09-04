@@ -71,7 +71,7 @@ def user_page():
 
 auth_exam = HTTPBasicAuth()
 
-@auth_exam.verify_password
+@auth.verify_password
 def exam_handler(username, password):
     print("checking....")
     if username is None or password is None:
@@ -84,6 +84,6 @@ def exam_handler(username, password):
         return abort(403)
 
 @admin_page.route('/exam')
-@auth_exam.login_required
+@auth.login_required
 def exam():
     return render_template('exam.html')
