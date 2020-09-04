@@ -74,6 +74,8 @@ auth_exam = HTTPBasicAuth()
 @auth_exam.verify_password
 def exam_handler(username, password):
     print("checking....")
+    if username is None or password is None:
+        return abort(403)
     if firebase_rdb.child('exam').child('user').child(username).get().val() is not None:
         print(username)
         return username
