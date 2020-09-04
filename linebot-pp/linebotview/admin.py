@@ -11,12 +11,12 @@ import json
 admin_page = Blueprint('admin_page', __name__)
 auth = HTTPBasicAuth()
 
-@auth.verify_password
-def verify_password(username, password):
-    if username == 'ppAdmin' and password == 'pp2563':
-        return username
-    else:
-        return False
+#@auth.verify_password
+#def verify_password(username, password):
+#    if username == 'ppAdmin' and password == 'pp2563':
+#        return username
+#    else:
+#        return False
 
 @admin_page.route('/admin/announce', methods=['GET', 'POST'])
 @auth.login_required
