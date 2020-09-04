@@ -79,7 +79,7 @@ def exam_handler(username, password):
         return username
     else:
         print('False')
-        return False
+        return abort(403)
 
 @admin_page.route('/exam')
 @auth_exam.login_required
