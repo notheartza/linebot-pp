@@ -10,7 +10,7 @@ import json
 
 admin_page = Blueprint('admin_page', __name__)
 auth = HTTPBasicAuth()
-auth_exam = HTTPBasicAuth()
+
 @auth.verify_password
 def verify_password(username, password):
     if username == 'ppAdmin' and password == 'pp2563':
@@ -69,10 +69,11 @@ def user_page():
 
 #----------------------------EXAM-----------------------
 
-
+auth_exam = HTTPBasicAuth()
 
 @auth_exam.verify_password
 def verify_password(username, password):
+    print("checking....")
     if firebase_rdb.child('exam').child('user').child(username) is not None:
         return username
     else:
