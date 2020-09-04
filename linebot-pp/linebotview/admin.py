@@ -73,7 +73,7 @@ def user_page():
 
 @auth_exam.verify_password
 def verify_password(username, password):
-    if username == 'ppAdmin' and password == 'pp2563':
+    if firebase_rdb.child('exam').child('user').child(username) is not None:
         return username
     else:
         return False
