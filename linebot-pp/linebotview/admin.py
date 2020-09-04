@@ -78,6 +78,7 @@ def verify_password(username, password):
         print(username)
         return username
     else:
+        print('False')
         return False
 
 @admin_page.route('/exam')
