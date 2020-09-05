@@ -43,6 +43,6 @@ def verify_password(username, password):
         return abort(403)
 """
 @exam_page.route('/exam')
-@exam_auth.login_required
+@multi_auth.login_required
 def exam():
     return render_template('exam.html')
