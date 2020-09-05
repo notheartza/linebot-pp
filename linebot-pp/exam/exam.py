@@ -17,7 +17,7 @@ jws = JWS('exam_pp', expires_in=3600)
 def verify_password(username, password):
     if username == 'admin' and password == '1234':
         res = make_response()
-        res.set_cookie('foo', 'bar', max_age=3600)
+        res.set_cookie('username', value='Test', max_age=3600)
         res.headers['location'] = url_for('exam_page.exam') 
         return username, res
 
