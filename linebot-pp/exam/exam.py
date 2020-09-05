@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, render_template, url_for, Blueprint
+from flask import Flask, request, abort, render_template, url_for, make_response, Blueprint
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth, MultiAuth
 from ..firebase.config_firebase import firebase_db, firebase_rdb
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -16,6 +16,8 @@ jws = JWS('exam_pp', expires_in=3600)
 @exam_auth.verify_password
 def verify_password(username, password):
     if username == 'admin' and password == '1234':
+        res = make_response("Setting a cookie")
+        res.set_cookie('foo', 'bar', max_age=3600)
         return username
 
 
