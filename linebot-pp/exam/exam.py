@@ -18,7 +18,7 @@ def verify_password(username, password):
     if username == 'admin' and password == '1234':
         res = make_response()
         res.set_cookie('foo', 'bar', max_age=3600)
-        resp.headers['location'] = url_for('exam_page.exam') 
+        res.headers['location'] = url_for('exam_page.exam') 
         return username, res
 
 
