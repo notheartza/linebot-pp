@@ -1,11 +1,32 @@
 from flask import Flask, request, abort, render_template, url_for, Blueprint
-from flask_httpauth import HTTPBasicAuth
+from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth, MultiAuth
 from ..firebase.config_firebase import firebase_db, firebase_rdb
+from werkzeug.security import generate_password_hash, check_password_hash
+from itsdangerous import TimedJSONWebSignatureSerializer as JWS
 import json
 
 
 exam_page = Blueprint('exam_page', __name__)
-auth_exam = HTTPBasicAuth('exam')
+exam_auth = HTTPBasicAuth()
+token_auth = HTTPTokenAuth('Exam')
+multi_auth = MultiAuth(exam_auth, token_auth)
+jws = JWS('exam_pp', expires_in=3600)
+
+
+@exam_auth.verify_password
+def verify_password(username, password):
+    if username is 'admin' and password is '1234':
+        return username
+
+
+@token_auth.verify_token
+def verify_token(token):
+    try:
+        data = jws.loads(token)
+    except:  # noqa: E722
+        return False
+    if 'username' in data:
+        return data['username']
 
 @auth_exam.verify_password
 def verify_password(username, password):
@@ -20,5 +41,6 @@ def verify_password(username, password):
         return abort(403)
 
 @exam_page.route('/exam')
+@multi_auth.login_required
 def exam():
     return render_template('exam.html')
