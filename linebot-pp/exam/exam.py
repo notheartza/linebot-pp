@@ -7,7 +7,7 @@ import json
 exam_page = Blueprint('exam_page', __name__)
 auth_exam = HTTPBasicAuth()
 
-@auth.verify_password
+@auth_exam.verify_password
 def exam_handler(username, password):
     print("checking....")
     if username is None or password is None:
@@ -20,6 +20,6 @@ def exam_handler(username, password):
         return abort(403)
 
 @admin_page.route('/exam')
-@auth.login_required
+@auth_exam.login_required
 def exam():
     return render_template('exam.html')
