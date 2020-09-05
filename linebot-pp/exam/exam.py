@@ -19,7 +19,7 @@ def exam_handler(username, password):
         print('False')
         return abort(403)
 
-@admin_page.route('/exam')
+@exam_page.route('/exam')
 @auth_exam.login_required
 def exam():
     return render_template('exam.html')
