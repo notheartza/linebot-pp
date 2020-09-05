@@ -20,6 +20,5 @@ def verify_password(username, password):
         return abort(403)
 
 @exam_page.route('/exam')
-@auth_exam.login_required
 def exam():
     return render_template('exam.html')
