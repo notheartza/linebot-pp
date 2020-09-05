@@ -15,10 +15,11 @@ jws = JWS('exam_pp', expires_in=3600)
 
 @exam_auth.verify_password
 def verify_password(username, password):
-    if username == 'admin' and password == '1234':
-        res = make_response(redirect('/exam'))
-        res.set_cookie('username', value='Test', max_age=3600)
-        return username, res
+    print("checking....")
+    if firebase_rdb.child('exam').child('user').child(username).get().val() is not None:
+        #res = make_response(redirect('/exam'))
+        #res.set_cookie('username', value='Test', max_age=3600)
+        return username
 
 
 @token_auth.verify_token
