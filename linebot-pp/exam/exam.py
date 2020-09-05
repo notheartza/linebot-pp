@@ -27,6 +27,8 @@ def verify_token(token):
         return False
     if 'username' in data:
         return data['username']
+
+
 """
 @auth_exam.verify_password
 def verify_password(username, password):
@@ -41,6 +43,6 @@ def verify_password(username, password):
         return abort(403)
 """
 @exam_page.route('/exam')
-@multi_auth.login_required
+@exam_auth.login_required
 def exam():
     return render_template('exam.html')
