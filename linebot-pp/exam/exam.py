@@ -5,7 +5,7 @@ import json
 
 
 exam_page = Blueprint('exam_page', __name__)
-auth_exam = HTTPBasicAuth()
+auth_exam = HTTPBasicAuth('exam')
 
 @auth_exam.verify_password
 def verify_password(username, password):
