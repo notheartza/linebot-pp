@@ -21,7 +21,7 @@ def exam():
                 token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256')
                 extra_args = {'token': token}
                 getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
-                return redirect(f"/?token={token}",user=getuser)
+                return redirect(f"/?token={token}")
                 #return render_template('exam.html', user=user, **extra_args)
             else:
                 print('error')
