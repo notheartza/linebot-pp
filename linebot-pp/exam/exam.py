@@ -35,4 +35,4 @@ def exam():
         token = jwt.decode(token, 'secret', algorithms=['HS256'])
         user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
         print('get')
-        return render_template('exam.html', user=user, **extra_args)
+        return render_template('exam.html', user=user, token=token)
