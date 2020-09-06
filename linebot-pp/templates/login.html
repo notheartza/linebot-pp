@@ -66,44 +66,26 @@
             max-height: 200px;
             overflow-y: auto;
         }
+        .margin-auto{
+            margin-bottom: 10px;
+        }
     </style>
 </header>
 
 <body style="background-color: cornflowerblue;">
-
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
-        <a class="navbar-brand" href="#">Exam</a>
-        <div  class="collapse navbar-collapse">
-            <a class="nav-link" style="color: aliceblue;" href="#">
-                <i class="fas fa-user"></i> Profile</a> 
-        </div>
-        <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav text-right">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">{{user['ชื่อ']}}</a>
-                </li>
-            </ul>
-        </div>
-        <button class="btn btn-success ml-auto mr-1">Logout</button>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-    </nav>
-
     <div class="row h-100 w-100 vertical-center">
-        <div class="w-30 mx-auto">
-            <div class="header-exam col">
-                <label class="row">{{Header}}</label>
+        <div class=" w-50 mx-auto">
+            <div class="header-exam">
+                <label class="w-50 row mx-auto lead">ระบบสอบออนไลน์</label>
             </div>
             <div class="body-exam col">
-                <label class="row">{{choice1}}</label>
-                <label class="row">{{choice2}}</label>
-                <label class="row">{{choice3}}</label>
+                <form method="POST">
+                <input type="text" class="form-control margin-auto" placeholder="Username" name="username" >
+                <input type="password" class="form-control margin-auto" placeholder="Password" name="password">
                 <div class="col">
-                    <button class="btn btn-secondary">ย้อนกลับ</button>
-                    <button class="btn btn-primary">{{summit}}</button>
+                    <button class="btn btn-primary">เข้าสู่ระบบ</button>
                 </div>
+                </form>
             </div>
         </div>
 
