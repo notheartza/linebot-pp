@@ -32,20 +32,9 @@ def verify_token(token):
         return data['username']
 
 
-"""
-@auth_exam.verify_password
-def verify_password(username, password):
-    print("checking....")
-    if username is None or password is None:
-        return abort(403)
-    if firebase_rdb.child('exam').child('user').child(username).get().val() is not None:
-        print(username)
-        return username
-    else:
-        print('False')
-        return abort(403)
-"""
 @exam_page.route('/exam')
 @multi_auth.login_required
 def exam():
-    return render_template('exam.html')
+    id = multi_auth.current_user()
+    user = firebase_rdb.child('exam').child('user').child(id).get().val()
+    return render_template('exam.html', user=user)
