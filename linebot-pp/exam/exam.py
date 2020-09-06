@@ -17,11 +17,11 @@ def exam():
                 password = request.form['password']
                 token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256')
                 extra_args = {'token': token}
-                return redirect(url_for('exam_page.exam', **extra_args))
+                return render_template('exam.html', **extra_args)
             else:
                 return render_template('login.html')
         else:
             return render_template('login.html')
     else:  
         #user = firebase_rdb.child('exam').child('user').child(id).get().val()
-        return render_template('exam.html', user=user)
+        return render_template('exam.html', user=request.form.get('token'))
