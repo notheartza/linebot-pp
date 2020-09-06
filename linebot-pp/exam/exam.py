@@ -16,7 +16,8 @@ def exam():
                 user = request.form['username'] 
                 password = request.form['password']
                 token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256')
-                return redirect(url_for(f'exam_page.exam?token={token}'))
+                extra_args = {'token': token}
+                return redirect(url_for('exam_page.exam', **extra_args))
             else:
                 return render_template('login.html')
         else:
