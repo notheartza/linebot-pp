@@ -20,7 +20,7 @@ def exam():
                 password = request.form['password']
                 token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256')
                 extra_args = {'token': token}
-                return render_template('exam.html', **extra_args)
+                return render_template('exam.html', user=user, **extra_args)
             else:
                 print('error')
                 return render_template('login.html')
