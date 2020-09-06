@@ -28,6 +28,8 @@ def exam():
             print('error')
             return render_template('login.html')
     else:  
-        #user = firebase_rdb.child('exam').child('user').child(id).get().val()
+        token = request.args.get('token')
+        token = jwt.decode(token, 'secret', algorithms=['HS256'])
+        user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
         print('get')
-        return render_template('exam.html', user=request.args.get('token'))
+        return render_template('exam.html', user=user)
