@@ -19,6 +19,8 @@ def exam():
                 return redirect(url_for(f'/exam?token={token}'))
             else:
                 return render_template('login.html')
+        else:
+            return render_template('login.html')
     else:  
         #user = firebase_rdb.child('exam').child('user').child(id).get().val()
         return render_template('exam.html', user=user)
