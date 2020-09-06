@@ -10,7 +10,7 @@ exam_page = Blueprint('exam_page', __name__)
 
 @exam_page.route('/exam', methods=['GET', 'POST'])
 def exam():
-    if request.form.get('token') is None:
+    if request.args.get('token') is None:
         print('no data')
         if request.method == "POST":
             print('Post...')
@@ -30,4 +30,4 @@ def exam():
     else:  
         #user = firebase_rdb.child('exam').child('user').child(id).get().val()
         print('get')
-        return render_template('exam.html', user=request.form.get('token'))
+        return render_template('exam.html', user=request.args.get('token'))
