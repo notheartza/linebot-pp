@@ -8,7 +8,7 @@ import json
 exam_page = Blueprint('exam_page', __name__)
 
 
-@exam_page.route('/exam', methods=['POST'])
+@exam_page.route('/exam', methods=['GET', 'POST'])
 def exam():
     if request.form.get('token') is None:
         if None not in (request.form['username'], request.form['password']):
