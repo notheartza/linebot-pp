@@ -11,17 +11,23 @@ exam_page = Blueprint('exam_page', __name__)
 @exam_page.route('/exam', methods=['GET', 'POST'])
 def exam():
     if request.form.get('token') is None:
+        print('no data')
         if request.method == "POST":
+            print('Post...')
             if None not in (request.form['username'], request.form['password']):
+                print('geting...')
                 user = request.form['username'] 
                 password = request.form['password']
                 token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256')
                 extra_args = {'token': token}
                 return render_template('exam.html', **extra_args)
             else:
+                print('error')
                 return render_template('login.html')
         else:
+            print('error')
             return render_template('login.html')
     else:  
         #user = firebase_rdb.child('exam').child('user').child(id).get().val()
+        print('get')
         return render_template('exam.html', user=request.form.get('token'))
