@@ -18,7 +18,7 @@ def exam():
                 print('geting...')
                 user = request.form['username'] 
                 password = request.form['password']
-                token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256')
+                token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256').decode('utf-8')
                 extra_args = {'token': token}
                 #getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
                 return redirect(f"/exam?token={token}")
