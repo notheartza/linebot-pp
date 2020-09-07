@@ -95,8 +95,7 @@ def addexam():
     for i in getsheet:
         print(i)
         firebase_rdb.child('exam').child('examination').child(i['หน่วย']).set({'unit' : i['หัวข้อ'],})  
-        firebase_rdb.child('exam').child('examination').child(i['หน่วย']).set({
-        i['ข้อ'] : {
+        firebase_rdb.child('exam').child('examination').child(i['หน่วย']).child(i['ข้อ'])({
             'question' : i['คำถาม'],
             'choice': {
                     '1': i['1'], 
@@ -104,8 +103,7 @@ def addexam():
                     '3': i['3'], 
                     '4': i['4'], 
                 },
-            'answer': i['เฉลย']
-                }, 
+            'answer': i['เฉลย']               
         })
     
     return 'finish'
