@@ -94,6 +94,15 @@ def addexam():
     getsheet = sheet.get_all_records()
     for i in getsheet:
         print(i)
-        #firebase_rdb.child('exam').child('examination').child(i['หัวข้อ']).child(i['คำถาม']).set({"1": i['1'], '2': i['2'], '3': i['3', '4': i['4'], 'answer': i['เฉลย']]})
+        data = {f"exam/examination/{i['หัวข้อ']}/{i['คำถาม']}": {
+            "1": i['1'], 
+            '2': i['2'], 
+            '3': i['3'], 
+            '4': i['4'], 
+            'answer': i['เฉลย']
+                }
+            }
+
+        firebase_rdb.update(data)
     
     return 'finish'
