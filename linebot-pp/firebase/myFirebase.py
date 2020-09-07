@@ -90,14 +90,19 @@ def adduser(room):
 
 @firebase_api.route('/firebase/realtime/exam')
 def addexam():
-    sheet = client.open("ข้อสอบรายวิชาเทคโนโลยี1/2563").get_worksheet(0)
+    sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(0)
     getsheet = sheet.get_all_records()
     firebase_rdb.child('exam').child('examinations').set(getsheet)
-    #unit = getsheet[0]['หน่วย']
-    #firebase_rdb.child('exam').child('examinations').child(unit).set({'unit' : getsheet[0]['หัวข้อ'],})
-    #for i in getsheet:
-    #    if unit is not i['หน่วย']:
-    #        firebase_rdb.child('exam').child('examinations').child(i['หน่วย']).set({'unit' : i['หัวข้อ']}) 
+    sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(1)
+    getsheet = sheet.get_all_records()
+    firebase_rdb.child('exam').child('examinations').set(getsheet)
+    sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(2)
+    getsheet = sheet.get_all_records()
+    firebase_rdb.child('exam').child('examinations').set(getsheet)
+    sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(3)
+    getsheet = sheet.get_all_records()
+    firebase_rdb.child('exam').child('examinations').set(getsheet)
+
 
     
     return 'finish'
