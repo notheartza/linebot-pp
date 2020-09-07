@@ -3,6 +3,8 @@ from ..firebase.config_firebase import firebase_db, firebase_rdb
 from functools import wraps
 import jwt
 import json
+import datetime
+import time
 
 
 exam_page = Blueprint('exam_page', __name__)
@@ -18,7 +20,7 @@ def exam():
                 print('geting...')
                 user = request.form['username'] 
                 password = request.form['password']
-                token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256').decode('utf-8')
+                token =jwt.encode({'user': user, 'password': password, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=4)}, 'secret', algorithm='HS256').decode('utf-8')
                 extra_args = {'token': token}
                 #getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
                 return redirect(f"/exam?token={token}")
@@ -32,7 +34,10 @@ def exam():
     else:  
         token = request.args.get('token')
         extra_args = {'token': token}
-        token = jwt.decode(token, 'secret', algorithms='HS256')
-        user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
-        print('get')
-        return render_template('exam.html', user=user, token=token)
+        try:
+            token = jwt.decode(token, 'secret', algorithms='HS256')
+            user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
+            print('get')
+            return render_template('exam.html', user=user, token=token)
+        except:
+            return render_template('login.html')
