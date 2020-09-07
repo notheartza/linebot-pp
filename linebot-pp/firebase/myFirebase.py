@@ -87,3 +87,13 @@ def adduser(room):
             firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ'], "นามสกุล": i['นามสกุล'], "password": i['เลขประจำตัว'], "เลขที่": i['เลขที่'], "ห้อง": f"ม.4/{room}"})
     
     return 'finish'
+
+@firebase_api.route('/firebase/realtime/exam')
+def adduser(room):
+    print(room)
+    sheet = clientgs("ข้อสอบรายวิชาเทคโนโลยี 1/2563", client)
+    getsheet = sheet.get_all_records()
+    for i in getsheet:
+        firebase_rdb.child('exam').child('examination').child(i['หัวข้อ']).child(i['คำถาม']).set({"1": i['1'], '2': i['2'], '3': i['3', '4': i['4'], 'answer': i['เฉลย']]})
+    
+    return 'finish'
