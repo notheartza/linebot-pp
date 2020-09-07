@@ -94,7 +94,7 @@ def addexam():
     getsheet = sheet.get_all_records()
     for i in getsheet:
         print(i)
-        firebase_rdb.child('exam').child('examination').child(i['หน่วย']).set({
+        firebase_rdb.child('exam').child('examination').child(i['หน่วย']).push({
         'unit' : i['หัวข้อ'], 
         i['ข้อ'] : {
             'question' : i['คำถาม'],
