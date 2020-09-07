@@ -89,8 +89,7 @@ def adduser(room):
     return 'finish'
 
 @firebase_api.route('/firebase/realtime/exam')
-def adduser(room):
-    print(room)
+def addexam():
     sheet = clientgs("ข้อสอบรายวิชาเทคโนโลยี 1/2563", client)
     getsheet = sheet.get_all_records()
     for i in getsheet:
