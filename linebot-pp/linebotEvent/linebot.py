@@ -27,7 +27,6 @@ def clientgs(nameclient, client):
     elif nameclient=="logsheet":
         return client.open("linebothistory").get_worksheet(2)
     else:
-
         return client.open(nameclient).get_worksheet(0)
 
 def newhelp(event):
