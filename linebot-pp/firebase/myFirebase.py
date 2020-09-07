@@ -94,8 +94,7 @@ def addexam():
     getsheet = sheet.get_all_records()
     for i in getsheet:
         print(i)
-        data = {f"exam/examination/" : {
-            i['หน่วย'] : {
+        data = {f"exam/examination/i['หน่วย']" : {
                 'unit' : i['หัวข้อ'], 
                 i['ข้อ'] : {
                 'question' : i['คำถาม'],
@@ -107,9 +106,7 @@ def addexam():
                 },
                 'answer': i['เฉลย']
                 }, 
-            }
         }}
-            
         firebase_rdb.update(data)
     
     return 'finish'
