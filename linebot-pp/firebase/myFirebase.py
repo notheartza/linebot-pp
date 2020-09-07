@@ -95,7 +95,7 @@ def addexam():
     for i in getsheet:
         print(i)
         data = {f"exam/examination/{i['หน่วย']}/{i['หัวข้อ']}/{i['ข้อ']}/{i['คำถาม']}": {
-            "1": i['1'], 
+            '1': i['1'], 
             '2': i['2'], 
             '3': i['3'], 
             '4': i['4'], 
@@ -103,6 +103,6 @@ def addexam():
                 }
             }
 
-        firebase_rdb.set(data)
+        firebase_rdb.update(data)
     
     return 'finish'
