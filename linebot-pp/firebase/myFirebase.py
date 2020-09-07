@@ -92,9 +92,13 @@ def adduser(room):
 def addexam():
     sheet = client.open("ข้อสอบรายวิชาเทคโนโลยี1/2563").get_worksheet(0)
     getsheet = sheet.get_all_records()
+    unit = getsheet[0]['หน่วย']
+    firebase_rdb.child('exam').child('examinations').child(unit).set({'unit' : getsheet[0]['หัวข้อ'],})
     for i in getsheet:
-        print(i)
-        firebase_rdb.child('exam').child('examinations').child(i['หน่วย']).set({'unit' : i['หัวข้อ'],})  
+        if unit == i['หน่วย']:
+            firebase_rdb.child('exam').child('examinations').child(i['หน่วย']).set({'unit' : i['หัวข้อ'],})  
+
+
         firebase_rdb.child('exam').child('examinations').child(i['หน่วย']).child('questions').child(i['ข้อ']).set({
             'question' : i['คำถาม'],
             'answer': i['เฉลย'],
