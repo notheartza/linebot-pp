@@ -96,15 +96,15 @@ def addexam():
         print(i)
         firebase_rdb.child('exam').child('examination').child(i['หน่วย']).set({
         'unit' : i['หัวข้อ'], 
-                i['ข้อ'] : {
-                'question' : i['คำถาม'],
-                'choice': {
+        i['ข้อ'] : {
+            'question' : i['คำถาม'],
+            'choice': {
                     '1': i['1'], 
                     '2': i['2'], 
                     '3': i['3'], 
                     '4': i['4'], 
                 },
-                'answer': i['เฉลย']
+            'answer': i['เฉลย']
                 }, 
         })
     
