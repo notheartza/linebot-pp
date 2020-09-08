@@ -34,6 +34,7 @@ def exam(route=None):
             print('error')
             return render_template('login.html')
     else:  
+        print(route)
         if route is None:
             token = request.args.get('token')
             get_token = jwt.decode(token, 'secret')
