@@ -44,5 +44,5 @@ def exam(route=None):
             else:
                 return render_template('exam.html', user=user, token=token)
         except Exception as e:
-            print(f"error: e")
+            print(f"error: {e}")
             return render_template('login.html')
