@@ -35,7 +35,9 @@ def exam(route=None):
             return render_template('login.html')
     else:  
         print(route)
-        if route is None:
+        if route is "profile":
+            return render_template('profile.html')
+        else:
             token = request.args.get('token')
             get_token = jwt.decode(token, 'secret')
             user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
@@ -47,8 +49,7 @@ def exam(route=None):
                 return redirect(f"/exam/profile?token={token}")
             else:
                 return render_template('exam.html', user=user, token=get_token)
-        elif route is "profile":
-            return render_template('profile.html')
+        
         """
         try:
             get_token = jwt.decode(token, 'secret', algorithms='HS256')
