@@ -39,6 +39,14 @@ def exam(route=None):
         user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
         get_users = json.dumps(user)
         get_users = json.loads(get_users)
+        
+        get_token = jwt.decode(token, 'secret', algorithms='HS256')
+        user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
+        if get_users['exam'] is "":
+            return redirect(f"/exam/profile?token={token}")
+        else:
+            return render_template('exam.html', user=user, token=get_token)
+        """
         try:
             get_token = jwt.decode(token, 'secret', algorithms='HS256')
             user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
@@ -49,3 +57,4 @@ def exam(route=None):
         except Exception as e:
             print(f"error: {e}")
             return render_template('login.html')
+            """
