@@ -21,7 +21,7 @@ def exam(route=None):
                 print('geting...')
                 user = request.form['username'] 
                 password = request.form['password']
-                token =jwt.encode({'user': user, 'password': password, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=4)}, 'secret', algorithm='HS256').decode('utf-8')
+                token =jwt.encode({'user': user, 'password': password}, 'secret', algorithm='HS256').decode('utf-8')
                 extra_args = {'token': token}
                 #getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
                 return redirect(f"/exam?token={token}")
@@ -40,7 +40,7 @@ def exam(route=None):
         get_users = json.dumps(user)
         get_users = json.loads(get_users)
 
-        get_token = jwt.decode(token, 'secret', algorithms='HS256', leeway=10)
+        get_token = jwt.decode(token, 'secret', algorithms='HS256')
         user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
         if get_users['exam'] is "":
             return redirect(f"/exam/profile?token={token}")
