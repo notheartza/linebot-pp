@@ -10,8 +10,9 @@ import time
 exam_page = Blueprint('exam_page', __name__)
 
 
-@exam_page.route('/exam', methods=['GET', 'POST'])
-def exam():
+@exam_page.route('/exam', methods=['GET', 'POST'], strict_slashes=False)
+@exam_page.route('/exam/<string:route>', methods=['GET', 'POST'], strict_slashes=False)
+def exam(route=None):
     if request.args.get('token') is None:
         print('no data')
         if request.method == "POST":
@@ -37,7 +38,9 @@ def exam():
         try:
             token = jwt.decode(token, 'secret', algorithms='HS256')
             user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
-            print('get')
-            return render_template('exam.html', user=user, token=token)
+            if user['exam'] is None:
+                return redirect(f"/exam/profile?token={token}")
+            else:
+                return render_template('exam.html', user=user, token=token)
         except:
             return render_template('login.html')

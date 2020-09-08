@@ -75,7 +75,11 @@
         <a class="navbar-brand" href="#">Exam</a>
         <div  class="collapse navbar-collapse">
             <a class="nav-link" style="color: aliceblue;" href="#">
-                <i class="fas fa-user"></i> Profile</a> 
+                <i class="fas fa-user"></i> Profile</a>
+            {% if user['admin'] %}
+            <a class="nav-link" style="color: aliceblue;" href="#">
+                <i class="fas fa-cogs"></i> Admin</a>
+            {% endif %}
         </div>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav text-right">

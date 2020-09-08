@@ -100,8 +100,5 @@ def addexam():
     firebase_rdb.child('exam').child('examinations').child('3').set(getsheet)
     sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(3)
     getsheet = sheet.get_all_records()
-    firebase_rdb.child('exam').child('examinations').child('4').set(getsheet)
-
-
-    
+    firebase_rdb.child('exam').child('examinations').child('4').set(getsheet) 
     return 'finish'
