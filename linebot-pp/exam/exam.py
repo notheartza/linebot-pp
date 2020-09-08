@@ -43,5 +43,5 @@ def exam(route=None):
                 return redirect(f"/exam/profile?token={token}")
             else:
                 return render_template('exam.html', user=user, token=token)
-        except:
+        except jwt.ExpiredSignature:
             return render_template('login.html')
