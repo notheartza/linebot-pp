@@ -38,6 +38,7 @@ def exam(route=None):
         try:
             token = jwt.decode(token, 'secret', algorithms='HS256')
             user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
+            print(user['exam'])
             if user['exam'] is None:
                 return redirect(f"/exam/profile?token={token}")
             else:
