@@ -39,8 +39,8 @@ def exam(route=None):
         user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
         get_users = json.dumps(user)
         get_users = json.loads(get_users)
-        
-        get_token = jwt.decode(token, 'secret', algorithms='HS256')
+
+        get_token = jwt.decode(token, 'secret', algorithms='HS256', leeway=10)
         user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
         if get_users['exam'] is "":
             return redirect(f"/exam/profile?token={token}")
