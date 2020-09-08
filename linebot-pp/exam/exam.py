@@ -36,7 +36,7 @@ def exam(route=None):
     else:  
         token = request.args.get('token')
         get_token = jwt.decode(token, 'secret')
-        user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
+        user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
         get_users = json.dumps(user)
         get_users = json.loads(get_users)
 
