@@ -37,7 +37,7 @@ def exam(route=None):
         extra_args = {'token': token}
         token = jwt.decode(token, 'secret', algorithms='HS256')
         user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
-        print(user['exam'])
+        print(user)
         try:
             token = jwt.decode(token, 'secret', algorithms='HS256')
             user = firebase_rdb.child('exam').child('user').child(token['user']).get().val()
