@@ -40,8 +40,7 @@ def exam(route=None):
         get_users = json.dumps(user)
         get_users = json.loads(get_users)
 
-        
-        user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
+    
         if get_users['exam'] is "":
             return redirect(f"/exam/profile?token={token}")
         else:
