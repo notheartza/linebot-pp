@@ -18,15 +18,18 @@ def verify_token(f):
     @wraps(f)
     def wrapped(*args, **kwargs):
         data = request.get_json()
-        token = data['token']
-        # token = request.args.get('token') ///on get
-        if not token:
+        if data is not None:
+            token = data['token']
+            # token = request.args.get('token') ///on get
+            if not token:
+                return render_template('login.html')
+            try:
+                data = jwt.decode(token, 'pp-exam')
+            except:
+                return render_template('login.html')
+            return f(*args, **kwargs)
+        else:
             return render_template('login.html')
-        try:
-            data = jwt.decode(token, 'pp-exam')
-        except:
-            return render_template('login.html')
-        return f(*args, **kwargs)
 
     return wrapped
 
