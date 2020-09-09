@@ -22,7 +22,7 @@ exam_page = Blueprint("exam_page", __name__)
 
 
 @exam_page.route("/exam", methods=["GET", "POST"])
-@exam_page.route("/exam/<string:route>")
+@exam_page.route("/exam/<string:route>", methods=["GET", "POST"])
 def page(route=None):
     if route is "profile":
         return render_template("profile.html")
