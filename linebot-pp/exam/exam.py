@@ -1,15 +1,4 @@
-from flask import (
-    Flask,
-    request,
-    abort,
-    render_template,
-    url_for,
-    make_response,
-    redirect,
-    Blueprint,
-    session,
-    flash,
-)
+from flask import Flask,request,abort,render_template,url_for,make_response,redirect,Blueprint,session,flash 
 from ..firebase.config_firebase import firebase_db, firebase_rdb
 from functools import wraps
 import jwt
@@ -30,12 +19,6 @@ from flask_jwt_extended import (
 
 
 exam_page = Blueprint("exam_page", __name__)
-
-
-
-
-
-
 
 
 @exam_page.route("/exam", methods=["GET", "POST"])
