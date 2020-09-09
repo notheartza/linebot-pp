@@ -31,7 +31,7 @@ from flask_jwt_extended import (
 
 exam_page = Blueprint("exam_page", __name__)
 
-
+'''
 def verify_token(f):
     @wraps(f)
     def wrapped(*args, **kwargs):
@@ -50,7 +50,7 @@ def verify_token(f):
             return render_template("login.html")
 
     return wrapped
-
+'''
 
 def login():
     if request.method == "POST":
