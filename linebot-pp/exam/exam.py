@@ -28,21 +28,24 @@ def exam():
         return redirect(f"/exam/login")
     else:
         token = request.args.get("token")
-        get_token = jwt.decode(token, "pp-exam")
-        user = (
-            firebase_rdb.child("exam")
-            .child("user")
-            .child(get_token["user"])
-            .get()
-            .val()
-        )
-        get_users = json.dumps(user)
-        get_users = json.loads(get_users)
-        print(get_users)
-        if get_users["exam"] is "":
-            return redirect(f"/exam/profile?token={token}")
+        try:
+            get_token = jwt.decode(token, "pp-exam")
+            user = (
+                firebase_rdb.child("exam")
+                .child("user")
+                .child(get_token["user"])
+                .get()
+                .val()
+            )
+            get_users = json.dumps(user)
+            get_users = json.loads(get_users)
+            print(get_users)
+            if get_users["exam"] is "":
+                return redirect(f"/exam/profile?token={token}")
+            else:
+                return render_template("exam.html", user=user, token=get_token)
         else:
-            return render_template("exam.html", user=user, token=get_token)
+            return redirect(f"/exam/login")
 
 
 @exam_page.route("/exam/login", methods=["GET", "POST"])
@@ -67,5 +70,16 @@ def login():
         return render_template("login.html")
 
 
+@exam_page.route("/exam/profile", methods=["GET", "POST"])
+def profile():
+    if request.args.get("token") is not None:
+        if request.method == "POST":
+            token = request.args.get("token")
+            redirect(f"/exam/introduction?token={token}")
+        else:
+            return render_template("profile.html")
+    else:
+        print("no data")
+        return redirect(f"/exam/login")
 
 
