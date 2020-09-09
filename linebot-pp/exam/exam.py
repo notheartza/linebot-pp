@@ -22,36 +22,6 @@ exam_page = Blueprint("exam_page", __name__)
 
 
 @exam_page.route("/exam", methods=["GET", "POST"])
-@exam_page.route("/exam/<string:route>", methods=["GET", "POST"])
-def page(route=None):
-    if route is "profile":
-        return render_template("profile.html")
-    elif route is "login":
-        return login()
-    else:
-        return exam()
-
-def login():
-    if request.method == "POST":
-        print("Post...")
-        if None not in (request.form["username"], request.form["password"]):
-            print("geting...")
-            user = request.form["username"]
-            password = request.form["password"]
-            playload = {"user": user, "password": password}
-            token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
-            extra_args = {"token": token}
-            # getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
-            return redirect(f"/exam?token={token}")
-            # return render_template('exam.html', user=user, **extra_args)
-        else:
-            print("error")
-            return render_template("login.html")
-    else:
-        print("error")
-        return render_template("login.html")
-
-
 def exam():
     if request.args.get("token") is None:
         print("no data")
@@ -73,5 +43,29 @@ def exam():
             return redirect(f"/exam/profile?token={token}")
         else:
             return render_template("exam.html", user=user, token=get_token)
+
+
+@exam_page.route("/exam/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        print("Post...")
+        if None not in (request.form["username"], request.form["password"]):
+            print("geting...")
+            user = request.form["username"]
+            password = request.form["password"]
+            playload = {"user": user, "password": password}
+            token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
+            extra_args = {"token": token}
+            # getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
+            return redirect(f"/exam?token={token}")
+            # return render_template('exam.html', user=user, **extra_args)
+        else:
+            print("error")
+            return render_template("login.html")
+    else:
+        print("error")
+        return render_template("login.html")
+
+
 
 
