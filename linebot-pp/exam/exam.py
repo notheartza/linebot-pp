@@ -52,6 +52,20 @@ def verify_token(f):
     return wrapped
 '''
 
+
+
+
+
+@exam_page.route("/exam", methods=["GET", "POST"])
+@exam_page.route("/exam/<string:route>")
+def exam_page(route=None):
+    if route is "profile":
+        return render_template("profile.html")
+    elif route is "login":
+        login()
+    else:
+        exam()
+
 def login():
     if request.method == "POST":
         print("Post...")
@@ -96,17 +110,7 @@ def exam():
             return render_template("exam.html", user=user, token=get_token)
 
 
-
-@exam_page.route("/exam", methods=["GET", "POST"])
-@exam_page.route("/exam/<string:route>")
-def exam_page(route=None):
-    if route is "profile":
-        return render_template("profile.html")
-    elif route is "login":
-        login()
-    else:
-        exam()
-
+            
 '''
 @exam_page.route("/test")
 @verify_token
