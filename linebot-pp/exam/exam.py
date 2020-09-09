@@ -33,31 +33,35 @@ def verify_token(f):
 
     return wrapped
 
-@exam_page.route('/exam/login', methods=['GET','POST'])
 
-@exam_page.route('/exam', methods=['GET', 'POST'], strict_slashes=False)
-@exam_page.route('/exam/<string:route>', methods=['GET', 'POST'], strict_slashes=False)
-def exam(route=None):
-    if request.args.get('token') is None:
-        print('no data')
-        if request.method == "POST":
-            print('Post...')
-            if None not in (request.form['username'], request.form['password']):
-                print('geting...')
-                user = request.form['username'] 
-                password = request.form['password']
-                playload = {'user': user, 'password': password}
-                token =jwt.encode(playload, 'pp-exam', algorithm='HS256').decode('utf-8')
-                extra_args = {'token': token}
-                #getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
-                return redirect(f"/exam?token={token}")
-                #return render_template('exam.html', user=user, **extra_args)
-            else:
-                print('error')
-                return render_template('login.html')
+@exam_page.route('/exam/login')
+def login():
+    if request.method == "POST":
+        print('Post...')
+        if None not in (request.form['username'], request.form['password']):
+            print('geting...')
+            user = request.form['username'] 
+            password = request.form['password']
+            playload = {'user': user, 'password': password}
+            token =jwt.encode(playload, 'pp-exam', algorithm='HS256').decode('utf-8')
+            extra_args = {'token': token}
+            #getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
+            return redirect(f"/exam?token={token}")
+            #return render_template('exam.html', user=user, **extra_args)
         else:
             print('error')
             return render_template('login.html')
+    else:
+        print('error')
+        return render_template('login.html')
+
+
+@exam_page.route('/exam', methods=['GET', 'POST'])
+@exam_page.route('/exam/<string:route>')
+def exam(route=None):
+    if request.args.get('token') is None:
+        print('no data')
+        return redirect(f"/exam/login")
     else:  
         print(route)
         if route is "profile":
