@@ -107,8 +107,9 @@ def exam_page(route=None):
     else:
         exam()
 
-
+'''
 @exam_page.route("/test")
 @verify_token
 def test_jwt():
     return render_template("profile.html")
+'''
