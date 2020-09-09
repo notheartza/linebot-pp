@@ -34,7 +34,6 @@ def verify_token(f):
     return wrapped
 
 
-@exam_page.route('/exam/login')
 def login():
     if request.method == "POST":
         print('Post...')
@@ -53,7 +52,7 @@ def login():
             return render_template('login.html')
     else:
         print('error')
-        return render_template('login.html')
+        return render_template('login.html')   
 
 
 @exam_page.route('/exam', methods=['GET', 'POST'])
@@ -66,6 +65,8 @@ def exam(route=None):
         print(route)
         if route is "profile":
             return render_template('profile.html')
+        elif route is 'login':
+            login()
         elif route is "":
             token = request.args.get('token')
             get_token = jwt.decode(token, 'pp-exam')
@@ -78,9 +79,7 @@ def exam(route=None):
                 return redirect(f"/exam/profile?token={token}")
             else:
                 return render_template('exam.html', user=user, token=get_token)
-        else:
-            print(route)
-            return render_template('login.html')
+
         """
         try:
             get_token = jwt.decode(token, 'secret', algorithms='HS256')
