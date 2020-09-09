@@ -33,7 +33,7 @@ def verify_token(f):
 
     return wrapped
 
-
+@exam_page.route('/exam/login', methods=['GET','POST'])
 
 @exam_page.route('/exam', methods=['GET', 'POST'], strict_slashes=False)
 @exam_page.route('/exam/<string:route>', methods=['GET', 'POST'], strict_slashes=False)
