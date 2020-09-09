@@ -5,9 +5,31 @@ import jwt
 import json
 import datetime
 import time
+from flask_jwt_extended import (
+    JWTManager, jwt_required, create_access_token,
+    jwt_refresh_token_required, create_refresh_token,
+    get_jwt_identity, set_access_cookies,
+    set_refresh_cookies, unset_jwt_cookies)
 
 
 exam_page = Blueprint('exam_page', __name__)
+
+def verify_token(f):
+    @wraps(f)
+    def wrapped(*args, **kwargs):
+        data = request.get_json()
+        token = data['token']
+        # token = request.args.get('token') ///on get
+        if not token:
+            return render_template('login.html')
+        try:
+            data = jwt.decode(token, 'pp-exam')
+        except:
+            return render_template('login.html')
+        return f(*args, **kwargs)
+
+    return wrapped
+
 
 
 @exam_page.route('/exam', methods=['GET', 'POST'], strict_slashes=False)
@@ -22,7 +44,7 @@ def exam(route=None):
                 user = request.form['username'] 
                 password = request.form['password']
                 playload = {'user': user, 'password': password}
-                token =jwt.encode(playload, 'secret', algorithm='HS256').decode('utf-8')
+                token =jwt.encode(playload, 'pp-exam', algorithm='HS256').decode('utf-8')
                 extra_args = {'token': token}
                 #getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
                 return redirect(f"/exam?token={token}")
@@ -39,7 +61,7 @@ def exam(route=None):
             return render_template('profile.html')
         elif route is "":
             token = request.args.get('token')
-            get_token = jwt.decode(token, 'secret')
+            get_token = jwt.decode(token, 'pp-exam')
             user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
             get_users = json.dumps(user)
             get_users = json.loads(get_users)
@@ -64,3 +86,9 @@ def exam(route=None):
             print(f"error: {e}")
             return render_template('login.html')
             """
+
+@exam_page.route('/test')
+@verify_token
+def test_jwt():
+    return render_template('profile.htmlx')
+    
