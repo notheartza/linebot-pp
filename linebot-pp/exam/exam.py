@@ -27,9 +27,9 @@ def page(route=None):
     if route is "profile":
         return render_template("profile.html")
     elif route is "login":
-        login()
+        return login()
     else:
-        exam()
+        return exam()
 
 def login():
     if request.method == "POST":
