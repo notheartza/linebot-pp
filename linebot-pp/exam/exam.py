@@ -31,26 +31,8 @@ from flask_jwt_extended import (
 
 exam_page = Blueprint("exam_page", __name__)
 
-'''
-def verify_token(f):
-    @wraps(f)
-    def wrapped(*args, **kwargs):
-        data = request.get_json()
-        if data is not None:
-            token = data["token"]
-            # token = request.args.get('token') ///on get
-            if not token:
-                return render_template("login.html")
-            try:
-                data = jwt.decode(token, "pp-exam")
-            except:
-                return render_template("login.html")
-            return f(*args, **kwargs)
-        else:
-            return render_template("login.html")
 
-    return wrapped
-'''
+
 
 
 
@@ -110,10 +92,3 @@ def exam():
             return render_template("exam.html", user=user, token=get_token)
 
 
-            
-'''
-@exam_page.route("/test")
-@verify_token
-def test_jwt():
-    return render_template("profile.html")
-'''
