@@ -36,7 +36,7 @@ def exam():
                 return render_template("exam.html", user=user, token=get_token)
         else:
             return redirect(f"/exam/login")
-
+ 
 
 @exam_page.route("/exam/login", methods=["GET", "POST"])
 def login():
