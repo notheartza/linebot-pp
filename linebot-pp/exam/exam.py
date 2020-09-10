@@ -99,7 +99,7 @@ def intro():
                     get_exam.get('exam')
                 else:
                     return render_template("exam.html", user=user, token=get_token)
-            else:
+            except:
                 return redirect(f"/exam/login")
             
             return render_template("intro.html", intro="")
