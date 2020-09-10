@@ -34,7 +34,7 @@ def exam():
                 return redirect(f"/exam/profile?token={get_token}")
             else:
                 return render_template("exam.html", user=user, token=get_token)
-        else:
+        except:
             return redirect(f"/exam/login")
  
 
