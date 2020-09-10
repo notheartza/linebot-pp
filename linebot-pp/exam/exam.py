@@ -67,7 +67,22 @@ def profile():
             token = request.args.get("token")
             return redirect(f"/exam/intro?token={token}")
         else:
-            return render_template("profile.html")
+            get_token = request.args.get("token")
+            try:
+                get_token = jwt.decode(get_token, "pp-exam")
+                user = (
+                firebase_rdb.child("exam")
+                .child("user")
+                .child(get_token["user"])
+                .get()
+                .val()
+                )
+                get_users = json.dumps(user)
+                get_users = json.loads(get_users)
+                print(get_users)
+                return render_template("profile.html", user=get_users)
+            except:
+                return redirect(f"/exam/login")
     else:
         print("no data")
         return redirect(f"/exam/login")
