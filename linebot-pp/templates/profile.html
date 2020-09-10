@@ -66,6 +66,9 @@
                 max-height: 200px;
                 overflow-y: auto;
             }
+            .margin-auto {
+                margin: 10px 5px
+            }
         </style>
     </header>
     
@@ -97,18 +100,20 @@
     
         <div class="row h-100 w-100 vertical-center">
             <div class="offset-md-2 mx-auto ">
+                <form method="POST">
                 <div class="header-exam col">
                     <label class="row">{{Header}}</label>
                 </div>
                 <div class="body-exam col">
-                    <label class="row">{{choice1}}</label>
-                    <label class="row">{{choice2}}</label>
-                    <label class="row">{{choice3}}</label>
+                    <input type="text" class="row form-control margin-auto" placeholder="ชื่อ" value="{{user['ชื่อ']}}" name="name">
+                    <input type="text" class="row form-control margin-auto" placeholder="นามสกุล" value="{{user['นามสกุล']}}" name="lastname">
+                    <input type="text" class="row form-control margin-auto" placeholder="เลขที่" value="{{user['เลขที่']}}" name="number">
+                    <input type="text" class="row form-control margin-auto" placeholder="เลขประจำตัว" value="{{user['เลขประจำตัว']}}" name="stdunt">
                     <div class="col">
-                        <button class="btn btn-secondary">ย้อนกลับ</button>
-                        <button class="btn btn-primary">{{summit}}</button>
+                        <button class="btn btn-primary">ตกลง</>
                     </div>
                 </div>
+            </form>
             </div>
     
         </div>
