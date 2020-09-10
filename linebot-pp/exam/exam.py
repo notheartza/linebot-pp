@@ -17,9 +17,9 @@ def exam():
         print("no data")
         return redirect(f"/exam/login")
     else:
-        get_token = request.args.get("token")
+        token = request.args.get("token")
         try:
-            get_token = jwt.decode(get_token, "pp-exam")
+            get_token = jwt.decode(token, "pp-exam")
             user = (
                 firebase_rdb.child("exam")
                 .child("user")
@@ -31,7 +31,7 @@ def exam():
             get_users = json.loads(get_users)
             print(get_users)
             if get_users["exam"] is "":
-                return redirect(f"/exam/profile?token={get_token}")
+                return redirect(f"/exam/profile?token={token}")
             else:
                 return render_template("exam.html", user=user, token=get_token)
         except:
