@@ -5,17 +5,7 @@ import jwt
 import json
 import datetime
 import time
-from flask_jwt_extended import (
-    JWTManager,
-    jwt_required,
-    create_access_token,
-    jwt_refresh_token_required,
-    create_refresh_token,
-    get_jwt_identity,
-    set_access_cookies,
-    set_refresh_cookies,
-    unset_jwt_cookies,
-)
+
 
 
 exam_page = Blueprint("exam_page", __name__)
@@ -75,11 +65,23 @@ def profile():
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
-            redirect(f"/exam/introduction?token={token}")
+            return redirect(f"/exam/intro?token={token}")
         else:
             return render_template("profile.html")
     else:
         print("no data")
         return redirect(f"/exam/login")
 
+
+@exam_page.route('/exam/intro', methods=['GET', 'POST'])
+def intro():
+    if request.args.get("token") is not None:
+        if request.method == "POST":
+            token = request.args.get("token")
+            return redirect(f"/exam?token={token}")
+        else:
+            return render_template("intro.html")
+    else:
+        print("no data")
+        return redirect(f"/exam/login")   
 
