@@ -90,6 +90,11 @@ def profile():
 
 @exam_page.route('/exam/intro', methods=['GET', 'POST'])
 def intro():
+     
+    if 'download' in request.form:
+        pass # do something
+    elif 'watch' in request.form:
+        pass # do something else
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
@@ -117,7 +122,7 @@ def intro():
             except:
                 return redirect(f"/exam/login")
             
-            return render_template("intro.html", intro="", user=user,)
+            return render_template("intro.html", intro="", user=user,token=get_token)
 
     else:
         print("no data")
