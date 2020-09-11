@@ -117,7 +117,7 @@ def intro():
             except:
                 return redirect(f"/exam/login")
             
-            return render_template("intro.html", intro="")
+            return render_template("intro.html", intro="", user=user,)
 
     else:
         print("no data")
