@@ -78,6 +78,7 @@
             padding: 40px 80px;
         }
     </style>
+ 
 </header>
 
 <body style="background-color: cornflowerblue;">
@@ -108,8 +109,8 @@
 
     <div class="row h-100 w-100 vertical-center">
         <div class="offset-md-2 mx-auto ">
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <form method="POST">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -118,31 +119,41 @@
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                       <div class="padding-slideshow">
-                    <div class="header-exam col" style="text-align: center;">
-                        <label class="row" style=" margin-left: 10px; font-size: 2rem;">คำอธิบายรายวิชา</label>
+                    <div class="header-exam col container" style="text-align: center;">
+                        <label class="row" style=" margin-left: 10px; font-size: 2rem;">คำอธิบาย</label>
                     </div>
-                    <div class="body-exam col">
-                        <label class="row">{{choice1}}</label>  
+                    <div class="body-exam col container">
+                        <label class="row" style="margin: 0px 10px; font-size: 1.5rem">ให้นักเรียนเลือกคำตอบที่ถูกที่สุด โดยแต่ละข้อจะมีคะแนน 1 คะแนน โดยในแต่ละข้อนักเรียนจะมีเวลา 3 นาที</label>  
                     </div>
                 </div>
                 </div>
                   <div class="carousel-item">
                       <div class="padding-slideshow">
-                    <div class="header-exam col" style="text-align: center;">
-                        <label class="row" style=" margin-left: 10px; font-size: 2rem;">คำอธิบายรายวิชา</label>
-                    </div>
-                    <div class="body-exam col">
-                        <label class="row">{{choice2}}</label>  
-                    </div>
+                        <div class="header-exam col container" style="text-align: center;">
+                            <label class="row" style=" margin-left: 10px; font-size: 2rem;">คำอธิบาย</label>
+                        </div>
+                        <div class="body-exam col container" style="text-align: start;">
+                            <div class="row">
+                                <label class="row" style="margin: 0px 10px; font-size: 1.5rem">ระบบจะทำการสุ่มข้อสอบจำนวน 20 ข้อ โดยจะแบ่งเป็นหัวข้อดังนี้</label>
+                                <label class="row" style="margin: 0px 20px; font-size: 1.2rem">1. ระบบทางเทคโนโลยีที่ซับซ้อน จำนวน 5 ข้อ</label>
+                                <label class="row" style="margin: 0px 20px; font-size: 1.2rem">2. การเปลี่ยนแปลงของเทคโนโลยี จำนวน 5 ข้อ</label>
+                                <label class="row" style="margin: 0px 20px; font-size: 1.2rem">3. ผลกระทบของเทคโนโลยี จำนวน 5 ข้อ</label>
+                                <label class="row" style="margin: 0px 20px; font-size: 1.2rem">4. วัสดุและเครื่องมือพื้นฐาน กลไก ไฟฟ้า และอิเล็กทรอนิกส์ จำนวน 5 ข้อ</label>
+                            </div>
+                        </div>
                 </div>
                 </div>
                   <div class="carousel-item">
                       <div class="padding-slideshow">
                         <div class="header-exam col" style="text-align: center;">
-                            <label class="row" style=" margin-left: 10px; font-size: 2rem;">คำอธิบายรายวิชา</label>
+                            <label class="row" style=" margin-left: 10px; font-size: 2rem;">คำอธิบาย</label>
                         </div>
-                        <div class="body-exam col">
-                            <label class="row">{{choice3}}</label>  
+                        <div class="body-exam col container">
+                            <div>
+                                <label class="row" style="margin: 0px 10px 10px; font-size: 1.5rem">เริ่มทำข้อสอบ</label>
+                                <button class="btn btn-primary">เริ่ม</button>
+                            </div>
+                            
                         </div>
                       </div>
                     
@@ -156,7 +167,7 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-            
+            </form>
 
         </div>
 
