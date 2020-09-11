@@ -46,12 +46,14 @@ def login():
             print("geting...")
             user = request.form["username"]
             password = request.form["password"]
-            playload = {"user": user, "password": password}
-            token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
-            extra_args = {"token": token}
-            # getuser = firebase_rdb.child('exam').child('user').child(user).get().val()
-            return redirect(f"/exam?token={token}")
-            # return render_template('exam.html', user=user, **extra_args)
+            if firebase_rdb.child('exam').child('user').child(user).get().val() is not None:
+                playload = {"user": user, "password": password}
+                token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
+                extra_args = {"token": token}
+                return redirect(f"/exam?token={token}")
+                # return render_template('exam.html', user=user, **extra_args)
+            else:
+                return render_template("login.html")
         else:
             print("error")
             return render_template("login.html")
