@@ -46,16 +46,16 @@
                 padding: 20px 20px 0px 20px;
                 border-radius: 30px 30px 0px 0px;
                 border-bottom: 3px solid cornflowerblue;
-                min-width: 350px;
-                max-width: 450px;
+                min-width: 450px;
+                max-width: 550px;
             }
             .body-exam {
                 text-align: center;
                 background-color: white;
                 padding: 20px 20px 20px 20px;
                 border-radius: 0px 0px 30px 30px;
-                min-width: 350px;
-                max-width: 450px;
+                min-width: 450px;
+                max-width: 550px;
             }
     
             .label {
@@ -102,13 +102,25 @@
             <div class="offset-md-2 mx-auto ">
                 <form method="POST">
                 <div class="header-exam col">
-                    <label class="row">ข้อมูลส่วนตัว</label>
+                    <label class="row" style="font-size: 2rem; margin-left:10px">ข้อมูลส่วนตัว</label>
                 </div>
-                <div class="body-exam col">
-                    <input type="text" class="row form-control margin-auto" placeholder="ชื่อ" value="{{user['ชื่อ']}}" name="name">
-                    <input type="text" class="row form-control margin-auto" placeholder="นามสกุล" value="{{user['นามสกุล']}}" name="lastname">
-                    <input type="text" class="row form-control margin-auto" placeholder="เลขที่" value="{{user['เลขที่']}}" name="number">
-                    <input type="text" class="row form-control margin-auto" placeholder="เลขประจำตัว" value="{{user['เลขประจำตัว']}}" name="stdunt">
+                <div class="body-exam col ">
+                    <div class="row margin-auto">
+                        <label>ชื่อ</label>
+                        <input type="text" class="form-control " placeholder="ชื่อ" value="{{user['ชื่อ']}}" name="name">  
+                    </div>
+                    <div class="row margin-auto">
+                        <label>นามสกุล</label>
+                        <input type="text" class="form-control " placeholder="นามสกุล" value="{{user['นามสกุล']}}" name="lastname">
+                    </div>
+                    <div class="row margin-auto">
+                        <label>เลขที่</label>
+                        <input type="text" class="form-control" placeholder="เลขที่" value="{{user['เลขที่']}}" name="number">
+                    </div>
+                    <div class="row margin-auto">
+                        <label>เลขประจำตัว</label>
+                        <input type="text" class="form-control" placeholder="เลขประจำตัว" value="{{key}}" name="stdunt">
+                    </div>
                     <div class="col">
                         <button class="btn btn-primary">ตกลง</>
                     </div>

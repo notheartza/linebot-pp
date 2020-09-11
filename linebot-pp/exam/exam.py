@@ -80,7 +80,7 @@ def profile():
                 get_users = json.dumps(user)
                 get_users = json.loads(get_users)
                 print(get_users)
-                return render_template("profile.html", user=get_users)
+                return render_template("profile.html", key=get_token["user"], user=get_users)
             except:
                 return redirect(f"/exam/login")
     else:
