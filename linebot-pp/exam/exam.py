@@ -92,11 +92,14 @@ def profile():
 def intro():
      
     if 'next' in request.form:
-        pass # do something
+        print('next')
     elif 'back' in request.form:
-        pass # do something else
+        print('back')
+        pass 
+    elif 'submit' in request.form:
+        print('submit')
+        pass
 
-    
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
