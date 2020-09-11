@@ -100,9 +100,9 @@ def intro():
             token = request.args.get("token")
             return redirect(f"/exam?token={token}")
         else:
-            get_token = request.args.get("token")
+            token = request.args.get("token")
             try:
-                get_token = jwt.decode(get_token, "pp-exam")
+                get_token = jwt.decode(token, "pp-exam")
                 user = (
                 firebase_rdb.child("exam")
                 .child("user")
@@ -118,11 +118,11 @@ def intro():
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
                 else:
-                    return render_template("exam.html", user=user, token=get_token)
+                    return render_template("exam.html", user=user, token=token)
             except:
                 return redirect(f"/exam/login")
             
-            return render_template("intro.html", intro="", user=user,token=get_token)
+            return render_template("intro.html", intro="", user=user,token=token)
 
     else:
         print("no data")
