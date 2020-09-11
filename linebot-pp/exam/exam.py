@@ -91,10 +91,12 @@ def profile():
 @exam_page.route('/exam/intro', methods=['GET', 'POST'])
 def intro():
      
-    if 'download' in request.form:
+    if 'next' in request.form:
         pass # do something
-    elif 'watch' in request.form:
+    elif 'back' in request.form:
         pass # do something else
+
+    
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
