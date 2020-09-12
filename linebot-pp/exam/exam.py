@@ -105,6 +105,7 @@ def intro():
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
+            
             return redirect(f"/exam?token={token}")
         else:
             token = request.args.get("token")
