@@ -115,10 +115,11 @@ def intro():
                     exam = random.choice(unit)
                     print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(exam['หน่วย']).child('0').update(exam)
+                    return redirect(f"/exam?token={token}")
             except:
                 return redirect(f"/exam/login")
             
-            return redirect(f"/exam?token={token}")
+            
         else:
             token = request.args.get("token")
             try:
