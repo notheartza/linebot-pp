@@ -109,11 +109,12 @@ def intro():
             try:
                 get_token = jwt.decode(token, "pp-exam")
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
-                unit = random.choice(examinations)
-                print(f"from: {unit}")
-                exam = random.choice(unit)
-                print(f"random is :{exam}")
-                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').update(exam)
+                if firebase_rdb.child('exam').child('user').cgild(get_token['user']).child('exam').get().val() is "":
+                    unit = random.choice(examinations)
+                    print(f"from: {unit}")
+                    exam = random.choice(unit)
+                    print(f"random is :{exam}")
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(exam['หน่วย']).child('0').update(exam)
             except:
                 return redirect(f"/exam/login")
             
