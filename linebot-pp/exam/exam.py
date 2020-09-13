@@ -109,10 +109,9 @@ def intro():
             try:
                 get_token = jwt.decode(token, "pp-exam")
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
-
-                print(f"random is :{random.choice(examinations)}")
-                print(f"From: {examinations}")
-                
+                unit = random.choice(examinations)
+                exam = random.choice(unit)
+                print(f"random is :{exam}")
             except:
                 return redirect(f"/exam/login")
             
