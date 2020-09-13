@@ -47,7 +47,8 @@ def login():
             user = request.form["username"]
             password = request.form["password"]
             if firebase_rdb.child('exam').child('user').child(user).get().val() is not None:
-                playload = {"user": user, "password": password}
+                data = firebase_rdb.child('exam').child('user').child(user).get().val() 
+                playload = {"user": user, 'data' : data}
                 token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
                 extra_args = {"token": token}
                 return redirect(f"/exam?token={token}")
@@ -105,6 +106,11 @@ def intro():
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
+            try:
+                get_token = jwt.decode(token, "pp-exam")
+
+            except:
+                return redirect(f"/exam/login")
             
             return redirect(f"/exam?token={token}")
         else:
