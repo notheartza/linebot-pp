@@ -37,7 +37,8 @@ def exam():
                     return redirect(f"/exam/profile?token={token}")
                 else:
                     exam = get_users['exam']
-                    print(exam.keys())
+                    print(len(exam.keys()))
+
                     return render_template("exam.html", user=user, token=get_token)
             except:
                 return redirect(f"/exam/login")
