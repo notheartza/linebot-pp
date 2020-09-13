@@ -17,25 +17,30 @@ def exam():
         print("no data")
         return redirect(f"/exam/login")
     else:
-        token = request.args.get("token")
-        try:
-            get_token = jwt.decode(token, "pp-exam")
-            user = (
-                firebase_rdb.child("exam")
-                .child("user")
-                .child(get_token["user"])
-                .get()
-                .val()
-            )
-            get_users = json.dumps(user)
-            get_users = json.loads(get_users)
-            print(get_users)
-            if get_users["exam"] is "":
-                return redirect(f"/exam/profile?token={token}")
-            else:
-                return render_template("exam.html", user=user, token=get_token)
-        except:
-            return redirect(f"/exam/login")
+        if request.method == "POST":
+            pass
+        else:
+            token = request.args.get("token")
+            try:
+                get_token = jwt.decode(token, "pp-exam")
+                user = (
+                    firebase_rdb.child("exam")
+                    .child("user")
+                    .child(get_token["user"])
+                    .get()
+                    .val()
+                )
+                get_users = json.dumps(user)
+                get_users = json.loads(get_users)
+                print(get_users)
+                if get_users["exam"] is "":
+                    return redirect(f"/exam/profile?token={token}")
+                else:
+                    exam = get_users['exam']
+                    print(exam.key())
+                    return render_template("exam.html", user=user, token=get_token)
+            except:
+                return redirect(f"/exam/login")
  
 
 @exam_page.route("/exam/login", methods=["GET", "POST"])
@@ -132,10 +137,7 @@ def intro():
                 .get()
                 .val()
                 )
-                get_users = json.dumps(user)
-                get_users = json.loads(get_users)
-                print(get_users)
-                if get_users["exam"] is "":
+                if user["exam"] is "":
                     get_exam = (
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
