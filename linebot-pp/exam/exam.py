@@ -113,7 +113,7 @@ def intro():
                 print(f"from: {unit}")
                 exam = random.choice(unit)
                 print(f"random is :{exam}")
-                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').set(exam)
+                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').update(exam)
             except:
                 return redirect(f"/exam/login")
             
