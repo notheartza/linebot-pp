@@ -110,6 +110,7 @@ def intro():
                 get_token = jwt.decode(token, "pp-exam")
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
                 unit = random.choice(examinations)
+                print(f"from: {unit}")
                 exam = random.choice(unit)
                 print(f"random is :{exam}")
             except:
