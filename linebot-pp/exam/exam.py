@@ -93,7 +93,7 @@ def profile():
 
 @exam_page.route('/exam/intro', methods=['GET', 'POST'])
 def intro():
-     
+    """
     if 'next' in request.form:
         print('next')
     elif 'back' in request.form:
@@ -102,13 +102,17 @@ def intro():
     elif 'submit' in request.form:
         print('submit')
         pass
-
+    """
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
             try:
                 get_token = jwt.decode(token, "pp-exam")
+                examinations = firebase_rdb.child('exam').child('examinations').get().val()
 
+                print(f"random is :{random.choice(examinations)}")
+                print(f"From: {examinations}")
+                
             except:
                 return redirect(f"/exam/login")
             
