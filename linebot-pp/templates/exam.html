@@ -94,10 +94,9 @@
                 display.textContent = minutes + ":" + seconds; 
         
                 if (diff <= 0) {
-                
                 document.forms['exam-from'].submit();
 
-                    //start = Date.now() + 1000;
+                    start = 0;
                 }
             };
             // we don't want to wait a full second before the timer starts
