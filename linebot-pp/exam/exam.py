@@ -48,6 +48,7 @@ def exam():
                     examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
                     select = examinations
                     random.choice(select)
+                    print(f"select is {select}")
                     while select in exam:
                         random.choice(select)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(select)
