@@ -91,7 +91,7 @@ def profile():
                 get_users = json.loads(get_users)
                 print(get_users)
                 return render_template("profile.html", key=get_token["user"], user=get_users)
-            except:
+            except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
     else:
         print("no data")
@@ -139,13 +139,13 @@ def intro():
                 .get()
                 .val()
                 )
-                if user.has('exam'):
+                if exam in user.keys():
                     get_exam = (
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
                 else:
                     return render_template("exam.html", user=user, token=token)
-            except:
+            except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
             
             return render_template("intro.html", intro="", user=user,token=token)
