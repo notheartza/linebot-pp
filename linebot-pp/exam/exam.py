@@ -70,19 +70,17 @@ def exam():
                     .get()
                     .val()
                 )
-                get_users = json.dumps(user)
-                get_users = json.loads(get_users)
-                print(get_users)
+               
                 if 'exam' not in user.keys():
                     return redirect(f"/exam/profile?token={token}")
                 else:
-                    exam = get_users['exam']
+                    exam = user['exam']
                     count = len(exam)
                     header = exam[len(exam)-1]['คำถาม']
                     choice = exam[len(exam)-1]['ตัวเลือก']
-                    print(choice)
+                    #print(choice)
                     random.shuffle(choice)
-                    print(choice)
+                    #print(choice)
                     return render_template("exam.html", user=user, header=header, choice=choice, count=count, token=get_token)
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
