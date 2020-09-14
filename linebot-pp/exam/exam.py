@@ -33,7 +33,7 @@ def exam():
                 get_users = json.dumps(user)
                 get_users = json.loads(get_users)
                 print(get_users)
-                if user.has('exam'):
+                if 'exam' in user:
                     return redirect(f"/exam/profile?token={token}")
                 else:
                     exam = get_users['exam']
