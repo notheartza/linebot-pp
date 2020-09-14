@@ -42,7 +42,7 @@ def exam():
                     score = 1
                 else:
                     score = 0
-                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).child('scroce').update(score)
+                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).child('score').update(score)
                 if count % 5 is not 0:
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
