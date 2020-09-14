@@ -98,19 +98,31 @@
         
     </nav>
 
-    <div class="row h-100 w-100 vertical-center">
-        <div class="offset-md-2 mx-auto ">
-            <div class="header-exam col">
-                <label class="row margin-auto">{{header}}</label>
+    <div class="row h-100 w-100 vertical-center" >
+        <div class="offset-md-2 mx-auto " >
+            <div class="header-exam col" >
+                <label class="row margin-auto" style="font-size: 1.5rem;">{{header}}</label>
             </div>
-            <div class="body-exam col">
-                <label class="row margin-auto">{{choice1}}</label>
-                <label class="row margin-auto">{{choice2}}</label>
-                <label class="row margin-auto">{{choice3}}</label>
+            <div class="body-exam col container " style="font-size: 1.2rem;">
                 <div class="col">
-                    <button class="btn btn-secondary">ย้อนกลับ</button>
-                    <button class="btn btn-primary">{{summit}}</button>
+                <div class="radio row">
+                    <label><input type="radio" name="optradio" checked>choice['0']</label>
+                  </div>
+                  <div class="radio row">
+                    <label><input type="radio" name="optradio">choice['1']</label>
+                  </div>
+                  <div class="radio row">
+                    <label><input type="radio" name="optradio" >choice['2']</label>
+                  </div>
+                  <div class="radio row">
+                    <label><input type="radio" name="optradio" >choice['3']</label>
+                  </div>
+                  <div class="col">
+                    <button class=" btn btn-secondary">ย้อนกลับ</button>
+                    <button class=" btn btn-primary">ตกลง</button>
                 </div>
+                </div>
+                
             </div>
         </div>
 
