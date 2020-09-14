@@ -13,6 +13,7 @@ exam_page = Blueprint("exam_page", __name__)
 
 @exam_page.route("/exam", methods=["GET", "POST"])
 def exam():
+    
     if request.args.get("token") is None:
         print("no data")
         return redirect(f"/exam/login")
@@ -48,6 +49,7 @@ def exam():
                     examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
                     select = exam
                     while select in exam:
+                        random.seed(datetime.now())
                         select = examinations
                         random.choice(select)
                         print(f"select is {select}")
@@ -156,8 +158,10 @@ def intro():
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
                 user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
                 if 'exam' not in user.keys():
+                    random.seed(datetime.now())
                     unit = random.choice(examinations)
                     print(f"from: {unit}")
+                    random.seed(datetime.now())
                     exam = random.choice(unit)
                     print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child('0').set(exam)
