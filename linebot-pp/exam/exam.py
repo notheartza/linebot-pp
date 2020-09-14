@@ -3,7 +3,7 @@ from ..firebase.config_firebase import firebase_db, firebase_rdb
 from functools import wraps
 import jwt
 import json
-import datetime
+from datetime import datetime
 import time
 import random
 
