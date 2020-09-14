@@ -95,11 +95,18 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
     </nav>
+    <form method="POST">
 
+        <div class=" mx-auto col" >
+                    <p class="text-center text-light bg-dark" style="border-top: 1px solid cornflowerblue; border-radius: 0px 0px 30px 30px;">
+                        {% for i in range(180) %}
+                        {{i}}
+                        {% endfor %}
+                    </p>
+        </div>
     <div class="row h-100 w-100 vertical-center" >
-        <div class="offset-md-2 mx-auto " >
+        <div class="offset-md-2 mx-auto row" >
             <div class="header-exam col" >
                 <label class="row margin-auto" style="font-size: 1.5rem;">{{header}}</label>
             </div>
@@ -129,6 +136,7 @@
         </div>
 
     </div>
+</form>
 </body>
 
 </html>
