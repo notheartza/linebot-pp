@@ -118,7 +118,9 @@
                     <label><input type="radio" name="optradio" >    {{choice[3]}}</label>
                   </div>
                   <div class="col">
-                    <button class=" btn btn-secondary">ย้อนกลับ</button>
+                      {% if count > 1%}
+                        <button class=" btn btn-secondary">ย้อนกลับ</button>
+                        {% endif %}
                     <button class=" btn btn-primary">ตกลง</button>
                 </div>
                 </div>
