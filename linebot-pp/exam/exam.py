@@ -144,7 +144,7 @@ def intro():
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
                 else:
-                    return render_template("exam.html", user=user, token=token)
+                    return redirect(f"/exam?token={token}")
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
             
