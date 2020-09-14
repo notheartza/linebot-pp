@@ -46,10 +46,10 @@ def exam():
                 if count % 5 is not 0:
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
-                    select = examinations
-                    random.choice(select)
-                    print(f"select is {select}")
+                    select = exam
                     while select in exam:
+                        print(f"select is {select}")
+                        select = examinations
                         random.choice(select)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(select)
 
