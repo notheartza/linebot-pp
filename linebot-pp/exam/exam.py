@@ -39,8 +39,10 @@ def exam():
                     exam = get_users['exam']
                     print(exam)
                     header = exam[len(exam)-1]['คำถาม']
-
-                    return render_template("exam.html", user=user, header=header, token=get_token)
+                    choice = exam[len(exam)-1]['เลือก']
+                    choice = random.shuffle(choice)
+                    print(choice)
+                    return render_template("exam.html", user=user, header=header, choice=choice, token=get_token)
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
  
