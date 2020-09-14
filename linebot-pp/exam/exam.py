@@ -33,7 +33,7 @@ def exam():
                 get_users = json.dumps(user)
                 get_users = json.loads(get_users)
                 print(get_users)
-                if get_users["exam"] is "":
+                if user.has('exam'):
                     return redirect(f"/exam/profile?token={token}")
                 else:
                     exam = get_users['exam']
@@ -117,7 +117,7 @@ def intro():
                 get_token = jwt.decode(token, "pp-exam")
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
                 user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
-                if user['exam'] is "":
+                if user.has('exam'):
                     unit = random.choice(examinations)
                     print(f"from: {unit}")
                     exam = random.choice(unit)
@@ -139,7 +139,7 @@ def intro():
                 .get()
                 .val()
                 )
-                if user["exam"] is "":
+                if user.has('exam'):
                     get_exam = (
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
