@@ -18,7 +18,7 @@ def exam():
         return redirect(f"/exam/login")
     else:
         if request.method == "POST":
-            get_choice = request.args['header']
+            get_choice = request.form['header']
             print(f"{get_choice}")
             return 'finish'
         else:
