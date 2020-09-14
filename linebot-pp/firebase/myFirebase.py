@@ -95,7 +95,7 @@ def addexam():
         count = 0
         for i in getsheet:
             chice = {"1": i['1'], "2": i['2'], "3": i['3'], "4": i['4']}
-            firebase_rdb.child('exam').child('examinations').child(c).child(count).set({"หน่วย": i['หน่วย'], "หัวข้อ": i['หัวข้อ'], "หัวข้อ": i['หัวข้อ'], "ข้อ": i["ข้อ"], "คำถาม": i['คำถาม'], "เฉลย": i['เฉลย'], "ตัวเลือ": chice})
+            firebase_rdb.child('exam').child('examinations').child(c).child(count).set({"หน่วย": i['หน่วย'], "หัวข้อ": i['หัวข้อ'], "หัวข้อ": i['หัวข้อ'], "ข้อ": i["ข้อ"], "คำถาม": i['คำถาม'], "เฉลย": i['เฉลย'], "ตัวเลือก": chice})
             count = count + 1
     """
     sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(1)
