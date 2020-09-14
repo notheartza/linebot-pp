@@ -19,13 +19,42 @@ def exam():
     else:
         if request.method == "POST":
             header = request.form['header']
-            get_choice = request.form['optradio']
+            if  'optradio' in request.form:
+                get_choice = request.form['optradio']
+            else:
+                get_choice = ""
+
             print(f"{header} : {get_choice}")
             token = request.args.get("token")
             try:
                 get_token = jwt.decode(token, 'pp-exam')
-                user
-            return 'finish'
+                user = (
+                    firebase_rdb.child("exam")
+                    .child("user")
+                    .child(get_token["user"])
+                    .get()
+                    .val()
+                )
+                exam = user['exam']
+                count = len(exam)
+                check_exam = exam[count-1]['เฉลย']
+                if check_exam is get_choice:
+                    score = 1
+                else:
+                    score = 0
+                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).child('scroce').update(score)
+                if count % 5 is not 0:
+                    unit = exam[count-1]['หน่วย']
+                    examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
+                    select = examinations
+                    while select in exam:
+                        random.choice(select)
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(select)
+
+
+                return redirect(f"/exam?token={token}")
+            except jwt.ExpiredSignature:
+                return redirect(f"/exam/login")
         else:
             token = request.args.get("token")
             try:
@@ -45,7 +74,6 @@ def exam():
                 else:
                     exam = get_users['exam']
                     count = len(exam)
-                    print(count)
                     header = exam[len(exam)-1]['คำถาม']
                     choice = exam[len(exam)-1]['ตัวเลือก']
                     print(choice)
@@ -98,10 +126,7 @@ def profile():
                 .get()
                 .val()
                 )
-                get_users = json.dumps(user)
-                get_users = json.loads(get_users)
-                print(get_users)
-                return render_template("profile.html", key=get_token["user"], user=get_users)
+                return render_template("profile.html", key=get_token["user"], user=user)
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
     else:
