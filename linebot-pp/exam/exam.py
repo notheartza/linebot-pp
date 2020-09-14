@@ -37,8 +37,8 @@ def exam():
                     return redirect(f"/exam/profile?token={token}")
                 else:
                     exam = get_users['exam']
-                    print(len(exam)-1)
-                    header = exam['คำถาม']
+                    print(exam)
+                    header = exam
 
                     return render_template("exam.html", user=user, header=header, token=get_token)
             except jwt.ExpiredSignature:
