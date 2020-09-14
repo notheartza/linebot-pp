@@ -139,7 +139,7 @@ def intro():
                 .get()
                 .val()
                 )
-                if exam in user.keys():
+                if 'exam' in user.keys():
                     get_exam = (
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
