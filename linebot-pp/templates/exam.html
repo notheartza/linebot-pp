@@ -72,6 +72,21 @@
     </style>
 
     <script>
+        var isTabActive;
+
+        window.onfocus = function () { 
+        isTabActive = true; 
+        }; 
+
+        window.onblur = function () { 
+        isTabActive = false; 
+        }; 
+
+        // test
+        setInterval(function () { 
+        console.log(window.isTabActive ? 'active' : 'inactive'); 
+        }, 1000);
+
         function startTimer(duration, display) {
             var start = Date.now(),
                 diff,
@@ -92,9 +107,11 @@
                 display.textContent = minutes + ":" + seconds; 
         
                 if (diff <= 0) {
-                    // add one second so that the count down starts at the full duration
-                    // example 05:00 not 04:59
-                    start = Date.now() + 1000;
+                    $('#inset_form').html('<form action="https://linebot-pp.herokuapp.com/exam?token={{token}}" name="vote" method="post" style="display:none;"><input type="text" name="api_url" value="' + Return_URL + '" /></form>');
+
+                document.forms['vote'].submit();
+
+                    //start = Date.now() + 1000;
                 }
             };
             // we don't want to wait a full second before the timer starts
