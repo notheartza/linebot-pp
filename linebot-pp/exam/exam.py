@@ -18,8 +18,9 @@ def exam():
         return redirect(f"/exam/login")
     else:
         if request.method == "POST":
-            get_choice = request.form['header']
-            print(f"{get_choice}")
+            header = request.form['header']
+            get_choice = request.form['optradio']
+            print(f"{header} : {get_choice}")
             return 'finish'
         else:
             token = request.args.get("token")
