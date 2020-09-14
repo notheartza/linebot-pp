@@ -41,7 +41,7 @@ def exam():
                     header = exam['คำถาม']
 
                     return render_template("exam.html", user=user, header=header, token=get_token)
-            except:
+            except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
  
 
