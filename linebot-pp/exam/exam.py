@@ -33,7 +33,7 @@ def exam():
                 get_users = json.dumps(user)
                 get_users = json.loads(get_users)
                 print(get_users)
-                if 'exam' not in user:
+                if 'exam' not in user.keys():
                     return redirect(f"/exam/profile?token={token}")
                 else:
                     exam = get_users['exam']
@@ -117,14 +117,14 @@ def intro():
                 get_token = jwt.decode(token, "pp-exam")
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
                 user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
-                if user.has('exam'):
+                if 'exam' not in user.keys():
                     unit = random.choice(examinations)
                     print(f"from: {unit}")
                     exam = random.choice(unit)
                     print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child('1').update(exam)
                     return redirect(f"/exam?token={token}")
-            except:
+            except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
             
             
