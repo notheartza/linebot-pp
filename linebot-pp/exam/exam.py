@@ -39,10 +39,10 @@ def exam():
                 count = len(exam)
                 check_exam = exam[count-1]['เฉลย']
                 if check_exam is get_choice:
-                    score = 1
+                    score = user['score'] + 1
                 else:
-                    score = 0
-                firebase_rdb.child('exam').child('user').child(get_token['user']).child('score').update(score)
+                    score = user['score']
+                firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : score })
                 if count % 5 is not 0:
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
