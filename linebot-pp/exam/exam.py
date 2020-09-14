@@ -21,6 +21,10 @@ def exam():
             header = request.form['header']
             get_choice = request.form['optradio']
             print(f"{header} : {get_choice}")
+            token = request.args.get("token")
+            try:
+                get_token = jwt.decode(token, 'pp-exam')
+                user
             return 'finish'
         else:
             token = request.args.get("token")
@@ -62,7 +66,7 @@ def login():
             password = request.form["password"]
             if firebase_rdb.child('exam').child('user').child(user).get().val() is not None:
                 data = firebase_rdb.child('exam').child('user').child(user).get().val() 
-                playload = {"user": user, 'data' : data}
+                playload = {"user": user, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)}
                 token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
                 extra_args = {"token": token}
                 return redirect(f"/exam?token={token}")
