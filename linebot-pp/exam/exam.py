@@ -19,8 +19,8 @@ def exam():
     else:
         if request.method == "POST":
             #get_choice = request.form["optradio"]
-            #header = request.form["header"]
-            #print(f"{get_choice} : {header}")
+            header = request.form["header"]
+            print(f"{header}")
             return 'finish'
         else:
             token = request.args.get("token")
