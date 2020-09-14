@@ -38,7 +38,7 @@ def exam():
                 else:
                     exam = get_users['exam']
                     print(exam)
-                    header = exam
+                    header = exam['คำถาม']
 
                     return render_template("exam.html", user=user, header=header, token=get_token)
             except jwt.ExpiredSignature:
