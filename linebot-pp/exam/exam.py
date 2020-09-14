@@ -21,7 +21,7 @@ def exam():
             get_choice = request.form["optradio"]
             header = request.form["header"]
             print(f"{get_choice} : {header}")
-            pass
+            return 'finish'
         else:
             token = request.args.get("token")
             try:
