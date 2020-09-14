@@ -18,6 +18,8 @@ def exam():
         return redirect(f"/exam/login")
     else:
         if request.method == "POST":
+
+
             pass
         else:
             token = request.args.get("token")
@@ -37,13 +39,14 @@ def exam():
                     return redirect(f"/exam/profile?token={token}")
                 else:
                     exam = get_users['exam']
-                    print(exam)
+                    count = len(exam)
+                    print(count)
                     header = exam[len(exam)-1]['คำถาม']
                     choice = exam[len(exam)-1]['ตัวเลือก']
                     print(choice)
                     random.shuffle(choice)
                     print(choice)
-                    return render_template("exam.html", user=user, header=header, choice=choice, token=get_token)
+                    return render_template("exam.html", user=user, header=header, choice=choice, count=count, token=get_token)
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
  
