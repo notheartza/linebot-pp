@@ -91,7 +91,11 @@ def adduser(room):
 def addexam():
     sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(0)
     getsheet = sheet.get_all_records()
-    firebase_rdb.child('exam').child('examinations').child('1').set(getsheet)
+    for key, value in getsheet.item():
+        print(f"{key} : {value}")
+    #firebase_rdb.child('exam').child('examinations').child('1').set(getsheet)
+    
+    """
     sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(1)
     getsheet = sheet.get_all_records()
     firebase_rdb.child('exam').child('examinations').child('2').set(getsheet)
@@ -101,4 +105,5 @@ def addexam():
     sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(3)
     getsheet = sheet.get_all_records()
     firebase_rdb.child('exam').child('examinations').child('4').set(getsheet) 
+    """
     return 'finish'
