@@ -39,7 +39,7 @@ def exam():
                     exam = get_users['exam']
                     print(exam)
                     header = exam[len(exam)-1]['คำถาม']
-                    choice = exam[len(exam)-1]['เลือก']
+                    choice = exam[len(exam)-1]['ตัวเลือก']
                     choice = random.shuffle(choice)
                     print(choice)
                     return render_template("exam.html", user=user, header=header, choice=choice, token=get_token)
