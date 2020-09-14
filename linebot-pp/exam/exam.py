@@ -139,7 +139,7 @@ def intro():
                 .get()
                 .val()
                 )
-                if 'exam' in user.keys():
+                if 'exam' not in user.keys():
                     get_exam = (
                     firebase_rdb.child("exam").child("user").child(get_token["user"]).get().val())
                     get_exam.get('exam')
@@ -148,7 +148,7 @@ def intro():
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
             
-            return render_template("intro.html", intro="", user=user,token=token)
+            return render_template("intro.html", user=user, token=token)
 
     else:
         print("no data")
