@@ -91,8 +91,9 @@ def adduser(room):
 def addexam():
     sheet = client.open("ข้อสอบกลางภาครายวิชาเทคโนโลยี1/2563").get_worksheet(0)
     getsheet = sheet.get_all_records()
-    for key, value in getsheet.items():
-        print(f"{key} : {value}")
+    for i in getsheet:
+        for key, value in i.items():
+            print(f"{key} : {value}")
     #firebase_rdb.child('exam').child('examinations').child('1').set(getsheet)
     
     """
