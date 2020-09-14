@@ -48,7 +48,7 @@ def exam():
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
                     select = exam
-                    while select in exam:
+                    while select not in exam:
                         random.seed(datetime.now())
                         select = examinations
                         random.choice(select)
