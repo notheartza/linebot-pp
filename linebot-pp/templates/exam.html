@@ -88,7 +88,8 @@
         
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
-                display.textContent = minutes + ":" + seconds; 
+                display.textContent = minutes + ":" + seconds;
+                document.getElementById('timer').value = minutes + ":" + seconds;
                 if (diff <= 0) {
                 document.forms['exam-from'].submit();
                     start = 0;
@@ -102,7 +103,6 @@
         window.onload = function () {
             var fiveMinutes = 60 * 3,
                 display = document.querySelector('#time');
-                count = document.querySelector('#timer');
             startTimer(fiveMinutes, display, count);
         };
     </script>
@@ -137,7 +137,7 @@
     <form method="POST" id='exam-from' name='exam-from' enctype="multipart/form-data">
         <div class=" mx-auto col" >
                     <p class="text-center text-light bg-dark" style="border-top: 1px solid cornflowerblue; border-radius: 0px 0px 30px 30px;" >
-                        <span id="time"><input name='timer' id='time' hidden></span>
+                        <span id="time"><input id="timer"></span>
                     </p>
         </div>
     <div class="row h-100 w-100 vertical-center" >
