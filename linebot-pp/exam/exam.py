@@ -44,7 +44,9 @@ def exam():
                     print('ถูก')
                     firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : user['score'] + 1 })
                 firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).update({"คำตอบ" : get_choice})
-                if count % 5 > 0:
+                if count == 20:
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).update({'permission': False})
+                elif count % 5 > 0:
                     unit = exam[count-1]['หน่วย']
                     print(f"unit: {unit}")
                     examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
@@ -96,7 +98,7 @@ def exam():
                     #print(choice)
                     random.shuffle(choice)
                     #print(choice)
-                    return render_template("exam.html", user=user, header=header, choice=choice, count=count, token=get_token)
+                    return render_template("exam.html", user=user, header=header, choice=choice, premission=user['premission'], score=user['score'], token=get_token)
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
  
