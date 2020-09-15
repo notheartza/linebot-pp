@@ -96,7 +96,7 @@ def login():
             password = request.form["password"]
             if firebase_rdb.child('exam').child('user').child(user).get().val() is not None:
                 data = firebase_rdb.child('exam').child('user').child(user).get().val() 
-                playload = {"user": user, 'exp': datetime.utcnow() + datetime.timedelta(hours=1)}
+                playload = {"user": user, 'exp': datetime.utcnow() + timedelta(hours=1)}
                 token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
                 extra_args = {"token": token}
                 return redirect(f"/exam?token={token}")
