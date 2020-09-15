@@ -160,7 +160,7 @@ def intro():
                     exam = random.choice(unit)
                     print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child('0').set(exam)
-                    #firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam')
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(exam['หน่วย']-1).child(exam['ข้อ']-1).remove()
                     return redirect(f"/exam?token={token}")
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")  
