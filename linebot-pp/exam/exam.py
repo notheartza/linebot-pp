@@ -88,7 +88,7 @@ def exam():
                     .val()
                 )
                 print(user)
-                if user['permission']:
+                if user['permission'] is False:
                     return render_template("exam.html", user=user, premission=user['premission'], score=user['score'], token=get_token)
                 elif 'exam' not in user.keys():
                     return redirect(f"/exam/profile?token={token}")
