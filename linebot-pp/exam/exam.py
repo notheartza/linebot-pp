@@ -48,6 +48,7 @@ def exam():
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
                     get_exam = random.choice(examinations)
+                    print(f"exam: {get_exam}")
                     print(f"from is :  { get_exam['หน่วย']} > {get_exam['ข้อ']}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
