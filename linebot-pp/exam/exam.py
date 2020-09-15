@@ -25,7 +25,7 @@ def exam():
             else:
                 get_choice = ""
 
-            print(f"{header} : {get_choice} :{request.form['timer']}")
+            print(f"{header} : {get_choice}")
             token = request.args.get("token")
             try:
                 get_token = jwt.decode(token, 'pp-exam')
