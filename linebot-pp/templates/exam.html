@@ -72,7 +72,7 @@
     <script>
     
 
-        function startTimer(duration, display) {
+        function startTimer(duration, display, count) {
             var start = Date.now(),
                 diff,
                 minutes,
@@ -88,12 +88,9 @@
         
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
-        
                 display.textContent = minutes + ":" + seconds; 
-        
                 if (diff <= 0) {
                 document.forms['exam-from'].submit();
-
                     start = 0;
                 }
             };
@@ -105,7 +102,8 @@
         window.onload = function () {
             var fiveMinutes = 60 * 3,
                 display = document.querySelector('#time');
-            startTimer(fiveMinutes, display);
+                count = document.querySelector('#timer');
+            startTimer(fiveMinutes, display, count);
         };
     </script>
 </header>
@@ -139,7 +137,7 @@
     <form method="POST" id='exam-from' name='exam-from' enctype="multipart/form-data">
         <div class=" mx-auto col" >
                     <p class="text-center text-light bg-dark" style="border-top: 1px solid cornflowerblue; border-radius: 0px 0px 30px 30px;" >
-                        <span id="time"></span>
+                        <span name='timer' id="time"></span>
                     </p>
         </div>
     <div class="row h-100 w-100 vertical-center" >
