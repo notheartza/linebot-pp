@@ -39,6 +39,7 @@ def exam():
                 exam = user['exam']
                 count = len(exam)
                 check_exam = exam[count-1]['เฉลย']
+                print(f"{check_exam} : {get_choice}")
                 if check_exam is get_choice:
                     firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : user['score'] + 1 })
                 firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).update({"คำตอบ" : get_choice})
