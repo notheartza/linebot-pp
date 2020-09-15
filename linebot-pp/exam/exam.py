@@ -60,12 +60,12 @@ def exam():
                     unit = exam[count-1]['หน่วย']
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).remove()
                     examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').get().val()
-                    print(f"unit_exam: {examinations}")
                     if len(examinations)>1:    
                         get_unit = random.choice(examinations)
                         get_exam = random.choice(get_unit)
                     else:
                         examinations = json.loads(json.dumps(examinations))
+                        print(f"unit_exam: {examinations}")
                         get_exam = random.choice(examinations)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
