@@ -90,7 +90,7 @@ def adduser(room):
 @firebase_api.route('/firebase/realtime/userPermission/<room>/<sec>')
 def adduserwithsec(room, sec):
     print(f"{room} : {sec}")
-    print(f" con is {sec == 2}")
+    print(f" con is {sec is 2}")
     studentsheet = clientgs(f"คะแนนนักเรียน ม.4/{room}", client)
     getstudent = studentsheet.get_all_records()
     for i in getstudent:
