@@ -44,13 +44,13 @@ def exam():
                 else:
                     score = user['score']
                 firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : score })
+                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).set({"คำตอบ" : get_choice})
                 if count % 5 is not 0:
                     unit = exam[count-1]['หน่วย']
-                    examinations = firebase_rdb.child('exam').child('examinations').child(unit-1).get().val()
+                    examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
                     select = exam
                 
-                    #firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(select)
-
+                    
 
                 return redirect(f"/exam?token={token}")
             except jwt.ExpiredSignature:
