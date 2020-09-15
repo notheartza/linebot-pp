@@ -100,7 +100,7 @@ def exam():
                     #print(choice)
                     random.shuffle(choice)
                     #print(choice)
-                    return render_template("exam.html", user=user, header=header, choice=choice, permission=user['permissiom'], score=user['score'], token=get_token)
+                    return render_template("exam.html", user=user, header=header, choice=choice, permission=user['permission'], score=user['score'], token=get_token)
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
  
