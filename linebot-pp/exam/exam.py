@@ -57,7 +57,7 @@ def exam():
                 else:
                     unit = exam[count-1]['หน่วย']
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).remove()
-                    examinations = firebase_rdb.child('exam').child('user').child('examinations').get().val()
+                    examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').get().val()
                     get_unit = random.choice(examinations)
                     get_exam = random.choice(get_unit)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
