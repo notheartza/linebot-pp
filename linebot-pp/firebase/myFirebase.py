@@ -90,11 +90,13 @@ def adduser(room):
 @firebase_api.route('/firebase/realtime/userPermission/<room>/<sec>')
 def adduserwithsec(room, sec):
     print(f"{room} : {sec}")
+    print(f" con is {sec == 2}")
     studentsheet = clientgs(f"คะแนนนักเรียน ม.4/{room}", client)
     getstudent = studentsheet.get_all_records()
     for i in getstudent:
         if i['ชื่อ']!= "" and i['เลขประจำตัว']!= "":
             if sec == 2:
+                print(f"no is {i['เลขที่'] >= 21}")
                 if i['เลขที่'] >= 21:
                     firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ'], "นามสกุล": i['นามสกุล'], "password": i['เลขประจำตัว'], "เลขที่": i['เลขที่'], "ห้อง": f"ม.4/{room}", "permission": True, 'score': 0 })
             else:
