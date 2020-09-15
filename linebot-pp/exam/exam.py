@@ -46,7 +46,9 @@ def exam():
                 firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).update({"คำตอบ" : get_choice})
                 if count % 5 > 0:
                     unit = exam[count-1]['หน่วย']
+                    print(f"unit: {unit}")
                     examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
+                    print(f"unit_exam: {examinations}")
                     get_exam = random.choice(examinations)
                     print(f"exam: {get_exam}")
                     print(f"from is :  { get_exam['หน่วย']} > {get_exam['ข้อ']}")
