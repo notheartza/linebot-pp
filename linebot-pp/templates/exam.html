@@ -89,7 +89,7 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
                 display.textContent = minutes + ":" + seconds;
-                document.getElementById('timer').value = minutes + ":" + seconds;
+                document.getElementById('timer').value = seconds;
                 if (diff <= 0) {
                 document.forms['exam-from'].submit();
                     start = 0;
