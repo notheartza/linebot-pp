@@ -48,7 +48,7 @@ def exam():
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
                     random.choice(examinations)
-                    print(examinations)
+                    print(f"from is : {examinations}")
                 
                     
 
