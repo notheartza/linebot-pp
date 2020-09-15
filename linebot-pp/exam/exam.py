@@ -65,7 +65,7 @@ def exam():
                         get_exam = random.choice(get_unit)
                     else:
                         examinations = json.loads(json.dumps(examinations))
-                        get_unit = examinations['examinations.keys()']
+                        get_unit = examinations[examinations.keys()]
                         get_exam = random.choice(get_unit)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
