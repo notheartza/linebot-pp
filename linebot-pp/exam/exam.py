@@ -48,9 +48,17 @@ def exam():
                     unit = exam[count-1]['หน่วย']
                     examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
                     get_exam = random.choice(examinations)
-                    print(f"from is : {get_exam}")
-                
-                    
+                    #print(f"from is : {get_exam}")
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
+                else:
+                    unit = exam[count-1]['หน่วย']
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).remove()
+                    examinations = firebase_rdb.child('exam').child('user').child('examinations').get().val()
+                    unit = random.choice(examinations)
+                    get_exam = random.choice(unit)
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
 
                 return redirect(f"/exam?token={token}")
             except jwt.ExpiredSignature:
@@ -134,6 +142,7 @@ def profile():
 
 @exam_page.route('/exam/intro', methods=['GET', 'POST'])
 def intro():
+    random.seed(datetime.now())
     """
     if 'next' in request.form:
         print('next')
@@ -153,10 +162,8 @@ def intro():
                 user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
                 firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').set(examinations)
                 if 'exam' not in user.keys():
-                    random.seed(datetime.now())
                     unit = random.choice(examinations)
                     print(f"from: {unit}")
-                    random.seed(datetime.now())
                     exam = random.choice(unit)
                     print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child('0').set(exam)
