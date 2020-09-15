@@ -155,6 +155,7 @@ def intro():
                 get_token = jwt.decode(token, "pp-exam")
                 examinations = firebase_rdb.child('exam').child('examinations').get().val()
                 user = firebase_rdb.child('exam').child('user').child(get_token['user']).get().val()
+                firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').set(examinations)
                 if 'exam' not in user.keys():
                     random.seed(datetime.now())
                     unit = random.choice(examinations)
@@ -163,6 +164,7 @@ def intro():
                     exam = random.choice(unit)
                     print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child('0').set(exam)
+                    #firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam')
                     return redirect(f"/exam?token={token}")
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")  
