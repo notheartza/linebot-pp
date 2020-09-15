@@ -87,6 +87,16 @@ def adduser(room):
             firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ'], "นามสกุล": i['นามสกุล'], "password": i['เลขประจำตัว'], "เลขที่": i['เลขที่'], "ห้อง": f"ม.4/{room}", "permission": False, 'score': 0 })
     return 'finish'
 
+@firebase_api.route('/firebase/realtime/userPermission/<room>')
+def adduser(room):
+    print(room)
+    studentsheet = clientgs(f"คะแนนนักเรียน ม.4/{room}", client)
+    getstudent = studentsheet.get_all_records()
+    for i in getstudent:
+        if i['ชื่อ']!= "" and i['เลขประจำตัว']!= "":
+            firebase_rdb.child('exam').child('user').child(i['เลขประจำตัว']).set({"ชื่อ": i['ชื่อ'], "นามสกุล": i['นามสกุล'], "password": i['เลขประจำตัว'], "เลขที่": i['เลขที่'], "ห้อง": f"ม.4/{room}", "permission": True, 'score': 0 })
+    return 'finish'
+
 @firebase_api.route('/firebase/realtime/exam')
 def addexam():
     for c in range(4):
