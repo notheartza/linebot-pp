@@ -87,6 +87,7 @@ def exam():
                     .get()
                     .val()
                 )
+                print(user)
                 if user['permission']:
                     return render_template("exam.html", user=user, premission=user['premission'], score=user['score'], token=get_token)
                 elif 'exam' not in user.keys():
