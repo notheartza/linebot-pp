@@ -128,3 +128,8 @@ def addexam():
     firebase_rdb.child('exam').child('examinations').child('4').set(getsheet) 
     """
     return 'finish'
+
+
+@firebase_api.route('/firebase/testrandom')
+def testexam():
+   pass

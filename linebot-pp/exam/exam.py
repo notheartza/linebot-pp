@@ -19,63 +19,69 @@ def exam():
         return redirect(f"/exam/login")
     else:
         if request.method == "POST":
-            header = request.form['header']
-            if  'optradio' in request.form:
-                get_choice = request.form['optradio']
-            else:
-                get_choice = ""
-
-            print(f"{header} : {get_choice}")
-            token = request.args.get("token")
             try:
-                get_token = jwt.decode(token, 'pp-exam')
-                user = (
-                    firebase_rdb.child("exam")
-                    .child("user")
-                    .child(get_token["user"])
-                    .get()
-                    .val()
-                )
-                exam = user['exam']
-                count = len(exam)
-                check_exam = exam[count-1]['เฉลย']
-                print(f"{check_exam} : {get_choice}")
-                if check_exam == get_choice:
-                    print('ถูก')
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : user['score'] + 1 })
-                firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).update({"คำตอบ" : get_choice})
-                if count == 20:
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).update({'permission': False})
-                elif count % 5 > 0:
-                    unit = exam[count-1]['หน่วย']
-                    print(f"unit: {unit}")
-                    examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
-                    print(f"unit_exam: {examinations}")
-                    get_exam = random.choice(examinations)
-                    while get_exam is None:
-                        get_exam = random.choice(examinations)
-                    print(f"exam: {get_exam}")
-                    print(f"from is :  { get_exam['หน่วย']} > {get_exam['ข้อ']}")
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
+                header = request.form['header']
+                if  'optradio' in request.form:
+                    get_choice = request.form['optradio']
                 else:
-                    unit = exam[count-1]['หน่วย']
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).remove()
-                    examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').get().val() 
-                    if len(examinations)>1:    
-                        get_unit = random.choice(examinations)
-                        get_exam = random.choice(get_unit)
-                    else:
-                        examinations = json.loads(json.dumps(examinations))
-                        exam_keys = list(examinations.keys())
-                        get_unit = examinations[exam_keys[0]]
-                        get_exam = random.choice(get_unit)
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
-                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
+                    get_choice = ""
 
-                return redirect(f"/exam?token={token}")
-            except jwt.ExpiredSignature:
-                return redirect(f"/exam/login")
+                print(f"{header} : {get_choice}")
+                token = request.args.get("token")
+                try:
+                    get_token = jwt.decode(token, 'pp-exam')
+                    user = (
+                        firebase_rdb.child("exam")
+                        .child("user")
+                        .child(get_token["user"])
+                        .get()
+                        .val()
+                    )
+                    exam = user['exam']
+                    count = len(exam)
+                    check_exam = exam[count-1]['เฉลย']
+                    print(f"{check_exam} : {get_choice}")
+                    if check_exam == get_choice:
+                        print('ถูก')
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : user['score'] + 1 })
+                    firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).update({"คำตอบ" : get_choice})
+                    if count == 20:
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).update({'permission': False})
+                    elif count % 5 > 0:
+                        unit = exam[count-1]['หน่วย']
+                        print(f"unit: {unit}")
+                        examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
+                        print(f"unit_exam: {examinations}")
+                        get_exam = random.choice(examinations)
+                        while get_exam is None:
+                            get_exam = random.choice(examinations)
+                        print(f"exam: {get_exam}")
+                        print(f"from is :  { get_exam['หน่วย']} > {get_exam['ข้อ']}")
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
+                    else:
+                        unit = exam[count-1]['หน่วย']
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).remove()
+                        examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').get().val() 
+                        if len(examinations)>1:    
+                            get_unit = random.choice(examinations)
+                            get_exam = random.choice(get_unit)
+                        else:
+                            examinations = json.loads(json.dumps(examinations))
+                            exam_keys = list(examinations.keys())
+                            get_unit = examinations[exam_keys[0]]
+                            get_exam = random.choice(get_unit)
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
+                        firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
+
+                    return redirect(f"/exam?token={token}")
+                except jwt.ExpiredSignature:
+                    return redirect(f"/exam/login")
+            except Exception as e:
+                print(f"Error : {e}")
+                print(f"Error with : {get_exam}")
+                print(f"Exam from error : {examinations}")
+
         else:
             token = request.args.get("token")
             try:
