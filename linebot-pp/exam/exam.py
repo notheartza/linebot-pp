@@ -80,7 +80,7 @@ def exam():
                             get_unit = random.choice(examinations)
                             get_exam = random.choice(get_unit)
                         else:
-                            exam_keys = list(examinations.keys())
+                            exam_keys = list(examinations)
                             get_unit = examinations[exam_keys[0]]
                             get_exam = random.choice(get_unit)
                         firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
