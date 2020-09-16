@@ -26,7 +26,7 @@ def exam():
                 else:
                     get_choice = ""
 
-                print(f"{header} : {get_choice}")
+                #print(f"{header} : {get_choice}")
                 token = request.args.get("token")
                 try:
                     get_token = jwt.decode(token, 'pp-exam')
@@ -40,23 +40,23 @@ def exam():
                     exam = user['exam']
                     count = len(exam)
                     check_exam = exam[count-1]['เฉลย']
-                    print(f"{check_exam} : {get_choice}")
+                    #print(f"{check_exam} : {get_choice}")
                     if check_exam == get_choice:
-                        print('ถูก')
+                        #print('ถูก')
                         firebase_rdb.child('exam').child('user').child(get_token['user']).update({ 'score' : user['score'] + 1 })
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count-1).update({"คำตอบ" : get_choice})
                     if count == 20:
                         firebase_rdb.child('exam').child('user').child(get_token['user']).update({'permission': False})
                     elif count % 5 > 0:
                         unit = exam[count-1]['หน่วย']
-                        print(f"unit: {unit}")
+                        #print(f"unit: {unit}")
                         examinations = firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(unit-1).get().val()
                         print(f"unit_exam: {examinations}")
                         get_exam = random.choice(examinations)
                         while get_exam is None:
                             get_exam = random.choice(examinations)
-                        print(f"exam: {get_exam}")
-                        print(f"from is :  { get_exam['หน่วย']} > {get_exam['ข้อ']}")
+                        #print(f"exam: {get_exam}")
+                        #print(f"from is :  { get_exam['หน่วย']} > {get_exam['ข้อ']}")
                         firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child(count).set(get_exam)
                         firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(get_exam['หน่วย']-1).child(get_exam['ข้อ']-1).remove()
                     else:
