@@ -81,6 +81,7 @@ def exam():
                 print(f"Error : {e}")
                 print(f"Error with : {get_exam}")
                 print(f"Exam from error : {examinations}")
+                return redirect(f"/exam?token={token}")
 
         else:
             token = request.args.get("token")
