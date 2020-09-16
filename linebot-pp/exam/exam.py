@@ -80,7 +80,6 @@ def exam():
                             get_unit = random.choice(examinations)
                             get_exam = random.choice(get_unit)
                         else:
-                            
                             exam_keys = list(examinations.keys())
                             get_unit = examinations[exam_keys[0]]
                             get_exam = random.choice(get_unit)
