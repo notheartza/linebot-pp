@@ -94,7 +94,7 @@ def exam():
                     .get()
                     .val()
                 )
-                print(user)
+                #print(user)
                 if user['permission'] is False:
                     return render_template("exam.html", user=user, permission=user['permission'], score=user['score'], token=get_token)
                 elif 'exam' not in user.keys():
@@ -158,7 +158,7 @@ def profile():
             except jwt.ExpiredSignature:
                 return redirect(f"/exam/login")
     else:
-        print("no data")
+        #print("no data")
         return redirect(f"/exam/login")
 
 
@@ -185,9 +185,9 @@ def intro():
                 firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').set(examinations)
                 if 'exam' not in user.keys():
                     unit = random.choice(examinations)
-                    print(f"from: {unit}")
+                    #print(f"from: {unit}")
                     exam = random.choice(unit)
-                    print(f"random is :{exam}")
+                    #print(f"random is :{exam}")
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('exam').child('0').set(exam)
                     firebase_rdb.child('exam').child('user').child(get_token['user']).child('examinations').child(exam['หน่วย']-1).child(exam['ข้อ']-1).remove()
                     return redirect(f"/exam?token={token}")
@@ -216,6 +216,6 @@ def intro():
             return render_template("intro.html", user=user, token=token)
 
     else:
-        print("no data")
+        #print("no data")
         return redirect(f"/exam/login")   
 
