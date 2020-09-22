@@ -233,8 +233,8 @@ def intro():
 
 
 
-@firebase_api.route('/firebase/score/<room>')
-def testexam(room):
+@exam_page.route('/exam/score/<room>')
+def scoreexam(room):
     users = firebase_rdb.child('exam').child('user').get().val()
     show = []
     for i in users:
