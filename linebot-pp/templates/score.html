@@ -15,7 +15,7 @@
             </tr>
             {% for i in score%}
         <tr>
-            {% if len(i['exam']) ==20 %}
+            {% if i['exam']|length ==20 %}
                 <td>{{i["ชื่อ"]+" "+i["นามสกุล"]}}</td>
                 <td>{{i["ห้อง"]}}</td>
                 <td>{{i["เลขที่"]}}</td>
