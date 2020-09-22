@@ -239,7 +239,7 @@ def scoreexam(room):
     show = []
     for i in users:
         user = users[i]
-        if user['ห้อง'] == f",.4/{room}":
+        if user['ห้อง'] == f"ม.4/{room}":
             show.append(users[i])
         print(f'USER: {show}')
     return render_template("score.html", score=show)
