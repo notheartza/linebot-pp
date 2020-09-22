@@ -135,8 +135,8 @@ def testexam(room):
     users = firebase_rdb.child('exam').child('user').get().val()
     show = []
     for i in users:
-        if i['ห้อง'] is f",.4/{room}":
-            print(i)
+        #if i['ห้อง'] is f",.4/{room}":
+        print(i)
             #show.append(i)
     return show
    
