@@ -136,7 +136,7 @@ def testexam(room):
     show = []
     for i in users:
         #if i['ห้อง'] is f",.4/{room}":
-        print(i)
+        print(i[i])
             #show.append(i)
     return show
    
