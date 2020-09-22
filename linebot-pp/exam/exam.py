@@ -241,5 +241,5 @@ def scoreexam(room):
         user = users[i]
         if user['ห้อง'] == f"ม.4/{room}":
             show.append(users[i])
-        print(f'USER: {show}')
+        #print(f'USER: {show}')
     return render_template("score.html", score=show)
