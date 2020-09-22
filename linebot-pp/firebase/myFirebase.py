@@ -130,6 +130,12 @@ def addexam():
     return 'finish'
 
 
-@firebase_api.route('/firebase/testrandom')
-def testexam():
-   pass
+@firebase_api.route('/firebase/score/<room>')
+def testexam(room):
+    users = firebase_rdb.child('exam').child('user').get().val()
+    show = []
+    for i in users:
+        if i.val()['ห้อง'] is f",.4/{room}":
+            show.append(i)
+    return show
+   
