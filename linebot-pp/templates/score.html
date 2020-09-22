@@ -7,9 +7,18 @@
     <body>
         <H1>Score</H1>
         <table>
+            <tr>
+                <th>ชื่อ</th>
+                <th>ห้อง</th>
+                <th>เลขที่</th>
+                <th>คะแนน</th>
+            </tr>
             {% for i in score%}
         <tr>
-            <td>{{i}}</td>
+            <td>{{i["ชื่อ"]+" "+i["นามสกุล"]}}</td>
+            <td>{{i["ห้อง"]}}</td>
+            <td>{{i["เลขที่"]}}</td>
+            <td>{{i["score"]}}</td>
         </tr>
         {% endfor %}
 
