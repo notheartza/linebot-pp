@@ -261,7 +261,7 @@ def homework_login():
                 playload = {"user": user, 'exp': datetime.utcnow() + timedelta(hours=1)}
                 token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
                 extra_args = {"token": token}
-                return redirect(f"/exam/homework?token={token}")
+                return redirect(f"/homework?token={token}")
                 # return render_template('exam.html', user=user, **extra_args)
             else:
                 return render_template("login.html")
@@ -272,10 +272,25 @@ def homework_login():
         print("error")
         return render_template("login.html")
 
+
 @exam_page.route('/homework', methods=["GET", "POST"])
 def homework():
     if request.args.get("token") is not None:
-        return render_template("homework.html")
+        token = request.args.get("token")
+        try:
+            get_token = jwt.decode(token, 'pp-exam')
+            user = (
+                firebase_rdb.child("exam")
+                        .child("user")
+                        .child(get_token["user"])
+                        .get()
+                        .val()
+                    )
+            exam = user['exam']
+            return render_template("homework.html", user=user)
+        except jwt.ExpiredSignature:
+            return redirect(f"/homework/login")
+        
     else:
         #print("no data")
         return redirect(f"/homework/login")
