@@ -296,7 +296,7 @@ def homework():
         return redirect(f"/homework/login")
 
 @exam_page.route("/homework/profile", methods=["GET", "POST"])
-def profile():
+def homework_profile():
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
