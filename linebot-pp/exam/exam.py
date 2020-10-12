@@ -234,6 +234,8 @@ def intro():
 
 
 
+
+
 @exam_page.route('/exam/score/<room>')
 def scoreexam(room):
     users = firebase_rdb.child('exam').child('user').get().val()
@@ -246,6 +248,50 @@ def scoreexam(room):
     return render_template("score.html", score=show)
 
 
-@exam_page.route('/exam/homework/<number>')
-def homework(number):
+@exam_page.route("/homework/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        print("Post...")
+        if None not in (request.form["username"], request.form["password"]):
+            print("geting...")
+            user = request.form["username"]
+            password = request.form["password"]
+            if firebase_rdb.child('exam').child('user').child(user).get().val() is not None:
+                data = firebase_rdb.child('exam').child('user').child(user).get().val() 
+                playload = {"user": user, 'exp': datetime.utcnow() + timedelta(hours=1)}
+                token = jwt.encode(playload, "pp-exam", algorithm="HS256").decode("utf-8")
+                extra_args = {"token": token}
+                return redirect(f"/exam/homework?token={token}")
+                # return render_template('exam.html', user=user, **extra_args)
+            else:
+                return render_template("login.html")
+        else:
+            print("error")
+            return render_template("login.html")
+    else:
+        print("error")
+        return render_template("login.html")
+
+@exam_page.route('homework')
+def homework():
+    if request.args.get("token") is not None:
+        if request.method == "POST":
+            token = request.args.get("token")
+        else:
+            get_token = request.args.get("token")
+            try:
+                get_token = jwt.decode(get_token, "pp-exam")
+                user = (
+                firebase_rdb.child("exam")
+                .child("user")
+                .child(get_token["user"])
+                .get()
+                .val()
+                )
+                return render_template("profile.html", key=get_token["user"], user=user)
+            except jwt.ExpiredSignature:
+                return redirect(f"/homework/login")
+    else:
+        #print("no data")
+        return redirect(f"/homework/login")
     return render_template("homework.html")
