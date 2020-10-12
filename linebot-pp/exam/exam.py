@@ -272,11 +272,10 @@ def homework_login():
         print("error")
         return render_template("login.html")
 
-@exam_page.route('/homework')
+@exam_page.route('/homework', methods=["GET", "POST"])
 def homework():
     if request.args.get("token") is not None:
         return render_template("homework.html")
-        
     else:
         #print("no data")
         return redirect(f"/homework/login")
