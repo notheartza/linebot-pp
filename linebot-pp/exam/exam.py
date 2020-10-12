@@ -272,7 +272,7 @@ def homework_login():
         print("error")
         return render_template("login.html")
 
-@exam_page.route('homework')
+@exam_page.route('/homework')
 def homework():
     if request.args.get("token") is not None:
         if request.method == "POST":
