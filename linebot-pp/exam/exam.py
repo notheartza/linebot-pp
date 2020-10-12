@@ -249,7 +249,7 @@ def scoreexam(room):
 
 
 @exam_page.route("/homework/login", methods=["GET", "POST"])
-def login():
+def homework_login():
     if request.method == "POST":
         print("Post...")
         if None not in (request.form["username"], request.form["password"]):
