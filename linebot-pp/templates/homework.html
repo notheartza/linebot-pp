@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <meta charset="utf-8">
+    <title>Exam</title>
+    <link rel="shortcut icon" href="http://www.atc.chula.ac.th/picture/PPSCL.gif">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="css/bootstrap-color.css">
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .Center {
+            position: absolute;
+            top: 20%;
+        }
+
+        .bgpage {
+            padding: 20px;
+            border-radius: 30px;
+        }
+
+        .header {
+            color: rgb(0, 0, 0);
+        }
+
+        .vertical-center {
+            min-height: 50%;
+            /* Fallback for browsers do NOT support vh unit */
+            min-height: 100vh;
+            /* These two lines are counted as one :-)       */
+            display: flex;
+            align-items: center;
+        }
+        .header-exam{
+            text-align: center;
+            background-color: white;
+            padding: 20px 20px 0px 20px;
+            border-radius: 30px 30px 0px 0px;
+            border-bottom: 3px solid cornflowerblue;
+            width: 600px;
+        }
+        .body-exam {
+            text-align: center;
+            background-color: white;
+            padding: 20px 20px 20px 20px;
+            border-radius: 0px 0px 30px 30px;
+            width: 600px;
+        }
+
+        .label {
+            font-size: large;
+        }
+
+        .dropdown-menu {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .margin-auto {
+            margin: 10px 5px
+        }
+    </style>
+
+    <script>
+    
+
+        function startTimer(duration, display) {
+            var start = Date.now(),
+                diff,
+                minutes,
+                seconds;
+            function timer() {
+                // get the number of seconds that have elapsed since 
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+        
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
+        
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds; 
+
+                if (diff <= 0) {
+                document.forms['exam-from'].submit();
+                    start = 0;
+                }
+            };
+            // we don't want to wait a full second before the timer starts
+            timer();
+            setInterval(timer, 1000);
+        }
+        
+        window.onload = function () {
+            var fiveMinutes = 60 * 3,
+                display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+        };
+    </script>
+</header>
+
+<body style="background-color: cornflowerblue;">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
+        <a class="navbar-brand" href="#">Exam</a>
+        <div  class="collapse navbar-collapse">
+            <a class="nav-link" style="color: aliceblue;" href="/exam/profile?token={{token}}">
+                <i class="fas fa-user"></i> Profile</a>
+            {% if user['admin'] %}
+            <a class="nav-link" style="color: aliceblue;" href="#">
+                <i class="fas fa-cogs"></i> Admin</a>
+            {% endif %}
+        </div>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav text-right">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">{{user['ชื่อ']}}</a>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-success ml-auto mr-1">Logout</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    
+    {% if permission == true %}
+    <form method="POST" id='exam-from' name='exam-from' enctype="multipart/form-data">
+        <div class=" mx-auto col" >
+                    <p class="text-center text-light bg-dark" style="border-top: 1px solid cornflowerblue; border-radius: 0px 0px 30px 30px;" >
+                        <span id="time"></span>
+                    </p>
+        </div>
+    <div class="row h-100 w-100 vertical-center" >
+        <div class="offset-md-2 mx-auto" >
+            <div class="header-exam col" >
+                <input hidden value="{{header}}" name='header'>
+                <label class="row margin-auto" style="font-size: 1.5rem;">{{number}}.  {{header}}</label>
+            </div>
+            <div class="body-exam col container " style="font-size: 1.2rem;">
+                <div class="col">
+                <div class="radio row">
+                    <label style="text-align: left;"><input type="radio" name="optradio" value="{{choice[0]}}"> {{choice[0]}}</label>
+                  </div>
+                  <div class="radio row">
+                    <label style="text-align: left;"><input type="radio" name="optradio" value="{{choice[1]}}"> {{choice[1]}}</label>
+                  </div>
+                  <div class="radio row">
+                    <label style="text-align: left;"><input type="radio" name="optradio" value="{{choice[2]}}"> {{choice[2]}}</label>
+                  </div>
+                  <div class="radio row">
+                    <label style="text-align: left;"><input type="radio" name="optradio" value="{{choice[3]}}"> {{choice[3]}}</label>
+                  </div>
+                  <div class="col">
+                    <button class=" btn btn-primary">ยืนยัน</button>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</form>
+{% else %}
+<div class="row h-100 w-100 vertical-center" >
+    <div class="offset-md-2 mx-auto" >
+        <div class="header-exam col container" >
+            <label class="row margin-auto" style="font-size: 3.5rem;">คะแนน</label>
+        </div>
+        <div class="body-exam col container " style="font-size: 1.2rem;">
+            <div class="col" style="font-size: 3rem;">
+                
+                    <p>{{score}} / 20</p>
+                    <p>
+                        คะแนน
+                    </p>
+                
+            
+        </div>
+    </div>
+{% endif %}
+</body>
+
+</html>

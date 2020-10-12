@@ -233,6 +233,7 @@ def intro():
 
 
 
+
 @exam_page.route('/exam/score/<room>')
 def scoreexam(room):
     users = firebase_rdb.child('exam').child('user').get().val()
@@ -243,3 +244,8 @@ def scoreexam(room):
             show.append(users[i])
         #print(f'USER: {show}')
     return render_template("score.html", score=show)
+
+
+@exam_page.route('/homework/<number>')
+def homework(number):
+    return render_template("homework.html")
