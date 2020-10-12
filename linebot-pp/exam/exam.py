@@ -1,6 +1,8 @@
 from flask import Flask,request,abort,render_template,url_for,make_response,redirect,Blueprint,session,flash 
 from ..firebase.config_firebase import firebase_db, firebase_rdb
 from functools import wraps
+from ..exsheet import client
+from ..linebotEvent.linebot import clientgs
 import jwt
 import json
 from datetime import datetime, date, time, timedelta
@@ -287,6 +289,7 @@ def homework():
                         .val()
                     )
             exam = user['exam']
+            print(f"Exam: {exam}")
             return render_template("homework.html", user=user, token=token)
         except jwt.ExpiredSignature:
             return redirect(f"/homework/login")
