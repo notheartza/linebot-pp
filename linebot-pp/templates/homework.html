@@ -102,8 +102,11 @@
         </div>
         <div class="body-exam col container " style="font-size: 1.2rem;">
             <div class="col" style="font-size: 3rem;">
-                <div><label>ชื่อ{{homework["ชื่อ"]}} {{homework['นามสกุล']}}</label></div>
-                
+                {%for key, value in homework.items()%}
+                    {%if key not in['เลขที่', 'เลขประจำตัว', 'ชื่อ', 'นามสกุล', 'คะแนนพิเศษ']%}
+                <label>{{key}}: {{value}}</label>
+                    {%ifend%}
+                {%forend%}
             
         </div>
     </div>
