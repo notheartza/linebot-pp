@@ -290,7 +290,8 @@ def homework():
                     )
             room = user['ห้อง']
             number = user['password']
-            print(f"Exam: {room}")
+            stduent = clientgs(f'คะแนนนักเรียน {room}', client)
+            print(f"Exam: {stduent}")
             return render_template("homework.html", user=user, token=token)
         except jwt.ExpiredSignature:
             return redirect(f"/homework/login")
