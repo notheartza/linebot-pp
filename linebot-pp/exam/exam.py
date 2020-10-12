@@ -246,6 +246,6 @@ def scoreexam(room):
     return render_template("score.html", score=show)
 
 
-@exam_page.route('/homework/<number>')
+@exam_page.route('/exam/homework/<number>')
 def homework(number):
     return render_template("homework.html")
