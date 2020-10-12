@@ -292,7 +292,10 @@ def homework():
             number = user['password']
             stduentsheet = clientgs(f'คะแนนนักเรียน {room}', client)
             stduent = stduentsheet.get_all_records()
-            print(f"Exam: {stduent}")
+            for i in stduent:
+                if i['เลขประจำตัว'] == number:
+                    getstduent = i
+            print(f"Exam: {getstduent}")
             return render_template("homework.html", user=user, token=token)
         except jwt.ExpiredSignature:
             return redirect(f"/homework/login")
