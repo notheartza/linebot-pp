@@ -105,8 +105,8 @@
                 {%for key, value in homework.items()%}
                     {%if key not in['เลขที่', 'เลขประจำตัว', 'ชื่อ', 'นามสกุล', 'คะแนนพิเศษ']%}
                 <label>{{key}}: {{value}}</label>
-                    {%ifend%}
-                {%forend%}
+                    {%endif%}
+                {%endfor%}
             
         </div>
     </div>
