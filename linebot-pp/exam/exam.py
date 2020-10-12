@@ -296,7 +296,7 @@ def homework():
                 if i['เลขประจำตัว'] == number:
                     getstduent = i
             print(f"Exam: {getstduent}")
-            return render_template("homework.html", user=user, token=token)
+            return render_template("homework.html", user=user, homework=getstduent, token=token)
         except jwt.ExpiredSignature:
             return redirect(f"/homework/login")
         
