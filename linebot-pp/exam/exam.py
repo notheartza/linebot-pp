@@ -287,10 +287,34 @@ def homework():
                         .val()
                     )
             exam = user['exam']
-            return render_template("homework.html", user=user)
+            return render_template("homework.html", user=user, token=token)
         except jwt.ExpiredSignature:
             return redirect(f"/homework/login")
         
     else:
         #print("no data")
         return redirect(f"/homework/login")
+
+@exam_page.route("/homework/profile", methods=["GET", "POST"])
+def profile():
+    if request.args.get("token") is not None:
+        if request.method == "POST":
+            token = request.args.get("token")
+            return redirect(f"/homework?token={token}")
+        else:
+            get_token = request.args.get("token")
+            try:
+                get_token = jwt.decode(get_token, "pp-exam")
+                user = (
+                firebase_rdb.child("exam")
+                .child("user")
+                .child(get_token["user"])
+                .get()
+                .val()
+                )
+                return render_template("profile.html", key=get_token["user"], user=user)
+            except jwt.ExpiredSignature:
+                return redirect(f"/exam/login")
+    else:
+        #print("no data")
+        return redirect(f"/exam/login")

@@ -75,7 +75,7 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
         <a class="navbar-brand" href="#">Exam</a>
         <div  class="collapse navbar-collapse">
-            <a class="nav-link" style="color: aliceblue;" href="/exam/profile?token={{token}}">
+            <a class="nav-link" style="color: aliceblue;" href="/homeworkprofile?token={{token}}">
                 <i class="fas fa-user"></i> Profile</a>
             {% if user['admin'] %}
             <a class="nav-link" style="color: aliceblue;" href="#">
@@ -90,11 +90,11 @@
             </ul>
         </div>
         <button class="btn btn-success ml-auto mr-1">Logout</button>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="{{url_for ('homework') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-    
+
 <div class="row h-100 w-100 vertical-center" >
     <div class="offset-md-2 mx-auto" >
         <div class="header-exam col container" >
