@@ -277,6 +277,7 @@ def homework():
     if request.args.get("token") is not None:
         if request.method == "POST":
             token = request.args.get("token")
+            return render_template("homework.html")
         else:
             get_token = request.args.get("token")
             try:
