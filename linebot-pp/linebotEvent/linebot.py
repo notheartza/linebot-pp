@@ -226,7 +226,7 @@ def handle_message(event):
                    
                     if value =="":
                         x = "รอการตรวจสอบ"
-                    elif int(value) < 0:
+                    elif int(value) < 1:
                         if int(value)  < -1:
                             x = "เกินกำหนดส่ง"
                         else:    
