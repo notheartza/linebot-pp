@@ -292,7 +292,7 @@ def homework():
             number = user['password']
             stduentsheet = clientgs(f'คะแนนนักเรียน {room}', client)
             stduent = stduentsheet.get_all_records()
-            total = stduent[42]
+            total = stduent[41]
             print(total)
             for i in stduent:
                 if i['เลขประจำตัว'] == number:
