@@ -107,7 +107,7 @@
                         {% if value <1%}
                             <p>{{key}}: <label style="background-color: red; color: white;">เลยกำหนดส่งงาน</label></p>
                         {%else%}
-                            <p>{{key}}: {{value}}  คะแนน</p>
+                            <p>{{key}}: {{value}}/{{total[key]}}  คะแนน</p>
                         {%endif%}
                     {%endif%}
                 {%endfor%}
