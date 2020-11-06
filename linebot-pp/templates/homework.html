@@ -105,7 +105,10 @@
                 {%for key, value in homework.items()%}
                     {%if key not in['เลขที่', 'เลขประจำตัว', 'ชื่อ', 'นามสกุล', 'คะแนนพิเศษ']%}
                         {% if value <1%}
-                            <p>{{key}}: <label style="background-color: red; color: white;">เลยกำหนดส่งงาน</label></p>
+                            <p>{{key}}: <label style="background-color: red; color: white;">ยังไม่ได้ส่งงาน</label></p>
+                        {% elif key is 'คะแนนรวม' %}
+                            {% if value > 60  %}
+                            <p>{{key}}: {{value}} คะแนน</p>
                         {%else%}
                             <p>{{key}}: {{value}} คะแนน</p>
                         {%endif%}
