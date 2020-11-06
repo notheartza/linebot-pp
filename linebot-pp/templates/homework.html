@@ -103,9 +103,11 @@
         <div class="body-exam col container " style="font-size: 1.2rem;">
             <div class="col">
                 {%for key, value in homework.items()%}
-                    {%if key not in['เลขที่', 'เลขประจำตัว', 'ชื่อ', 'นามสกุล', 'คะแนนพิเศษ', 'ก่อนกลางภาค', 'ปลายภาค', 'คะแนนรวม']%}
+                    {%if key not in['เลขที่', 'เลขประจำตัว', 'ชื่อ', 'นามสกุล', 'คะแนนพิเศษ', 'ก่อนกลางภาค', 'ปลายภาค']%}
                         {% if value <1%}
                             <p>{{key}}: <label style="background-color: red; color: white;">เลยกำหนดส่งงาน</label></p>
+                        {% elif key is 'คะแนนรวม' and value > 60 %}
+                        <p>{{key}}: {{value}}/{{total[key]}}  คะแนน</p>
                         {%else%}
                             <p>{{key}}: {{value}}/{{total[key]}}  คะแนน</p>
                         {%endif%}
