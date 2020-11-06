@@ -106,7 +106,7 @@
                     {%if key not in['เลขที่', 'เลขประจำตัว', 'ชื่อ', 'นามสกุล', 'คะแนนพิเศษ', 'ก่อนกลางภาค', 'ปลายภาค']%}
                         {% if value <1%}
                             <p>{{key}}: <label style="background-color: red; color: white;">เลยกำหนดส่งงาน</label></p>
-                        {% elif key is 'คะแนนรวม' and value > 60 %}
+                        {% elif key is 'คะแนนรวม' and int(value) > 60 %}
                         <p>{{key}}: {{value}}/{{total[key]}}  คะแนน</p>
                         {%else%}
                             <p>{{key}}: {{value}}/{{total[key]}}  คะแนน</p>
