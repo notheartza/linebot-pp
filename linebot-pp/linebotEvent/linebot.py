@@ -16,8 +16,7 @@ completetext1 = 'บันทึกเรียบร้อย'
 waitingtext = 'กรุณารอสักครู่...'
 
 linebot_api = Blueprint('linebot_api', __name__)
-line_bot_api = LineBotApi(
-    'nMwl+f26OapSLijr4lrUrd9S7oV92Rp6uEj5EA6FiwuonmFIDO8yaFIpwa1xBygBUmi4ZDJ5JrzDEe3vilGB1PsjR+99dvvJt0QEJyVMWLHSlD9/epPR1xgQPssw7+tEDlwBOvbb8BO0jOVgja/Y4QdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('Line API')
 handler = WebhookHandler('da3242391b2f72d623b1fa0cb11288a1')
 auth = HTTPBasicAuth()
 
