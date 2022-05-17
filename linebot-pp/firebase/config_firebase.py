@@ -10,11 +10,11 @@ firebase_db = firestore.client()
 
 #<----realtime firebase--->
 config = {
-  "apiKey": "AIzaSyCO3DgD2x6fJuageulBP9i1l619Ee54beA",
-  "authDomain": "linebot-pp.firebaseapp.com",
-  "databaseURL": "https://linebot-pp.firebaseio.com/",
-  "storageBucket": "linebot-pp.appspot.com",
-  "serviceAccount": "./linebot-pp/linebot-pp-firebase-adminsdk-pkt20-eb15ce9f27.json"
+  "apiKey": "Key",
+  "authDomain": "Domain",
+  "databaseURL": "URL",
+  "storageBucket": "Bucket",
+  "serviceAccount": "json"
 }
 r_firebase = pyrebase.initialize_app(config)
 firebase_rdb = r_firebase.database()
